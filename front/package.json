@@ -1,0 +1,23 @@
+{
+  "name": "accounting",
+  "version": "0.0.1",
+  "description": "cochez.io accounting",
+  "homepage": "https://github.com/benc/accounting",
+  "devDependencies": {
+    "gulp": "^3.5.6",
+    "gulp-util": "~3.0.1",
+    "gulp-traceur": "vojtajina/gulp-traceur#traceur-as-peer",
+    "karma": "^0.12.1",
+    "karma-chrome-launcher": "^0.1.2",
+    "karma-jasmine": "^0.2.2",
+    "karma-requirejs": "^0.2.1",
+    "karma-traceur-preprocessor": "vojtajina/karma-traceur-preprocessor#traceur-as-peer",
+    "pipe": "angular/pipe#remove-transitive-deps",
+    "requirejs": "^2.1.15"
+  },
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "author": "Ben Cochez <ben@cochez.io>",
+  "license": "Apache-2.0"
+}

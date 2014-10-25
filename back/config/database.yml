@@ -1,0 +1,16 @@
+development: &development
+  adapter: postgresql
+  database: accounting_dev
+  username: benc
+  password:
+  pool: 5
+  host: localhost
+  timeout: 5000
+
+test: &test
+  <<: *development
+  database: accounting_test
+
+production:
+  <<: *development
+  database: accounting_prod
