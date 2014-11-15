@@ -1,0 +1,26 @@
+<div>
+	<h1>Invoices</h1>
+  <!-- 	
+  <ul>
+		<li ng-repeat="invoice in invoices.invoices"><pre>{{ invoice | json }}</pre></li>
+	</ul> 
+  -->
+	<md-content>
+    	<md-list>
+			<md-item ng-repeat="invoice in invoices.invoices">
+			  <md-item-content>
+			    <div class="md-tile-content">
+			      <h3>{{invoice.name}}</h3>
+			      <h4>{{invoice.category}}</h4>
+			      <p ng-if="invoice.remark">
+			        {{invoice.remark}}
+			      </p>
+			    </div>
+			    <div class="md-tile-right">
+			    	{{invoice.amount}}
+			    </div>
+			  </md-item-content>
+			</md-item>
+    </md-list>
+	</md-content>
+</div>

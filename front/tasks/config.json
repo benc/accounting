@@ -1,0 +1,42 @@
+{
+  "paths": {
+    "base": "app/src/",
+    "scripts": {
+      "coffee": {
+        "in": [
+          "app/src/**/*.coffee"
+        ],
+        "out": ".tmp/src"
+      },
+      "atscript": {
+        "in": [
+          "app/src/**/*.ats"
+        ],
+        "out": ".tmp/src"
+      },
+      "es6": {
+        "in": [
+          "app/src/**/*.js"
+        ],
+        "out": ".tmp/src"
+      }
+    },
+    "tests": {},
+    "templates": {
+      "html": {
+        "in": "app/**/*.html.tpl",
+        "out": ".tmp/src"
+      }
+    },
+    "styles": {
+      "sass": {
+        "in": "app/styles/**/*.{scss,sass}",
+        "out": ".tmp/styles"
+      }
+    },
+    "indexHtml": {
+      "in": "app/index.html.tpl",
+      "out": ".tmp/"
+    }
+  }
+}
