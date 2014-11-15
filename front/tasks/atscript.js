@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 gulp.task('atscript', function() {
   return gulp.src(config.paths.scripts.atscript.in)
     .pipe(traceur({
-      modules: 'amd', 
+      modules: 'instantiate', 
       script: false, 
       asyncFunctions: true, 
       types: true, 

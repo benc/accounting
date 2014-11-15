@@ -1,18 +1,7 @@
 # README
 
-* Install ruby 2.1.5 & bundler
+Sample backend app using rails-api and grape.
 
-		env CC=/usr/bin/gcc rbenv install 2.1.5
-		gem install bundler
+## Get it up and running
 
-* Database creation
-
-		rake db:reset db:create db:migrate
-
-* Database initialization
-
-		rake db:seed
-
-* Run it
-
-		rails server
+Checkout the main README
