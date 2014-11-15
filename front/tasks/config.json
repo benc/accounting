@@ -30,7 +30,10 @@
     },
     "styles": {
       "sass": {
-        "in": "app/styles/**/*.{scss,sass}",
+        "in": [
+          "app/styles/**/*.{scss,sass}",
+          "app/src/**/*.{scss,sass}"
+        ],
         "out": ".tmp/styles"
       }
     },

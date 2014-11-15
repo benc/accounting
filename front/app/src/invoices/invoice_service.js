@@ -1,9 +1,13 @@
 export class InvoiceService {
   constructor($resource) {
-    this.$resource = $resource;
+    this.resource = $resource('http://localhost:3000/api/invoice/:id', {invoice: '@id'});
   }
 
   getInvoices(opts){
-    return this.$resource('http://localhost:3000/api/invoice/:id', {invoice: '@id'}).query(opts).$promise;
+    return this.resource.query(opts).$promise;
+  }
+
+  addInvoice(invoice){
+    return this.resource.save(invoice).$promise;
   }
 }

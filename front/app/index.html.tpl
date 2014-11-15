@@ -17,13 +17,13 @@
     <a class="brand" ui-sref="home">Accounting</a>
   </div>
   <div flex></div>
-  <div>
+  <div >
     <ul layout="horizontal">
       <li><a ui-sref="invoices">Invoices</a></li>
     </ul>
   </div>
 </nav>
-<div layout="horizontal">
+<div layout="horizontal" class="content">
   <div flex>
     <div ui-view></div>
   </div>

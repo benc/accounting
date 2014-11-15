@@ -2,7 +2,10 @@ import {InvoiceService} from './invoice_service';
 
 export class InvoiceController {
   constructor(InvoiceService) {
-    this.invoices = [];
+    var vm = this;
+    vm.invoices = [];
+    vm.add = this.add;
+
     this.InvoiceService = InvoiceService;
 
     this.activate();
@@ -16,7 +19,11 @@ export class InvoiceController {
     return this.InvoiceService.getInvoices().then((data) => {
       this.invoices = data;
       return this.invoices;
-      console.log(data);
     });
+  }
+
+  add(invoice) {
+    console.log("add invoice");
+    return this.InvoiceService.addInvoice(invoice);
   }
 }
