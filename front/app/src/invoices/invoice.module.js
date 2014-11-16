@@ -1,8 +1,8 @@
-import {InvoiceController} from './invoice_controller';
+import {InvoiceListController} from './invoice_list_controller';
 import {InvoiceService} from './invoice_service';
 
 angular.module('accounting')
-  .controller('InvoiceController', ($injector) => $injector.instantiate(['InvoiceService', InvoiceController]))
+  .controller('InvoiceListController', ($injector) => $injector.instantiate(['InvoiceService', InvoiceListController]))
   .service('InvoiceService', ($injector) => $injector.instantiate(['$resource', InvoiceService]));
 
 import './invoice_routes';

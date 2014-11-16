@@ -1,6 +1,6 @@
 import {InvoiceService} from './invoice_service';
 
-export class InvoiceController {
+export class InvoiceListController {
   constructor(InvoiceService) {
     var vm = this;
     vm.invoices = [];

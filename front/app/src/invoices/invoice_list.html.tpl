@@ -1,6 +1,8 @@
 <div class="invoice invoice-list">
-	<h1>Invoices</h1>
-	<md-button aria-label="Add invoice" class="md-raised" ng-click="vm.add({})">Add an invoice</md-button>
+	<h1>
+    Invoices
+  </h1>
+  <md-button aria-label="Add invoice" class="md-raised" ng-click="vm.add({})">Add an invoice</md-button>
 	<md-content>
     <md-list>
 			<md-item ng-repeat="invoice in vm.invoices">
