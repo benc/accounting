@@ -2,18 +2,18 @@
 
 Sample app using Angular 1.3 and EcmaScript 6.
 
-## Backend
+## Server
 
-Simple backend app using [rails-api][1] and [grape](2).
+Simple app using [rails-api][1] and [grape](2).
 
 [1]: https://github.com/rails-api/rails-api
 [2]: https://github.com/intridea/grape
 
 ### Get it up and running
 
-* Get into the backend directory
+* Get into the server directory
 
-		cd back
+		cd server
 
 * Install ruby 2.1.5 & bundler
 
@@ -32,13 +32,13 @@ Simple backend app using [rails-api][1] and [grape](2).
 
 		rails server
 
-## Frontend
+## Client
 
 ### Get it up and running
 
-* Get into the frontend directory
+* Get into the client directory
 
-		cd front
+		cd client
 
 * Install gulp
 
