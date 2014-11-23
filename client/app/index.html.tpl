@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width">
     <!-- bower:css -->
     <!-- endbower -->
-    <link rel="stylesheet" href="bower_components/angular-material/themes/default-theme.css" />
     <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
@@ -25,7 +24,7 @@
 </nav>
 <div layout="horizontal" class="content">
   <div flex>
-    <div ui-view></div>
+    <div ui-view="content"></div>
   </div>
 </div>
 

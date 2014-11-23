@@ -18,7 +18,16 @@ class ErrorHandler {
             case 400:
               $injector.invoke(['$mdToast', function($mdToast) {
                 $mdToast.show({
-                  template: '<md-toast>' + response.statusText + '</md-toast>',
+                  template: '<md-toast>' + response.statusText + '<br>' + response.data.error + '</md-toast>',
+                  hideDelay: 2000,
+                  position: 'top right'
+                });
+              }]);
+              break;
+            case 500:
+              $injector.invoke(['$mdToast', function($mdToast) {
+                $mdToast.show({
+                  template: '<md-toast>' + response.statusText + '<br>' + response.data.error + '</md-toast>',
                   hideDelay: 2000,
                   position: 'top right'
                 });
@@ -27,7 +36,7 @@ class ErrorHandler {
             default:
               console.warn("TODO implement error handler", response);
           }
-          $q.reject(response) 
+          $q.reject(response); 
         }
       };
     }]);
@@ -35,5 +44,5 @@ class ErrorHandler {
 }
 
 angular.module("accounting").config(['$httpProvider', function($httpProvider){
-  new ErrorHandler($httpProvider)
+  new ErrorHandler($httpProvider);
 }]);

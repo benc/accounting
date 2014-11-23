@@ -7,7 +7,7 @@ export class InvoiceService {
     return this.resource.query(opts).$promise;
   }
 
-  addInvoice(invoice){
+  updateInvoice(invoice){
     return this.resource.save(invoice).$promise;
   }
 }

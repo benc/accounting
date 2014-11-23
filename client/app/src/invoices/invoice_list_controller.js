@@ -4,7 +4,6 @@ export class InvoiceListController {
   constructor(InvoiceService) {
     var vm = this;
     vm.invoices = [];
-    vm.add = this.add;
 
     this.InvoiceService = InvoiceService;
 
@@ -21,9 +20,6 @@ export class InvoiceListController {
       return this.invoices;
     });
   }
-
-  add(invoice) {
-    console.log("add invoice");
-    return this.InvoiceService.addInvoice(invoice);
-  }
 }
+
+InvoiceListController.$inject = ['InvoiceService'];

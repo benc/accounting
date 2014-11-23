@@ -7,4 +7,6 @@ gem 'pry-rails', group: :development
 gem 'pg'
 gem 'grape'
 gem 'ffaker'
+gem 'pry-rails', group: :development
+gem 'hashie_rails'
 gem 'rack-cors', require: 'rack/cors'
