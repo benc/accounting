@@ -4,7 +4,6 @@ import {InvoiceService} from './invoice_service';
 
 angular.module('accounting')
   .controller('InvoiceListController', InvoiceListController)
-  // .controller('InvoiceEditController', InvoiceEditController)
   .controller('InvoiceEditController', InvoiceEditController)
   .service('InvoiceService', InvoiceService);
 
