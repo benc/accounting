@@ -68,7 +68,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
     ownParams: function(state) {
       var params = state.url && state.url.params || new $$UMFP.ParamSet();
       forEach(state.params || {}, function(config, id) {
-        if (!params[id]) params[id] = new $$UMFP.Param(id, null, config);
+        if (!params[id]) params[id] = new $$UMFP.Param(id, null, config, "config");
       });
       return params;
     },
@@ -194,7 +194,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
     if (!state[abstractKey] && state.url) {
       $urlRouterProvider.when(state.url, ['$match', '$stateParams', function ($match, $stateParams) {
         if ($state.$current.navigable != state || !equalForKeys($match, $stateParams)) {
-          $state.transitionTo(state, $match, { location: false });
+          $state.transitionTo(state, $match, { inherit: true, location: false });
         }
       }]);
     }
@@ -1075,7 +1075,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
 
         if (options.location && to.navigable) {
           $urlRouter.push(to.navigable.url, to.navigable.locals.globals.$stateParams, {
-            replace: options.location === 'replace'
+            $$avoidResync: true, replace: options.location === 'replace'
           });
         }
 
@@ -1171,15 +1171,9 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       options = extend({ relative: $state.$current }, options || {});
       var state = findState(stateOrName, options.relative);
 
-      if (!isDefined(state)) {
-        return undefined;
-      }
-
-      if ($state.$current !== state) {
-        return false;
-      }
-
-      return isDefined(params) && params !== null ? angular.equals($stateParams, params) : true;
+      if (!isDefined(state)) { return undefined; }
+      if ($state.$current !== state) { return false; }
+      return params ? equalForKeys(state.params.$$values(params), $stateParams) : true;
     };
 
     /**
@@ -1243,13 +1237,9 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       }
 
       var state = findState(stateOrName, options.relative);
-      if (!isDefined(state)) {
-        return undefined;
-      }
-      if (!isDefined($state.$current.includes[state.name])) {
-        return false;
-      }
-      return equalForKeys(params, $stateParams);
+      if (!isDefined(state)) { return undefined; }
+      if (!isDefined($state.$current.includes[state.name])) { return false; }
+      return params ? equalForKeys(state.params.$$values(params), $stateParams, objectKeys(params)) : true;
     };
 
 

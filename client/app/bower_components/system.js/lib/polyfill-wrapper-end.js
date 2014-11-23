@@ -19,7 +19,12 @@ var $__curScript, __eval;
       doEval(source);
     }
     catch(e) {
-      throw 'Error evaluating ' + address;
+      var msg = 'Error evaluating ' + address + '\n';
+      if (e instanceof Error)
+        e.message = msg + e.message;
+      else
+        e = msg + e;
+      throw e;
     }
   };
 
@@ -76,7 +81,7 @@ var $__curScript, __eval;
     if (!$__global.System || !$__global.LoaderPolyfill) {
       var basePath = '';
       try {
-        throw new Error('Getting the path');
+        throw new TypeError('Unable to get Worker base path.');
       } catch(err) {
         var idx = err.stack.indexOf('at ') + 3;
         var withSystem = err.stack.substr(idx, err.stack.substr(idx).indexOf('\n'));
