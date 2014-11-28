@@ -21,7 +21,11 @@
         "out": ".tmp/src"
       }
     },
-    "tests": {},
+    "tests": {
+      "protractor": [
+        "test/e2e/**/*_scenario.js"
+      ]
+    },
     "templates": {
       "html": {
         "in": "app/**/*.html.tpl",
