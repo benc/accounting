@@ -2,23 +2,23 @@
   "name": "cochez.io accounting",
   "version": "1.0.0",
   "dependencies": {
-    "angular": "1.3.3",
+    "angular": "1.3.4",
     "json3": "3.3.2",
     "jquery": "2.1.1",
-    "angular-resource": "1.3.3",
-    "angular-sanitize": "1.3.3",
+    "angular-resource": "1.3.4",
+    "angular-sanitize": "1.3.4",
     "angular-ui-router": "0.2.13",
     "lodash": "2.4.1",
-    "angular-i18n": "1.3.3",
-    "angular-material": "0.6.0-rc1-master-fca5376",
+    "angular-i18n": "1.3.4",
+    "angular-material": "0.6.0-rc3-master-98c3152",
     "hammerjs": "2.0.4",
-    "angular-aria": "1.3.3",
-    "system.js": "0.10.0",
+    "angular-aria": "1.3.4",
+    "system.js": "0.10.1",
     "traceur-runtime": "0.0.74"
   },
   "devDependencies": {
-    "angular-mocks": "1.3.3",
-    "angular-scenario": "1.3.3",
+    "angular-mocks": "1.3.4",
+    "angular-scenario": "1.3.4",
     "jasmine-jquery": "2.0.5"
   }
 }

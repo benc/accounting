@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.6.0-rc1-master-fca5376
+ * v0.6.0-rc3-master-98c3152
  */
 (function() {
 'use strict';
@@ -55,10 +55,13 @@ function MdTabInkDirective($mdConstant, $window, $$rAF, $timeout) {
   };
 
   function postLink(scope, element, attr, ctrls) {
-    var nobar = ctrls[0];
-    var tabsCtrl = ctrls[1];
+    var nobar = ctrls[0],
+        tabsCtrl = ctrls[1],
+        timeout;
 
     if (nobar) return;
+
+    tabsCtrl.inkBarElement = element;
 
     scope.$watch(tabsCtrl.selected, updateBar);
     scope.$on('$mdTabsChanged', updateBar);
@@ -66,16 +69,22 @@ function MdTabInkDirective($mdConstant, $window, $$rAF, $timeout) {
     function updateBar() {
       var selected = tabsCtrl.selected();
 
-      var hideInkBar = !selected || tabsCtrl.count() < 2 || 
-        (scope.pagination && scope.pagination.itemsPerPage === 1);
+      var hideInkBar = !selected || tabsCtrl.count() < 2 ||
+        (scope.pagination || {}).itemsPerPage === 1;
       element.css('display', hideInkBar ? 'none' : 'block');
 
-      if (!hideInkBar) { 
+      if (!hideInkBar) {
         var count = tabsCtrl.count();
         var scale = 1 / count;
-        var left = (tabsCtrl.indexOf(selected) / count) + (1 / count / 2);
+        var left = tabsCtrl.indexOf(selected);
         element.css($mdConstant.CSS.TRANSFORM, 'scaleX(' + scale + ') ' +
-                    'translate3d(' + left / scale * 100 + '%,0,0)');
+                    'translate3d(' + left * 100 + '%,0,0)');
+        element.addClass('md-ink-bar-grow');
+        if (timeout) $timeout.cancel(timeout);
+        timeout = $timeout(function () {
+          element.removeClass('md-ink-bar-grow');
+        }, 250, false);
+
       }
     }
 
@@ -457,7 +466,9 @@ function MdTabDirective($mdInkRipple, $compile, $mdAria, $mdUtil, $mdConstant) {
       transcludeTabContent();
       configureAria();
 
-      var detachRippleFn = $mdInkRipple.attachButtonBehavior(scope, element);
+      var detachRippleFn = $mdInkRipple.attachTabBehavior(scope, element, {
+        colorElement: tabsCtrl.inkBarElement
+      });
       tabsCtrl.add(tabItemCtrl);
       scope.$on('$destroy', function() {
         detachRippleFn();
@@ -534,7 +545,7 @@ function MdTabDirective($mdInkRipple, $compile, $mdAria, $mdUtil, $mdConstant) {
       function watchActiveAttribute() {
         var unwatch = scope.$parent.$watch('!!(' + attr.mdActive + ')', activeWatchAction);
         scope.$on('$destroy', unwatch);
-        
+
         function activeWatchAction(isActive) {
           var isSelected = tabsCtrl.selected() === tabItemCtrl;
 
@@ -548,7 +559,7 @@ function MdTabDirective($mdInkRipple, $compile, $mdAria, $mdUtil, $mdConstant) {
 
       function watchDisabled() {
         scope.$watch(tabItemCtrl.isDisabled, disabledWatchAction);
-        
+
         function disabledWatchAction(isDisabled) {
           element.attr('aria-disabled', isDisabled);
 
@@ -821,6 +832,7 @@ function TabsDirective($parse, $mdTheming) {
           // flex container for <md-tab> elements
           '<div class="md-header-items">' +
             '<md-tabs-ink-bar></md-tabs-ink-bar>' +
+            '<md-tabs-ink-bar class="md-ink-bar-delayed"></md-tabs-ink-bar>' +
           '</div>' +
         '</div>' +
 
