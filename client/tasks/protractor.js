@@ -4,8 +4,6 @@ var gulp = require('gulp'),
     config = require('./config.json'),
     plumber = require('gulp-plumber'),
     connect = require('gulp-connect'),
-    runSequence = require('run-sequence').use(gulp),
-    run = require('gulp-run'),
     protractor = require("gulp-protractor").protractor;
 
 gulp.task('connect:test', function() {

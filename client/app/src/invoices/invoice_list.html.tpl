@@ -4,7 +4,7 @@
   </h1>
   <div class="actions">
     <!-- <md-button aria-label="Add invoice" class="md-raised" ui-sref="invoices.add">Add an invoice</md-button> -->
-    <a ui-sref="invoices.add" class="md-button">Add an invoice</a>
+    <a ui-sref="invoices.add" class="md-button js-add-invoice">Add an invoice</a>
   </div>
   <md-divider></md-divider>
   <md-content>
