@@ -1,6 +1,6 @@
 {
   "name": "system.js",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "main": "dist/system.js",
   "dependencies": {
     "es6-module-loader": "~0.10.0"
@@ -14,13 +14,13 @@
     "package.json"
   ],
   "homepage": "https://github.com/systemjs/systemjs",
-  "_release": "0.10.1",
+  "_release": "0.10.2",
   "_resolution": {
     "type": "version",
-    "tag": "0.10.1",
-    "commit": "530e2ee55d3cb7d942b6ca5ebc1a59d9ae93ea03"
+    "tag": "0.10.2",
+    "commit": "ba271aa257bb0f8270197720c0dba15b0012ea42"
   },
   "_source": "git://github.com/systemjs/systemjs.git",
-  "_target": "0.10.1",
+  "_target": "0.10.2",
   "_originalSource": "system.js"
 }

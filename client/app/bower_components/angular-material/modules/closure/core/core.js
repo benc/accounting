@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.6.0-rc3-master-98c3152
+ * v0.6.1
  */
 goog.provide('ng.material.core');
 
@@ -101,6 +101,14 @@ function MdConstantFactory($$rAF, $sniffer) {
       ANIMATION_NAME: vendorProperty('animationName'),
       ANIMATION_TIMING: vendorProperty('animationTimingFunction'),
       ANIMATION_DIRECTION: vendorProperty('animationDirection')
+    },
+    MEDIA: {
+      'sm': '(max-width: 600px)',
+      'gt-sm': '(min-width: 600px)',
+      'md': '(min-width: 600px) and (max-width: 960px)',
+      'gt-md': '(min-width: 960px)',
+      'lg': '(min-width: 960px) and (max-width: 1200px)',
+      'gt-lg': '(min-width: 1200px)'
     }
   };
 }
@@ -691,7 +699,7 @@ function mdCompilerService($q, $http, $injector, $compile, $controller, $templat
     return $q.all(resolve).then(function(locals) {
 
       var template = transformTemplate(locals.$template);
-      var element = angular.element('<div>').html(template).contents();
+      var element = angular.element('<div>').html(template.trim()).contents();
       var linkFn = $compile(element);
 
       //Return a linking function that can be used later when the element is ready
@@ -767,6 +775,7 @@ function InterimElementProvider() {
    * as well as configuration of 'preset' methods (eg dialog.basic(): basic is a preset method)
    */
   function createInterimElementProvider(interimFactoryName) {
+    var EXPOSED_METHODS = ['onHide', 'onShow', 'onRemove'];
     var providerConfig = {
       presets: {}
     };
@@ -780,7 +789,7 @@ function InterimElementProvider() {
      * all interim elements will come with the 'build' preset
      */
     provider.addPreset('build', {
-      methods: ['controller', 'controllerAs', 'onRemove', 'onShow', 'resolve',
+      methods: ['controller', 'controllerAs', 'resolve',
         'template', 'templateUrl', 'themable', 'transformTemplate', 'parent']
     });
 
@@ -792,9 +801,10 @@ function InterimElementProvider() {
      */
     function setDefaults(definition) {
       providerConfig.optionsFactory = definition.options;
-      providerConfig.methods = definition.methods;
+      providerConfig.methods = (definition.methods || []).concat(EXPOSED_METHODS);
       return provider;
     }
+
     /**
      * Save the configured preset to be used when the factory is instantiated
      */
@@ -810,8 +820,9 @@ function InterimElementProvider() {
         throw new Error("Method '_options' in " + interimFactoryName + " is reserved!");
       }
       providerConfig.presets[name] = {
-        methods: definition.methods,
-        optionsFactory: definition.options
+        methods: definition.methods.concat(EXPOSED_METHODS),
+        optionsFactory: definition.options,
+        argOption: definition.argOption
       };
       return provider;
     }
@@ -875,8 +886,19 @@ function InterimElementProvider() {
         });
 
         // eg $mdDialog.alert() will return a new alert preset
-        publicService[name] = function(options) {
-          return new Preset(options);
+        publicService[name] = function(arg) {
+          // If argOption is supplied, eg `argOption: 'content'`, then we assume
+          // if the argument is not an options object then it is the `argOption` option.
+          //
+          // @example `$mdToast.simple('hello')` // sets options.content to hello
+          //                                     // because argOption === 'content'
+          if (arguments.length && definition.argOption && !angular.isObject(arg) &&
+              !angular.isArray(arg)) {
+            return (new Preset())[definition.argOption](arg);
+          } else {
+            return new Preset(arg);
+          }
+
         };
       });
 
@@ -885,8 +907,9 @@ function InterimElementProvider() {
       function showInterimElement(opts) {
         // opts is either a preset which stores its options on an _options field,
         // or just an object made up of options
+        if (opts && opts._options) opts = opts._options;
         return interimElementService.show(
-          angular.extend({}, defaultOptions, (opts || {})._options || opts)
+          angular.extend({}, defaultOptions, opts)
         );
       }
 
@@ -924,9 +947,22 @@ function InterimElementProvider() {
       return service = {
         show: show,
         hide: hide,
-        cancel: cancel,
+        cancel: cancel
       };
 
+      /*
+       * @ngdoc method
+       * @name $$interimElement.$service#show
+       * @kind function
+       *
+       * @description
+       * Adds the `$interimElement` to the DOM and returns a promise that will be resolved or rejected
+       * with hide or cancel, respectively.
+       *
+       * @param {*} options is hashMap of settings
+       * @returns a Promise
+       *
+       */
       function show(options) {
         if (stack.length) {
           service.cancel();
@@ -949,8 +985,7 @@ function InterimElementProvider() {
        * Removes the `$interimElement` from the DOM and resolves the promise returned from `show`
        *
        * @param {*} resolveParam Data to resolve the promise with
-       *
-       * @returns undefined data that resolves after the element has been removed.
+       * @returns a Promise that will be resolved after the element has been removed.
        *
        */
       function hide(response) {
@@ -958,6 +993,8 @@ function InterimElementProvider() {
         interimElement && interimElement.remove().then(function() {
           interimElement.deferred.resolve(response);
         });
+
+        return interimElement ? interimElement.deferred.promise : $q.when(response);
       }
 
       /*
@@ -969,8 +1006,7 @@ function InterimElementProvider() {
        * Removes the `$interimElement` from the DOM and rejects the promise returned from `show`
        *
        * @param {*} reason Data to reject the promise with
-       *
-       * @returns undefined
+       * @returns Promise that will be rejected after the element has been removed.
        *
        */
       function cancel(reason) {
@@ -978,6 +1014,8 @@ function InterimElementProvider() {
         interimElement && interimElement.remove().then(function() {
           interimElement.deferred.reject(reason);
         });
+
+        return interimElement ? interimElement.deferred.promise : $q.reject(reason);
       }
 
 
@@ -1218,7 +1256,7 @@ function InkRippleService($window, $timeout) {
           elemIsHeld   = ripples.length > 1 ? false : isHeld;
       if (elemIsActive || state.animating || elemIsHeld) {
         elem.addClass('md-ripple-visible');
-      } else {
+      } else if (elem) {
         elem.removeClass('md-ripple-visible');
         if (options.outline) {
           elem.css({
@@ -1241,6 +1279,8 @@ function InkRippleService($window, $timeout) {
      * @returns {angular.element} the generated ripple element
      */
     function createRipple(left, top) {
+
+      color = parseColor(element.attr('md-ink-ripple')) || parseColor($window.getComputedStyle(options.colorElement[0]).color || 'rgb(0, 0, 0)');
 
       var container = getRippleContainer(),
           size = getRippleSize(left, top),

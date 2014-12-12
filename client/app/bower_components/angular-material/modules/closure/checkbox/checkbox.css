@@ -2,20 +2,31 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.6.0-rc3-master-98c3152
+ * v0.6.1
  */
 md-checkbox {
   display: block;
   margin: 15px;
   white-space: nowrap;
   cursor: pointer;
-  outline: none; }
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
   md-checkbox .md-container {
     position: relative;
     top: 4px;
     display: inline-block;
     width: 18px;
     height: 18px; }
+    md-checkbox .md-container:after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      bottom: -10px;
+      left: -10px; }
     md-checkbox .md-container .md-ripple-container {
       position: absolute;
       display: block;
@@ -26,7 +37,8 @@ md-checkbox {
       right: -15px;
       bottom: -15px; }
   md-checkbox .md-icon {
-    transition: 240ms;
+    -webkit-transition: 240ms;
+            transition: 240ms;
     position: absolute;
     top: 0;
     left: 0;
@@ -60,4 +72,8 @@ md-checkbox {
     margin-left: 10px;
     vertical-align: middle;
     white-space: normal;
-    pointer-events: none; }
+    pointer-events: none;
+    -webkit-user-select: text;
+       -moz-user-select: text;
+        -ms-user-select: text;
+            user-select: text; }
