@@ -1,9 +1,4 @@
-chai = require('chai');
-chaiAsPromised = require('chai-as-promised');
-
-chai.use(chaiAsPromised);
-expect = chai.expect;
-
+var expect = require('../support/chai.js');
 var InvoiceAddPage = require('../pages/invoice_add_page.js');
 
 describe('invoice', function() {
