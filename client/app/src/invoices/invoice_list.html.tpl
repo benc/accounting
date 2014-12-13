@@ -3,13 +3,12 @@
     Invoices
   </h1>
   <div class="actions">
-    <!-- <md-button aria-label="Add invoice" class="md-raised" ui-sref="invoices.add">Add an invoice</md-button> -->
-    <a ui-sref="invoices.add" class="md-button js-add-invoice">Add an invoice</a>
+    <md-button aria-label="Add invoice" class="md-raised" ui-sref="invoices.create">Add an invoice</md-button>
   </div>
   <md-divider></md-divider>
   <md-content>
     <md-list>
-      <md-item ng-repeat="invoice in vm.invoices">
+      <md-item ng-repeat="invoice in ctrl.invoices">
         <md-item-content>
           <div class="md-tile-content">
             <ul class="meta" layout="horizontal">
@@ -27,6 +26,8 @@
           </div>
           <div class="md-tile-right">
             {{::invoice.amount | currency:invoice.currency }}
+            <md-button class="md-fab" aira-label="Edit this invoice" ui-sref="invoices.edit({id: {{ ::invoice.id }} })">edit</md-button>
+            <md-button class="md-fab" aira-label="Delete this invoice" ng-click="ctrl.delete(invoice.id)">delete</md-button>
           </div>
         </md-item-content>
         <md-divider ng-if="!$last"></md-divider>

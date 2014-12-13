@@ -3,7 +3,7 @@ InvoiceListPage = function () {
 };
 
  InvoiceListPage.prototype = Object.create({}, {
-    list: { get: function () { return element.all(by.repeater('invoice in vm.invoices')); }},
+    list: { get: function () { return element.all(by.repeater('invoice in ctrl.invoices')); }},
     
     addButton: { get: function () { return element(by.css('.js-add-button')); }},
 

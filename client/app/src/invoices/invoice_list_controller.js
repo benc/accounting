@@ -1,11 +1,9 @@
 import {InvoiceService} from './invoice_service';
 
 export class InvoiceListController {
-  constructor(InvoiceService) {
-    var vm = this;
-    vm.invoices = [];
-
+  constructor(InvoiceService,$mdToast) {
     this.InvoiceService = InvoiceService;
+    this.$mdToast = $mdToast;
 
     this.activate();
   }
@@ -20,6 +18,22 @@ export class InvoiceListController {
       return this.invoices;
     });
   }
+
+  delete(id) {
+    return this.InvoiceService.deleteInvoice({id: id}).then((data) => {
+      // delete from our invoices list
+      this.invoices = this.invoices.filter(function (invoice){
+        return invoice.id != data.id;
+      });
+
+      // inform 
+      this.$mdToast.show({
+        template: '<md-toast>Invoice "' + data.name + '" deleted</md-toast>',
+        hideDelay: 2000,
+        position: 'top right'
+      });
+    });
+  }
 }
 
-InvoiceListController.$inject = ['InvoiceService'];
+InvoiceListController.$inject = ['InvoiceService','$mdToast'];

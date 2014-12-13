@@ -1,10 +1,10 @@
 var expect = require('../support/chai.js');
-var InvoiceAddPage = require('../pages/invoice_add_page.js');
+var InvoiceCreatePage = require('../pages/invoice_create_page.js');
 
 describe('invoice', function() {
   it('should add an invoices', function() {
-    var invoiceAddPage = new InvoiceAddPage();
-    invoiceAddPage.addInvoice({
+    var page = new InvoiceCreatePage();
+    page.addInvoice({
       name: 'Acme Corp',
       category: 'Tornado hunting gear',
       remark: '10 tornado kits',      
