@@ -1,8 +1,8 @@
 var path = require('path'),
     glob = require('glob'),
-    util = require('util'),
+    log = require('./logger'),
     _ = require('lodash'),
-    protractor = require('./protractor.js');
+    helper = require('./util');
 
 // Coffee is required here to enable config files written in coffee-script.
 try {
@@ -32,7 +32,7 @@ var ConfigParser = function() {
       isVerbose: false,
       showColors: true,
       includeStackTrace: true,
-      stackFilter: protractor.filterStackTrace,
+      stackFilter: helper.filterStackTrace,
       defaultTimeoutInterval: (30 * 1000)
     },
     seleniumArgs: [],
@@ -42,7 +42,8 @@ var ConfigParser = function() {
       reporter: 'list'
     },
     chromeDriver: null,
-    configDir: './'
+    configDir: './',
+    plugins: {}
   };
 };
 
@@ -97,7 +98,7 @@ ConfigParser.resolveFilePatterns =
     for (var i = 0; i < patterns.length; ++i) {
       var matches = glob.sync(patterns[i], {cwd: cwd});
       if (!matches.length && !opt_omitWarnings) {
-        util.puts('Warning: pattern ' + patterns[i] + ' did not match any files.');
+        log.warn('pattern ' + patterns[i] + ' did not match any files.');
       }
       for (var j = 0; j < matches.length; ++j) {
         resolvedFiles.push(path.resolve(cwd, matches[j]));
@@ -163,7 +164,7 @@ ConfigParser.prototype.addConfig_ = function(additionalConfig, relativeTo) {
 
   // chromeOnly is deprecated, use directConnect instead.
   if (additionalConfig.chromeOnly) {
-    console.log('Warning: chromeOnly is deprecated. Use directConnect');
+    log.warn('chromeOnly is deprecated. Use directConnect');
     additionalConfig.directConnect = true;
   }
   merge_(this.config_, additionalConfig);
@@ -176,13 +177,22 @@ ConfigParser.prototype.addConfig_ = function(additionalConfig, relativeTo) {
  * @param {String} filename
  */
 ConfigParser.prototype.addFileConfig = function(filename) {
-  if (!filename) {
-    return this;
+  try {
+    if (!filename) {
+      return this;
+    }
+    var filePath = path.resolve(process.cwd(), filename);
+    var fileConfig = require(filePath).config;
+    if (!fileConfig) {
+      log.error('configuration file ' + filename + ' did not export a config ' +
+          'object');
+    }
+    fileConfig.configDir = path.dirname(filePath);
+    this.addConfig_(fileConfig, fileConfig.configDir);
+  } catch (e) {
+    log.error('failed loading configuration file ' + filename);
+    throw e;
   }
-  var filePath = path.resolve(process.cwd(), filename);
-  var fileConfig = require(filePath).config;
-  fileConfig.configDir = path.dirname(filePath);
-  this.addConfig_(fileConfig, fileConfig.configDir);
   return this;
 };
 

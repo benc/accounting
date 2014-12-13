@@ -18,8 +18,10 @@ module.exports = function (options) {
     context.srcDir = opts.includeBase || path.dirname(file.path);
     context.NODE_ENV = context.NODE_ENV || 'development';
 
+    extension = _.isEmpty(opts.extension) ? getExtension(context.src) : opts.extension;
+
     contents = file.contents.toString('utf8');
-    contents = pp.preprocess(contents, context, getExtension(context.src));
+    contents = pp.preprocess(contents, context, extension);
     file.contents = new Buffer(contents);
 
     callback(null, file);

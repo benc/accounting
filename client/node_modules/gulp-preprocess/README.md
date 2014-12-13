@@ -103,6 +103,11 @@ Type: `String`
 
 Base directory for included files. By default, the path to included files is relative to the file currently being processed.
 
+#### options.extension
+Type: `String`
+
+Override the file extension. This determines what [regular expressions are used for comments](https://github.com/jsoverson/preprocess/blob/master/lib/regexrules.js). You may wish to do this if you are using a custom extension or need to force a particular comment syntax (for example, to allow HTML-style comments in `.php` files).
+
 ## LICENSE
 
 The MIT License (MIT)

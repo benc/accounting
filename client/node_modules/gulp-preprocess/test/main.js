@@ -115,5 +115,26 @@ describe('gulp-preprocess', function(){
 
     });
 
+    it('should allow custom extension', function(done){
+      var stream = preprocess({
+        extension: 'html',
+        context: {
+          firstOption: 'bar',
+          secondOption: 'foo'
+        }
+      });
+
+      var fakeFile = fixtureFile('test.php');
+
+      stream.once('data', function(newFile){
+        should.exist(newFile);
+        should.exist(newFile.contents);
+        String(newFile.contents).should.equal(fs.readFileSync('test/expected/test.html', 'utf8'));
+        done();
+      });
+      stream.write(fakeFile);
+
+    });
+
   });
 });

@@ -2,9 +2,10 @@
 
 var gulp = require('gulp'),
     config = require('./config.json'),
-    plumber = require('gulp-plumber'),
+    runSequence = require('run-sequence').use(gulp),
     connect = require('gulp-connect'),
-    protractor = require("gulp-protractor").protractor;
+    protractor = require('gulp-protractor').protractor,
+    webdriverUpdate = require('gulp-protractor').webdriver_update;
 
 gulp.task('connect:test', function() {
   return connect.server({
@@ -13,7 +14,9 @@ gulp.task('connect:test', function() {
   });
 });
 
-gulp.task('protractor', ['connect:test'], function () {
+gulp.task('webdriver:update', webdriverUpdate);
+
+gulp.task('protractor', ['webdriver:update', 'connect:test'], function () {
   return gulp.src(config.paths.tests.protractor)
     .pipe(protractor({
         configFile: "protractor.config.js",

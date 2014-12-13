@@ -9,12 +9,15 @@ var webdriver = require('selenium-webdriver'),
     firefox = require('selenium-webdriver/firefox'),
     q = require('q'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    util = require('util'),
+    DriverProvider = require('./driverProvider'),
+    log = require('../logger');
 
 var DirectDriverProvider = function(config) {
-  this.config_ = config;
-  this.driver_ = null;
+  DriverProvider.call(this, config);
 };
+util.inherits(DirectDriverProvider, DriverProvider);
 
 /**
  * Configure and launch (if applicable) the object's environment.
@@ -25,10 +28,10 @@ var DirectDriverProvider = function(config) {
 DirectDriverProvider.prototype.setupEnv = function() {
   switch (this.config_.capabilities.browserName) {
     case 'chrome':
-      console.log('Using ChromeDriver directly...');
+      log.puts('Using ChromeDriver directly...');
       break;
     case 'firefox':
-      console.log('Using FirefoxDriver directly...');
+      log.puts('Using FirefoxDriver directly...');
       break;
     default:
       throw new Error('browserName (' + this.config_.capabilities.browserName +
@@ -38,30 +41,14 @@ DirectDriverProvider.prototype.setupEnv = function() {
 };
 
 /**
- * Teardown and destroy the environment and do any associated cleanup.
- * Shuts down the driver.
+ * Create a new driver.
  *
  * @public
- * @return {q.promise} A promise which will resolve when the environment
- *     is down.
- */
-DirectDriverProvider.prototype.teardownEnv = function() {
-  var deferred = q.defer();
-  this.driver_.quit().then(function() {
-    deferred.resolve();
-  });
-  return deferred.promise;
-};
-
-/**
- * Retrieve the webdriver for the runner.
- * @public
+ * @override
  * @return webdriver instance
  */
-DirectDriverProvider.prototype.getDriver = function() {
-  if (this.driver_) {
-    return this.driver_;
-  }
+DirectDriverProvider.prototype.getNewDriver = function() {
+  var driver; 
   switch (this.config_.capabilities.browserName) {
     case 'chrome':
       var chromeDriverFile = this.config_.chromeDriver ||
@@ -78,20 +65,21 @@ DirectDriverProvider.prototype.getDriver = function() {
       }
 
       var service = new chrome.ServiceBuilder(chromeDriverFile).build();
-      this.driver_ = chrome.createDriver(
+      driver = chrome.createDriver(
           new webdriver.Capabilities(this.config_.capabilities), service); 
       break;
     case 'firefox':
       if (this.config_.firefoxPath) {
         this.config_.capabilities.firefox_binary = this.config_.firefoxPath;
       }
-      this.driver_ = new firefox.Driver(this.config_.capabilities);
+      driver = new firefox.Driver(this.config_.capabilities);
       break;
     default:
       throw new Error('browserName ' + this.config_.capabilities.browserName +
           'is not supported with directConnect.');
   }
-  return this.driver_;
+  this.drivers_.push(driver);
+  return driver;
 };
 
 // new instance w/ each include
