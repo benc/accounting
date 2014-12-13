@@ -26,10 +26,7 @@ gulp.task('watch', function () {
 
 gulp.task('serve', function (callback) {
   runSequence('clean',
-              'es6',
-              'indexHtml',
-              'html2js',
-              'sass',
+              ['es6','indexHtml','html2js','sass'],
               ['connect', 'watch'],
               callback);
 });

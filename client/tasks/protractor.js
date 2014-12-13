@@ -14,9 +14,16 @@ gulp.task('connect:test', function() {
   });
 });
 
+gulp.task('serve:test', function (callback) {
+  runSequence('clean',
+              ['es6','indexHtml','html2js','sass'],
+              ['connect:test'],
+              callback);
+});
+
 gulp.task('webdriver:update', webdriverUpdate);
 
-gulp.task('protractor', ['webdriver:update', 'connect:test'], function () {
+gulp.task('protractor', ['webdriver:update', 'serve:test'], function () {
   return gulp.src(config.paths.tests.protractor)
     .pipe(protractor({
         configFile: "protractor.config.js",
