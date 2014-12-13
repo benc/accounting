@@ -1,3 +1,9 @@
+chai = require('chai');
+chaiAsPromised = require('chai-as-promised');
+
+chai.use(chaiAsPromised);
+expect = chai.expect;
+
 var InvoiceAddPage = require('../pages/invoice_add_page.js');
 
 describe('invoice', function() {
@@ -14,6 +20,6 @@ describe('invoice', function() {
       paymentDate: '24/8/2014'
     });
     
-    expect(browser.getCurrentUrl()).not.toContain('add');
+    expect(browser.getCurrentUrl()).eventually.not.to.contain('add');
   });
 });
