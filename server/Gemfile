@@ -14,3 +14,8 @@ group :test, :development do
   gem 'json_spec'
   gem 'ffaker'
 end
+
+group :test do
+  gem 'simplecov'
+  gem 'simplecov-teamcity-summary'
+end

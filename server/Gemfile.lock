@@ -48,6 +48,7 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     equalizer (0.0.9)
     erubis (2.7.0)
     fabrication (2.11.3)
@@ -150,6 +151,13 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
+    simplecov-teamcity-summary (0.1.1)
+      simplecov
     slop (3.6.0)
     sprockets (2.12.2)
       hike (~> 1.2)
@@ -186,3 +194,5 @@ DEPENDENCIES
   rails (= 4.2.0.beta2)
   rails-api
   rspec-rails
+  simplecov
+  simplecov-teamcity-summary
