@@ -2,3 +2,4 @@ front/accounting.sublime-workspace
 client/accounting.sublime-workspace
 client/reports
 server/coverage
+client/node_modules
