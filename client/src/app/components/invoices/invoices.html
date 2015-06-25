@@ -1,0 +1,39 @@
+<div class="invoices">
+  <div class="container">
+    <header>
+      <h3>
+        <span class="glyphicon glyphicon-money"></span>
+        Invoices
+      </h3>
+    </header>
+    <div class="container">
+      <div class="row card-container">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ng-for="#invoice of invoices">
+          <div class="md-tile-content">
+            <ul class="meta">
+              <li class="invoiceDate">{{ invoice.invoice_date }}</li>
+              <li class="paymentDate">Paid: {{ invoice.payment_date }}</li>
+              <li class="vat">VAT: {{ invoice.vat}}%</li>
+              <li class="indexNumber">index: {{ invoice.index_number }}%</li>
+            </ul>
+            <h3>{{ invoice.name }}</h3>
+            <h4>{{ invoice.category }}</h4>
+            <p>
+              {{ invoice.remark }}
+            </p>
+            <!-- <pre>{{invoice | json }}</pre> -->
+          </div>
+          <div class="md-tile-right">
+            {{ invoice.amount }}
+            <!-- <md-button class="md-fab" aira-label="Edit this invoice" ui-sref="invoices.edit({id: {{invoice.id }} })">edit</md-button>
+            <md-button class="md-fab" aira-label="Delete this invoice" ng-click="ctrl.delete(invoice.id)">delete</md-button> -->
+          </div>
+
+        </div>
+        <div [hidden]="invoices.length">
+          No invoices found
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

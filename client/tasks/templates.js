@@ -1,24 +1,17 @@
 'use strict';
 
-var gulp = require('gulp'),
-    connect = require('gulp-connect'),
-    concat = require('gulp-concat'),
-    ngHtml2Js = require('gulp-ng-html2js'),
-    config = require('./config.json');
+var gulp = require('gulp');
+var connect = require('gulp-connect');
+var concat = require('gulp-concat');
+var ngHtml2Js = require('gulp-ng-html2js');
 
-/**
- * SERVE
- */
 gulp.task('html2js', function () {
-  return gulp.src(config.paths.templates.html.in)
+  return gulp.src("app/**/*.html")
     .pipe(ngHtml2Js({
         moduleName: 'accounting',
-        stripPrefix: 'src/',
-        rename: function (url) {
-          return url.replace('.html.tpl', '.html');
-        }
+        stripPrefix: 'src/'
     }))
     .pipe(concat('templates.js'))
-    .pipe(gulp.dest(config.paths.templates.html.out))
+    .pipe(gulp.dest(".tmp/src"))
     .pipe(connect.reload());
 });

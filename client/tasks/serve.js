@@ -1,27 +1,29 @@
 'use strict';
 
-var gulp = require('gulp'),
-    connect = require('gulp-connect'),
-    runSequence = require('run-sequence').use(gulp),
-    config = require('./config.json');
+var gulp = require('gulp');
+var connect = require('gulp-connect');
+var runSequence = require('run-sequence').use(gulp);
+var history = require('connect-history-api-fallback');
 
-/**
- * SERVE
- */
-gulp.task('connect', function() {
+gulp.task('connect', function () {
   return connect.server({
-    root: ['.tmp', 'app'],
+    root: [
+      '.tmp', // bevat getranspileerde js, css en gecompileerde templates.js
+      'app' // in principe enkel voor bower_components te hosten
+    ],
+    port: 9000,
     livereload: true,
-    port: 9000
+    middleware: function () {
+      return [history()];
+    }
   });
 });
 
-gulp.task('watch', function () {  
+gulp.task('watch', function () {
   gulp.watch('./bower.json', ['indexHtml']);
-  gulp.watch(config.paths.indexHtml.in, ['indexHtml']);
-  gulp.watch(config.paths.templates.html.in, ['html2js']);
-  gulp.watch(config.paths.styles.sass.in, ['sass']);
-  gulp.watch(config.paths.scripts.es6.in, ['es6']);
+  gulp.watch("app/**/*.html.tpl", ['html2js']);
+  gulp.watch(["app/styles/**/*.{scss,sass}","app/src/**/*.{scss,sass}"], ['sass']);
+  gulp.watch("app/src/**/*.js", ['es6']);
 });
 
 gulp.task('serve', function (callback) {

@@ -1,11 +1,10 @@
 'use strict';
 
-var gulp = require('gulp'),
-    config = require('./config.json'),
-    traceur = require('gulp-traceur'),
-    gutil = require('gulp-util'),
-    notify = require('gulp-notify'),
-    connect = require('gulp-connect');
+var gulp = require('gulp');
+var babel = require('gulp-babel');
+var gutil = require('gulp-util');
+var notify = require('gulp-notify');
+var connect = require('gulp-connect');
 
 var errorHandler = notify.onError(function (error) {
     if(error && error.stack){
@@ -15,8 +14,8 @@ var errorHandler = notify.onError(function (error) {
 });
 
 gulp.task('es6', function() {
-  return gulp.src(config.paths.scripts.es6.in)
-    .pipe(traceur({modules: 'instantiate'}).on('error', errorHandler))
-    .pipe(gulp.dest(config.paths.scripts.es6.out))
+  return gulp.src("src/app/**/*.js")
+    .pipe(babel().on('error', errorHandler))
+    .pipe(gulp.dest(".tmp/app"))
     .pipe(connect.reload());
 });
