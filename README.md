@@ -1,6 +1,6 @@
 # Accounting sample app
 
-Sample app using Angular 1.3 and EcmaScript 6.
+Playground app using Angular 2.0 and Typescript.
 
 ## Server
 
@@ -40,11 +40,6 @@ Simple app using [rails-api][1] and [grape](2).
 
 		cd client
 
-* Install gulp
-
-		npm install -g gulp
-
 * Run it
 
-		gulp serve
-
+		npm start
