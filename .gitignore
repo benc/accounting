@@ -3,3 +3,5 @@ client/accounting.sublime-workspace
 client/reports
 server/coverage
 client/node_modules
+client/npm-debug.log
+npm-debug.log

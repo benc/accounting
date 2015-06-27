@@ -1,7 +1,5 @@
 # README
 
-Angular app using Ecmascript 6 features like classes & modules.
+Playground Angular 2 app
 
-## Get it up and running
-
-Checkout the main README
+Thanks to [angular-class/angular2-webpack-starter](https://github.com/angular-class/angular2-webpack-starter)!
