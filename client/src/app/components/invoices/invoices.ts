@@ -22,10 +22,9 @@ export class Invoices {
     this.router = router;
     this.invoices = [];
 
-    invoiceService.getInvoices();
-    // invoiceService.getInvoices().map(res => res.json()).subscribe(result => {
-    //   this.invoices = result;
-    // });
+    invoiceService.getInvoices().map(res => res.json()).subscribe(result => {
+      this.invoices = result;
+    });
   }
 
 }

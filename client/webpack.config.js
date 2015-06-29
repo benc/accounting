@@ -19,8 +19,6 @@ module.exports = {
       'reflect-metadata',
       'rtts_assert/rtts_assert',
 
-      './src/common/BrowserDomAdapter',
-
       'angular2/angular2',
       'angular2/router',
       'angular2/di',
