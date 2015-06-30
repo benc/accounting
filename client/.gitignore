@@ -1,7 +1,5 @@
 node_modules
 dist
-typings
-!**/typings/tsd.d.ts
-!**/typings/_custom
+
 *.js
 *.js.map
