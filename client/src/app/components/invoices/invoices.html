@@ -11,13 +11,13 @@
         <div class="col-sm-6 col-md-4 col-lg-3" *ng-for="#invoice of invoices">
           <div class="md-tile-content">
             <ul class="meta">
-              <li class="invoiceDate">{{ invoice.invoice_date }}</li>
-              <li class="paymentDate">Paid: {{ invoice.payment_date }}</li>
-              <li class="vat">VAT: {{ invoice.vat}}%</li>
-              <li class="indexNumber">index: {{ invoice.index_number }}%</li>
+              <li class="invoiceDate" *ng-if="invoice.invoice_date">{{ invoice.invoice_date }}</li>
+              <li class="paymentDate" *ng-if="invoice.payment_date">Paid: {{ invoice.payment_date }}</li>
+              <li class="vat" *ng-if="invoice.vat">VAT: {{ invoice.vat}}%</li>
+              <li class="indexNumber" *ng-if="invoice.index_number">index: {{ invoice.index_number }}%</li>
             </ul>
-            <h3>{{ invoice.name }}</h3>
-            <h4>{{ invoice.category }}</h4>
+            <h3 *ng-if="invoice.name">{{ invoice.name }}</h3>
+            <h4 *ng-if="invoice.category">{{ invoice.category }}</h4>
             <p>
               {{ invoice.remark }}
             </p>

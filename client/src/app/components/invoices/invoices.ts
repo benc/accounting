@@ -1,4 +1,4 @@
-import { NgFor, Component, View } from 'angular2/angular2';
+import { NgFor, NgIf, Component, View } from 'angular2/angular2';
 
 import { coreDirectives } from 'angular2/angular2';
 import { formDirectives } from 'angular2/angular2';
@@ -12,7 +12,7 @@ import { InvoiceService } from '../../services/invoiceService';
 })
 @View({
   template: require('./invoices.html'),
-  directives: [NgFor]
+  directives: [NgFor, NgIf]
 })
 
 export class Invoices {
