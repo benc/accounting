@@ -1,7 +1,7 @@
 import { NgFor, Component, View } from 'angular2/angular2';
 
-import { coreDirectives } from 'angular2/directives';
-import { formDirectives } from 'angular2/forms';
+import { coreDirectives } from 'angular2/angular2';
+import { formDirectives } from 'angular2/angular2';
 
 import { Router, RouterLink } from 'angular2/router';
 import { InvoiceService } from '../../services/invoiceService';
@@ -17,7 +17,7 @@ import { InvoiceService } from '../../services/invoiceService';
 
 export class Invoices {
   invoices: Array<any>;
-
+  
   constructor(public router: Router, public invoiceService: InvoiceService) {
     this.router = router;
     this.invoices = [];

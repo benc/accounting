@@ -1,5 +1,4 @@
-import { bind, Inject } from 'angular2/di';
-import { Http } from 'angular2/http';
+import { bind, Inject, Http } from 'angular2/angular2';
 
 export class InvoiceService {
   http: Http;
