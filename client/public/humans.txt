@@ -3,11 +3,10 @@
 
 # TEAM
 
-  <name> -- <role> -- <twitter>
+  Ben Cochez -- @bencochez
 
 # THANKS
 
-  <name>
   PatrickJS -- @gdi2290
   AngularClass -- @AngularClass
 

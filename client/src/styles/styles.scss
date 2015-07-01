@@ -1,0 +1,10 @@
+@import 'bourbon';
+@import "neat";
+
+body {
+  color: #111111;
+  font-family: Lato, Helvetica Neue, sans-serif;
+  font-feature-settings: "kern", "liga", "pnum";
+  font-size: 1em;
+  line-height: 1.5;
+}

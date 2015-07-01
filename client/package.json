@@ -18,6 +18,7 @@
   "homepage": "https://github.com/angular-class/angular2-webpack-starter",
   "dependencies": {
     "angular2": "2.0.0-alpha.28",
+    "node-neat": "^1.7.2",
     "raw-loader": "0.5.1",
     "reflect-metadata": "0.1.0",
     "rtts_assert": "2.0.0-alpha.28",
@@ -25,13 +26,16 @@
     "zone.js": "0.5.1"
   },
   "devDependencies": {
-    "css-loader": "0.15.1",
+    "css-loader": "0.14.0",
     "exports-loader": "0.6.2",
     "expose-loader": "0.7.0",
+    "extract-text-webpack-plugin": "0.8.2",
     "file-loader": "0.8.4",
     "html-webpack-plugin": "1.5.2",
     "imports-loader": "0.6.4",
     "json-loader": "0.5.2",
+    "node-sass": "3.2.0",
+    "sass-loader": "1.0.2",
     "style-loader": "0.12.3",
     "tslint": "2.3.0-beta",
     "typescript": "1.5.0-beta",
