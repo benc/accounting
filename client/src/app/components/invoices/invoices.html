@@ -6,34 +6,30 @@
         Invoices
       </h3>
     </header>
-    <div class="container">
-      <div class="row card-container">
-        <div class="col-sm-6 col-md-4 col-lg-3" *ng-for="#invoice of invoices">
-          <div class="md-tile-content">
-            <ul class="meta">
-              <li class="invoiceDate" *ng-if="invoice.invoice_date">{{ invoice.invoice_date }}</li>
-              <li class="paymentDate" *ng-if="invoice.payment_date">Paid: {{ invoice.payment_date }}</li>
-              <li class="vat" *ng-if="invoice.vat">VAT: {{ invoice.vat}}%</li>
-              <li class="indexNumber" *ng-if="invoice.index_number">index: {{ invoice.index_number }}%</li>
-            </ul>
-            <h3 *ng-if="invoice.name">{{ invoice.name }}</h3>
-            <h4 *ng-if="invoice.category">{{ invoice.category }}</h4>
-            <p>
-              {{ invoice.remark }}
-            </p>
-             <pre>{{invoice | json }}</pre> 
-          </div>
-          <div class="md-tile-right">
-            {{ invoice.amount }}
-            <!-- <md-button class="md-fab" aira-label="Edit this invoice" ui-sref="invoices.edit({id: {{invoice.id }} })">edit</md-button>
-            <md-button class="md-fab" aira-label="Delete this invoice" ng-click="ctrl.delete(invoice.id)">delete</md-button> -->
-          </div>
-
-        </div>
-        <div [hidden]="invoices.length">
-          No invoices found
-        </div>
+    <div class="invoices" *ng-for="#invoice of invoices">
+      <div class="invoice">
+        <ul class="meta">
+          <li class="invoiceDate" *ng-if="invoice.invoice_date">{{ invoice.invoice_date }}</li>
+          <li class="paymentDate" *ng-if="invoice.payment_date">Paid: {{ invoice.payment_date }}</li>
+          <li class="vat" *ng-if="invoice.vat">VAT: {{ invoice.vat}}%</li>
+          <li class="indexNumber" *ng-if="invoice.index_number">index: {{ invoice.index_number }}%</li>
+        </ul>
+        <h3 *ng-if="invoice.name">{{ invoice.name }}</h3>
+        <h4 *ng-if="invoice.category">{{ invoice.category }}</h4>
+        <p>
+          {{ invoice.remark }}
+        </p>
+         <pre>{{invoice | json }}</pre> 
       </div>
+      <div>
+        {{ invoice.amount }}
+        <!-- <md-button class="md-fab" aira-label="Edit this invoice" ui-sref="invoices.edit({id: {{invoice.id }} })">edit</md-button>
+        <md-button class="md-fab" aira-label="Delete this invoice" ng-click="ctrl.delete(invoice.id)">delete</md-button> -->
+      </div>
+
+    </div>
+    <div class="no-invoices" [hidden]="invoices.length">
+      No invoices found
     </div>
   </div>
 </div>

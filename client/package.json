@@ -8,7 +8,8 @@
     "watch": "webpack --watch",
     "server": "webpack-dev-server --inline --colors --display-error-details --display-cached ",
     "start": "npm install && npm run server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "e2e": "webdriver-manager update; protractor protractor.conf.js"
   },
   "author": "Ben Cochez <ben@cochez.consulting>",
   "license": "ISC",
@@ -34,7 +35,11 @@
     "html-webpack-plugin": "1.5.2",
     "imports-loader": "0.6.4",
     "json-loader": "0.5.2",
+    "mkdirp": "0.5.1",
     "node-sass": "3.2.0",
+    "protractor": "2.1.0",
+    "protractor-jasmine2-screenshot-reporter": "0.1.7",
+    "rimraf": "2.4.1",
     "sass-loader": "1.0.2",
     "style-loader": "0.12.3",
     "tslint": "2.3.0-beta",

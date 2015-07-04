@@ -103,7 +103,8 @@ module.exports = {
     colors: true,
     historyApiFallback: true,
     contentBase: 'public',
-    publicPath: '/__build__'
+    publicPath: '/__build__',
+    port: 9000
   },
 
   debug: true,
