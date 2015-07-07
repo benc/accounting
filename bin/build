@@ -1,0 +1,114 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'open3'
+require 'faraday' # gem install faraday
+require 'pry' # gem install pry
+
+# commit stage testing
+# TODO
+
+# build RC
+# TODO
+
+# acceptance tests
+class Server
+  attr :stdin, :stdout_stderr, :wait_thread
+
+  def dir
+    File.expand_path("#{__dir__}/../server")
+  end
+
+  def start
+    # reset db & seed test data
+    Open3.popen2e('rake db:reset db:create db:migrate db:seed', chdir: dir) do |stdin, stdout_stderr, wait_thread|
+      Thread.new do
+        stdout_stderr.each {|l| puts l }
+      end
+      wait_thread.value
+    end
+
+    # start server
+    @stdin, @stdout_stderr, @wait_thread = Open3.popen2e("rails server", chdir: dir)
+    Thread.new do
+      @stdout_stderr.each {|l| puts l }
+    end
+  end
+
+  def stop
+    @stdin.close
+    @stdout_stderr.close
+    Process.kill("TERM", IO.read("#{dir}/tmp/pids/server.pid").to_i)
+  end
+
+  def up_and_running?
+    conn = Faraday.new do |f|
+      f.request :retry, max: 10, interval: 1, exceptions: [Faraday::ConnectionFailed]
+      f.response :logger # enable for debugging
+      f.adapter Faraday.default_adapter
+    end
+
+    conn.get('http://127.0.0.1:3000/')
+  end
+end
+
+class Client
+  attr :stdin, :stdout_stderr, :wait_thread
+
+  def start
+    @stdin, @stdout_stderr, @wait_thread = Open3.popen2e("nohup npm start", chdir: File.expand_path("#{__dir__}/../client"))
+    Thread.new do
+      @stdout_stderr.each {|l| puts l }
+    end
+  end
+
+  def stop
+    @stdin.close
+    @stdout_stderr.close
+    Process.kill("TERM", @wait_thread.pid)
+  end
+
+  def up_and_running?
+    conn = Faraday.new do |f|
+      f.request :retry, max: 10, interval: 1, exceptions: [Faraday::ConnectionFailed]
+      f.response :logger # enable for debugging
+      f.adapter Faraday.default_adapter
+    end
+
+    conn.get('http://127.0.0.1:9000/')
+  end
+end
+
+class Protractor
+  attr :client, :server
+
+  def initialize
+    @server = Server.new
+    @client = Client.new
+  end
+
+  def run
+    @server.start
+    @client.start
+
+    @server.up_and_running?
+    @client.up_and_running?
+
+    run_e2e
+  rescue
+    @server.stop
+    @client.stop
+  end
+
+  def run_e2e
+    exit_status = nil
+    Open3.popen2e("npm run e2e", chdir: File.expand_path("#{__dir__}/../client")) do |stdin, stdout_stderr, wait_thread|
+      Thread.new do
+        stdout_stderr.each {|l| puts l }
+      end
+      exit_status = wait_thread.value
+    end
+    return exit_status
+  end
+end
+
+exit Protractor.new.run
