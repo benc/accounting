@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "server": "webpack-dev-server --inline --colors --display-error-details --display-cached ",
-    "start": "npm install && npm run server",
+    "server": "webpack-dev-server --colors --display-error-details --display-cached ",
+    "start": "npm install; npm prune; npm run server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "e2e": "webdriver-manager update; protractor protractor.conf.js"
   },
@@ -19,7 +19,6 @@
   "homepage": "https://github.com/angular-class/angular2-webpack-starter",
   "dependencies": {
     "angular2": "2.0.0-alpha.28",
-    "node-neat": "1.7.2",
     "raw-loader": "0.5.1",
     "reflect-metadata": "0.1.0",
     "rtts_assert": "2.0.0-alpha.28",
