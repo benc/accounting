@@ -4,11 +4,6 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
-var sassNeatPaths = require("node-neat").with([
-    path.resolve(__dirname, "./app/styles")
-  ]).map(function(neatPath) {
-    return "includePaths[]=" + neatPath;
-}).join("&");
 
 module.exports = {
   devtool: 'source-map',
@@ -65,7 +60,7 @@ module.exports = {
       },
       {
         test: /\.scss/,
-        loader: ExtractTextPlugin.extract('style', 'css!sass?' + sassNeatPaths)
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
       },
       {
         test: /\.html$/,

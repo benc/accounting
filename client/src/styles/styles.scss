@@ -1,10 +1,5 @@
-@import 'bourbon';
-@import "neat";
-
+// TODO implement bootstrap webpack loader
+// TODO check out shadow DOM styling options
 body {
-  color: #333;
-  font-family: Lato, Helvetica Neue, sans-serif;
-  // font-feature-settings: "kern", "liga", "pnum";
-  font-size: 1em;
-  line-height: 1.5;
+  padding-top: 50px;
 }

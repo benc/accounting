@@ -1,35 +1,41 @@
-<div class="invoices">
-  <div class="container">
-    <header>
-      <h3>
-        <span class="glyphicon glyphicon-money"></span>
-        Invoices
-      </h3>
-    </header>
-    <div class="invoices" *ng-for="#invoice of invoices">
-      <div class="invoice">
-        <ul class="meta">
-          <li class="invoiceDate" *ng-if="invoice.invoice_date">{{ invoice.invoice_date }}</li>
-          <li class="paymentDate" *ng-if="invoice.payment_date">Paid: {{ invoice.payment_date }}</li>
-          <li class="vat" *ng-if="invoice.vat">VAT: {{ invoice.vat}}%</li>
-          <li class="indexNumber" *ng-if="invoice.index_number">index: {{ invoice.index_number }}%</li>
-        </ul>
-        <h3 *ng-if="invoice.name">{{ invoice.name }}</h3>
-        <h4 *ng-if="invoice.category">{{ invoice.category }}</h4>
-        <p>
-          {{ invoice.remark }}
-        </p>
-         <pre>{{invoice | json }}</pre> 
-      </div>
-      <div>
-        {{ invoice.amount }}
-        <!-- <md-button class="md-fab" aira-label="Edit this invoice" ui-sref="invoices.edit({id: {{invoice.id }} })">edit</md-button>
-        <md-button class="md-fab" aira-label="Delete this invoice" ng-click="ctrl.delete(invoice.id)">delete</md-button> -->
-      </div>
-
-    </div>
-    <div class="no-invoices" [hidden]="invoices.length">
-      No invoices found
-    </div>
-  </div>
+<h2 class="sub-header">
+  Invoices
+  <button class="btn btn-primary">Add new</button>
+</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>VAT</th>
+        <th>Invoice date</th>
+        <th>Payment date</th>
+        <th>Category</th>
+        <th>Remark</th>
+        <th>Index number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ng-for="#invoice of invoices">
+        <td>{{ invoice.name }}</td>
+        <td>{{ invoice.amount }} {{ invoice.currency }}</td><!-- TODO apply proper currency formatting -->
+        <td>{{ invoice.vat }}</td>
+        <td>{{ invoice.invoice_date }}</td>
+        <td>{{ invoice.payment_date }}</td>
+        <td>{{ invoice.category }}</td>
+        <td>{{ invoice.remark }}</td>
+        <td>{{ invoice.index_number }}</td>
+        <td class="actions">
+          <button class="btn btn-default">Edit</button>
+          <button class="btn btn-danger">Delete</button>
+        </td>
+        <!--<td><pre>{{invoice | json }}</pre></td>-->
+      </tr>
+      <tr class="no-invoices" [hidden]="invoices.length">
+        <td colspan="9">No invoices found</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
