@@ -1,5 +1,5 @@
 <h2 class="sub-header">
-  Invoices
+  Expenses
   <button class="btn btn-primary">Add new</button>
 </h2>
 <div class="table-responsive">
@@ -18,23 +18,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ng-for="#invoice of invoices">
-        <td>{{ invoice.name }}</td>
-        <td>{{ invoice.amount }} {{ invoice.currency }}</td><!-- TODO apply proper currency formatting -->
-        <td>{{ invoice.vat }}</td>
-        <td>{{ invoice.invoice_date }}</td>
-        <td>{{ invoice.payment_date }}</td>
-        <td>{{ invoice.category }}</td>
-        <td>{{ invoice.remark }}</td>
-        <td>{{ invoice.index_number }}</td>
+      <tr class="expense" *ng-for="#expense of expenses">
+        <td>{{ expense.name }}</td>
+        <td>{{ expense.amount }} {{ expense.currency }}</td><!-- TODO apply proper currency formatting -->
+        <td>{{ expense.vat }}</td>
+        <td>{{ expense.invoice_date }}</td>
+        <td>{{ expense.payment_date }}</td>
+        <td>{{ expense.category }}</td>
+        <td>{{ expense.remark }}</td>
+        <td>{{ expense.index_number }}</td>
         <td class="actions">
           <button class="btn btn-default">Edit</button>
           <button class="btn btn-danger">Delete</button>
         </td>
-        <!--<td><pre>{{invoice | json }}</pre></td>-->
+        <!--<td><pre>{{expense | json }}</pre></td>-->
       </tr>
-      <tr class="no-invoices" [hidden]="invoices.length">
-        <td colspan="9">No invoices found</td>
+      <tr class="no-expenses" [hidden]="expenses.length">
+        <td colspan="9">No expenses found</td>
       </tr>
     </tbody>
   </table>

@@ -1,5 +1,5 @@
-import {invoiceInjectables} from './invoiceService';
+import {expenseInjectables} from './expense_service';
 
 export var appServicesInjectables: Array<any> = [
-  invoiceInjectables
+  expenseInjectables
 ];
