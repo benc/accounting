@@ -7,7 +7,7 @@ import { Router, RouterLink } from 'angular2/router';
 import { ExpenseService } from '../../../services/expense_service';
 
 @Component({
-  selector: 'expenses-list',
+  selector: 'expenseslist',
   hostInjector: [ExpenseService]
 })
 @View({
