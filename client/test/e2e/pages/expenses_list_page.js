@@ -5,7 +5,7 @@ ExpensesListPage = function () {
 ExpensesListPage.prototype = Object.create({}, {
   list: {
     get: function () {
-      return element.all(by.css('div.expense'));
+      return element.all(by.css('.expense'));
     }
   }
 });
