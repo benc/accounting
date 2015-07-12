@@ -22,6 +22,10 @@ export class ExpenseService {
     return this.http.get('http://localhost:3000/api/invoice').toRx();
   }
 
+  get(id: number) {
+    return this.http.get(`http://localhost:3000/api/invoice/${id}`).toRx();
+  }
+  
   create(expense: IExpense) {
     return this.http.post('http://localhost:3000/api/invoice', JSON.stringify(expense)).toRx();
   }

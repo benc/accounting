@@ -3,7 +3,7 @@ import { NgFor, NgIf, Component, View } from 'angular2/angular2';
 import { coreDirectives } from 'angular2/angular2';
 import { formDirectives } from 'angular2/angular2';
 
-import { Router, RouterLink } from 'angular2/router';
+import { RouterLink } from 'angular2/router';
 import { ExpenseService, IExpense } from '../../../services/expense_service';
 
 @Component({
@@ -12,20 +12,16 @@ import { ExpenseService, IExpense } from '../../../services/expense_service';
 })
 @View({
   template: require('./expenses_list.html'),
-  directives: [NgFor, NgIf]
+  directives: [NgFor, NgIf, RouterLink]
 })
 
 export class ExpensesList {
   expenses: IExpense[];
 
-  constructor(public router: Router, public expenseService: ExpenseService) {
+  constructor(public expenseService: ExpenseService) {
     expenseService.all().map(res => res.json()).subscribe(result => {
       this.expenses = result;
     });
-  }
-
-  update(expense: IExpense) {
-    this.expenseService.update(expense);
   }
 
   delete(expense: IExpense) {

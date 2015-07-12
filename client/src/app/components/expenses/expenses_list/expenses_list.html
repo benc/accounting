@@ -20,16 +20,17 @@
     </thead>
     <tbody>
       <tr class="expense" *ng-for="#expense of expenses">
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.name }}</td>
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.amount }}</td>
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.currency }}</td>
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.vat }}</td>
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.invoice_date }}</td>
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.payment_date }}</td>
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.category }}</td>
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.remark }}</td>
-        <td contenteditable="true" (blur)="update(expense)">{{ expense.index_number }}</td>
+        <td>{{ expense.name }}</td>
+        <td>{{ expense.amount }}</td>
+        <td>{{ expense.currency }}</td>
+        <td>{{ expense.vat }}</td>
+        <td>{{ expense.invoice_date }}</td>
+        <td>{{ expense.payment_date }}</td>
+        <td>{{ expense.category }}</td>
+        <td>{{ expense.remark }}</td>
+        <td>{{ expense.index_number }}</td>
         <td class="actions">
+          <button class="btn btn-default" [router-link]="['/editexpense', {id: expense.id}]">Edit</button>
           <button class="btn btn-danger" (click)="delete(expense)">Delete</button>
         </td>
         <!--<td><pre>{{expense | json }}</pre></td>-->
