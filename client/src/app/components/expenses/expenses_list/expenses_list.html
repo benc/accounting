@@ -8,6 +8,7 @@
       <tr>
         <th>Name</th>
         <th>Amount</th>
+        <th>Currency</th>
         <th>VAT</th>
         <th>Invoice date</th>
         <th>Payment date</th>
@@ -19,21 +20,22 @@
     </thead>
     <tbody>
       <tr class="expense" *ng-for="#expense of expenses">
-        <td>{{ expense.name }}</td>
-        <td>{{ expense.amount }} {{ expense.currency }}</td>
-        <td>{{ expense.vat }}</td>
-        <td>{{ expense.invoice_date }}</td>
-        <td>{{ expense.payment_date }}</td>
-        <td>{{ expense.category }}</td>
-        <td>{{ expense.remark }}</td>
-        <td>{{ expense.index_number }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.name }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.amount }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.currency }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.vat }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.invoice_date }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.payment_date }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.category }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.remark }}</td>
+        <td contenteditable="true" (blur)="update(expense)">{{ expense.index_number }}</td>
         <td class="actions">
-          <button class="btn btn-default">Edit</button>
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger" (click)="delete(expense)">Delete</button>
         </td>
+        <!--<td><pre>{{expense | json }}</pre></td>-->
       </tr>
       <!--<tr class="no-expenses" [hidden]="expenses.length">
-        <td colspan="9">No expenses found</td>
+        <td colspan="10">No expenses found</td>
       </tr>-->
     </tbody>
   </table>

@@ -4,7 +4,7 @@ import { coreDirectives } from 'angular2/angular2';
 import { formDirectives } from 'angular2/angular2';
 
 import { Router, RouterLink } from 'angular2/router';
-import { ExpenseService } from '../../../services/expense_service';
+import { ExpenseService, IExpense } from '../../../services/expense_service';
 
 @Component({
   selector: 'expenseslist',
@@ -16,12 +16,21 @@ import { ExpenseService } from '../../../services/expense_service';
 })
 
 export class ExpensesList {
-  expenses: Array<any>;
+  expenses: IExpense[];
 
   constructor(public router: Router, public expenseService: ExpenseService) {
-    expenseService.getExpenses().toRx().map(res => res.json()).subscribe(result => {
+    expenseService.all().map(res => res.json()).subscribe(result => {
       this.expenses = result;
     });
   }
 
+  update(expense: IExpense) {
+    this.expenseService.update(expense);
+  }
+
+  delete(expense: IExpense) {
+    this.expenseService.delete(expense).subscribe(() => {
+      this.expenses.splice(this.expenses.indexOf(expense), 1);
+    });
+  }
 }
