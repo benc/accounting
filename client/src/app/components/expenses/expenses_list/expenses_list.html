@@ -20,7 +20,7 @@
     <tbody>
       <tr class="expense" *ng-for="#expense of expenses">
         <td>{{ expense.name }}</td>
-        <td>{{ expense.amount }} {{ expense.currency }}</td><!-- TODO apply proper currency formatting -->
+        <td>{{ expense.amount }} {{ expense.currency }}</td>
         <td>{{ expense.vat }}</td>
         <td>{{ expense.invoice_date }}</td>
         <td>{{ expense.payment_date }}</td>
@@ -31,11 +31,10 @@
           <button class="btn btn-default">Edit</button>
           <button class="btn btn-danger">Delete</button>
         </td>
-        <!--<td><pre>{{expense | json }}</pre></td>-->
       </tr>
-      <tr class="no-expenses" [hidden]="expenses.length">
+      <!--<tr class="no-expenses" [hidden]="expenses.length">
         <td colspan="9">No expenses found</td>
-      </tr>
+      </tr>-->
     </tbody>
   </table>
 </div>

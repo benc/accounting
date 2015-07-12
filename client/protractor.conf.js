@@ -18,12 +18,12 @@ exports.config = {
     }
   },
   plugins: [
-    // {
-    //   path: 'node_modules/protractor/plugins/console',
-    //   failOnWarning: false,
-    //   failOnError: true,
-    //   exclude: ['favicon.ico']
-    // }
+    {
+      path: 'node_modules/protractor/plugins/console',
+      failOnWarning: false,
+      failOnError: true,
+      exclude: ['favicon.ico']
+    }
   ],
   jasmineNodeOpts: {
     showColors: true,
@@ -57,7 +57,7 @@ exports.config = {
 function patchProtractorWait(browser) {
   browser.ignoreSynchronization = true;
   var _get = browser.get;
-  var sleepInterval = process.env.TRAVIS || process.env.JENKINS_URL ? 7000 : 3000;
+  var sleepInterval = 3000;
   browser.get = function() {
     var result = _get.apply(this, arguments);
     browser.sleep(sleepInterval);

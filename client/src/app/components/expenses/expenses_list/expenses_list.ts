@@ -19,7 +19,7 @@ export class ExpensesList {
   expenses: Array<any>;
 
   constructor(public router: Router, public expenseService: ExpenseService) {
-    expenseService.getExpenses().map(res => res.json()).subscribe(result => {
+    expenseService.getExpenses().toRx().map(res => res.json()).subscribe(result => {
       this.expenses = result;
     });
   }

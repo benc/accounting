@@ -1,14 +1,13 @@
 {
   "version": "1.5.0",
   "compilerOptions": {
+    "emitDecoratorMetadata": true,
     "target": "es5",
     "module": "commonjs",
     "declaration": false,
     "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "outDir": "dist"
   },
   "files": [

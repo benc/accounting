@@ -12,7 +12,7 @@ import {ExpensesList} from './expenses/expenses_list/expenses_list';
   template: require('./app.html'),
 })
 @RouteConfig([
-  { path: '/', redirectTo: '/expenses' },
+  { path: '/', as: 'home', redirectTo: '/expenses' },
   { path: '/expenses', as: 'expenses', component: ExpensesList }
 ])
 export class App {
