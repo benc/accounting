@@ -17,7 +17,7 @@ class API < Grape::API
     end
     get ':id' do
       Invoice.find(params["id"])
-    end 
+    end
 
     desc "Create an invoice."
     params do
@@ -55,7 +55,7 @@ class API < Grape::API
       requires :invoice_date, type: DateTime, desc: "Invoice date."
       requires :payment_date, type: DateTime, desc: "Payment date."
     end
-    post ':id' do
+    put ':id' do
       Invoice.find(params["id"]).update({
         name: params[:name],
         category: params[:category],
