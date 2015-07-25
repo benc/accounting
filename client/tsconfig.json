@@ -1,7 +1,8 @@
 {
-  "version": "1.5.0",
+  "version": "1.5.3",
   "compilerOptions": {
     "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "target": "es5",
     "module": "commonjs",
     "declaration": false,

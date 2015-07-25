@@ -15,10 +15,10 @@
   "license": "ISC",
   "homepage": "https://github.com/benc/accounting",
   "dependencies": {
-    "angular2": "2.0.0-alpha.30",
+    "angular2": "2.0.0-alpha.32",
     "raw-loader": "0.5.1",
     "reflect-metadata": "0.1.0",
-    "rtts_assert": "2.0.0-alpha.30",
+    "rtts_assert": "2.0.0-alpha.32",
     "rx": "2.5.3",
     "zone.js": "0.5.2"
   },
@@ -38,11 +38,11 @@
     "rimraf": "2.4.1",
     "sass-loader": "1.0.2",
     "style-loader": "0.12.3",
-    "tslint": "2.3.1-beta",
-    "typescript": "1.5.0-beta",
-    "typescript-simple-loader": "0.3.0",
+    "tslint": "2.4.2",
+    "typescript": "1.5.3",
+    "typescript-simple-loader": "0.3.3",
     "url-loader": "0.5.6",
-    "webpack": "1.10.1",
+    "webpack": "1.10.5",
     "webpack-dev-server": "1.10.1"
   }
 }
