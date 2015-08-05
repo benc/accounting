@@ -5,14 +5,29 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "rx/rx.d.ts": {
-      "commit": "6f04d25ad38982d372cc3cda62fa4c0eef9e24d7"
+    "jasmine/jasmine.d.ts": {
+      "commit": "983126e131a2b81739053d60e4bbdbb46d6577b7"
     },
-    "rx/rx-lite.d.ts": {
-      "commit": "6f04d25ad38982d372cc3cda62fa4c0eef9e24d7"
+    "angular-protractor/angular-protractor.d.ts": {
+      "commit": "983126e131a2b81739053d60e4bbdbb46d6577b7"
+    },
+    "selenium-webdriver/selenium-webdriver.d.ts": {
+      "commit": "983126e131a2b81739053d60e4bbdbb46d6577b7"
     },
     "es6-promise/es6-promise.d.ts": {
-      "commit": "6f04d25ad38982d372cc3cda62fa4c0eef9e24d7"
+      "commit": "983126e131a2b81739053d60e4bbdbb46d6577b7"
+    },
+    "rx/rx.d.ts": {
+      "commit": "983126e131a2b81739053d60e4bbdbb46d6577b7"
+    },
+    "rx/rx-lite.d.ts": {
+      "commit": "983126e131a2b81739053d60e4bbdbb46d6577b7"
+    },
+    "angular2/angular2.d.ts": {
+      "commit": "983126e131a2b81739053d60e4bbdbb46d6577b7"
+    },
+    "angular2/router.d.ts": {
+      "commit": "983126e131a2b81739053d60e4bbdbb46d6577b7"
     }
   }
 }

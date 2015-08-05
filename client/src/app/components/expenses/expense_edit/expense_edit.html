@@ -1,7 +1,88 @@
-<h2 class="sub-header">
-  Edit expense
-</h2>
-
+<h2 class="sub-header">Edit expense</h2>
 <pre>{{ expense | json }}</pre>
-
-<button class="btn btn-primary" (click)="update(expense)">Update</button>
+<form [ng-form-model]="expenseForm"
+      (submit)="update(expenseForm.value)">
+  <div class="form-group"
+       [class.has-error]="!expenseForm.find('name').valid && expenseForm.find('name').touched">
+       
+    <input type="hidden"
+           [ng-form-control]="expenseForm.controls['id']">
+    
+    <label for="nameInput">Name</label>
+    <input type="text"
+           class="form-control"
+           id="nameInput"
+           placeholder="Name"
+           #name="form"
+           [ng-form-control]="expenseForm.controls['name']"
+           required>
+    <!--<p *ng-if="!name.control.valid"
+       class="text-warning">Name is invalid</p>
+    <p *ng-if="name.control.hasError('required')"
+       class="text-warning">Name is required</p>-->
+    
+    <label for="categoryInput">Category</label>
+    <input type="text"
+           class="form-control"
+           id="categoryInput"
+           placeholder="Category"
+           #category="form"
+           [ng-form-control]="expenseForm.controls['category']"
+           required>    
+           
+    <label for="remarkInput">Remark</label>
+    <input type="text"
+           class="form-control"
+           id="remarkInput"
+           placeholder="Remark"
+           #remark="form"
+           [ng-form-control]="expenseForm.controls['remark']"
+           required>   
+           
+    <label for="amountInput">Amount</label>
+    <input type="text"
+           class="form-control"
+           id="amountInput"
+           placeholder="Amount"
+           #amount="form"
+           [ng-form-control]="expenseForm.controls['amount']"
+           required>   
+                      
+    <label for="currencyInput">Currency</label>
+    <input type="text"
+           class="form-control"
+           id="currencyInput"
+           placeholder="Currency"
+           #currency="form"
+           [ng-form-control]="expenseForm.controls['currency']"
+           required>   
+            
+    <label for="vatInput">VAT</label>
+    <input type="text"
+           class="form-control"
+           id="vatInput"
+           placeholder="VAT"
+           #vat="form"
+           [ng-form-control]="expenseForm.controls['vat']"
+           required>  
+                       
+    <label for="invoiceDateInput">Invoice date</label>
+    <input type="text"
+           class="form-control"
+           id="invoiceDateInput"
+           #invoiceDate="form"
+           [ng-form-control]="expenseForm.controls['invoice_date']"
+           required>  
+                       
+    <label for="paymentDateInput">Payment date</label>
+    <input type="text"
+           class="form-control"
+           id="paymentDateInput"
+           #paymentDate="form"
+           [ng-form-control]="expenseForm.controls['payment_date']"
+           required>  
+  </div>
+  <p *ng-if="!expenseForm.valid"
+     class="text-warning">Expense is invalid</p>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>

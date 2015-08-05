@@ -56,6 +56,7 @@ class API < Grape::API
       requires :payment_date, type: DateTime, desc: "Payment date."
     end
     put ':id' do
+      puts 'hello'
       Invoice.find(params["id"]).update({
         name: params[:name],
         category: params[:category],
