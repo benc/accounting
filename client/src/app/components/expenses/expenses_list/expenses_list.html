@@ -24,11 +24,11 @@
         <td>{{ expense.amount }}</td>
         <td>{{ expense.currency }}</td>
         <td>{{ expense.vat }}</td>
-        <td>{{ expense.invoice_date }}</td>
-        <td>{{ expense.payment_date }}</td>
+        <td>{{ expense.invoiceDate }}</td>
+        <td>{{ expense.paymentDate }}</td>
         <td>{{ expense.category }}</td>
         <td>{{ expense.remark }}</td>
-        <td>{{ expense.index_number }}</td>
+        <td>{{ expense.indexNumber }}</td>
         <td class="actions">
           <button class="btn btn-default" [router-link]="['/editexpense', {id: expense.id}]">Edit</button>
           <button class="btn btn-danger" (click)="delete(expense)">Delete</button>

@@ -16,7 +16,6 @@ import { ExpenseService, IExpense } from '../../../services/expense_service';
   template: require('./expense_edit.html'),
   directives: [coreDirectives, formDirectives ]
 })
-
 export class ExpenseEdit {
   expense: IExpense;
   expenseForm: ControlGroup;

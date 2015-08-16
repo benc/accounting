@@ -21,3 +21,5 @@ export class App {
   constructor(router: Router) {
   }
 }
+
+// { path: '/expenses/:id', as: 'editexpense', component: ExpenseEdit }
