@@ -29,8 +29,8 @@ export class ExpenseEdit {
       amount: ['', Validators.required],
       currency: ['', Validators.required],
       vat: ['', Validators.required],
-      invoice_date: ['', Validators.required],
-      payment_date: ['', Validators.required]
+      invoiceDate: ['', Validators.required],
+      paymentDate: ['', Validators.required]
     });
     
     this.expenseService.get(this.routeParams.params["id"]).map(res => res.json()).subscribe(result => {
@@ -42,8 +42,8 @@ export class ExpenseEdit {
       this.expenseForm.controls['amount'].updateValue(this.expense.amount);  
       this.expenseForm.controls['currency'].updateValue(this.expense.currency);  
       this.expenseForm.controls['vat'].updateValue(this.expense.vat);  
-      this.expenseForm.controls['invoice_date'].updateValue(this.expense.invoice_date);  
-      this.expenseForm.controls['payment_date'].updateValue(this.expense.payment_date);  
+      this.expenseForm.controls['invoiceDate'].updateValue(this.expense.invoiceDate);  
+      this.expenseForm.controls['paymentDate'].updateValue(this.expense.paymentDate);  
     });
 
     // this.expenseForm.valueChanges.observer({

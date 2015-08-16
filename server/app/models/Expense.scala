@@ -14,7 +14,6 @@ case class Expense( id: Long,
                     invoiceDate: LocalDateTime,
                     paymentDate: LocalDateTime,
                     indexNumber: Int) {
-  override def toString = "%s - %s".format(name, indexNumber)
 
   implicit val expenseWrites = Json.writes[Expense]
 }
@@ -25,7 +24,7 @@ case class Expense( id: Long,
 object Expense {
 
   // hardcoded bliss
-  val invoices = Set(
+  val expenses = Set(
     Expense(
       id = 1,
       name = "Amazon",
@@ -54,6 +53,7 @@ object Expense {
 
   implicit val expenseWrites = Json.writes[Expense]
 
-  def findAll = invoices.toList.sortBy(_.name)
+  def findAll = expenses.toList.sortBy(_.name)
 
+  def findById(id: Long) = expenses.find(_.id == id);
 }

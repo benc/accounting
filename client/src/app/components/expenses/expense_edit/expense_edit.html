@@ -71,7 +71,7 @@
            class="form-control"
            id="invoiceDateInput"
            #invoiceDate="form"
-           [ng-form-control]="expenseForm.controls['invoice_date']"
+           [ng-form-control]="expenseForm.controls['invoiceDate']"
            required>  
                        
     <label for="paymentDateInput">Payment date</label>
@@ -79,7 +79,7 @@
            class="form-control"
            id="paymentDateInput"
            #paymentDate="form"
-           [ng-form-control]="expenseForm.controls['payment_date']"
+           [ng-form-control]="expenseForm.controls['paymentDate']"
            required>  
   </div>
   <p *ng-if="!expenseForm.valid"

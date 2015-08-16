@@ -10,7 +10,10 @@ class Expenses extends Controller {
     Ok(Json.toJson(Expense.findAll));
   }
 
-  def save() = play.mvc.Results.TODO
+  def show(id: Long) = Action { request =>
+    Expense.findById(id).map{ expense =>
+      Ok(Json.toJson(expense))
+    }.getOrElse(NotFound)
+  }
 
-  def newInvoice() = play.mvc.Results.TODO
 }
