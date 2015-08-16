@@ -1,4 +1,3 @@
-This is your new Play application
-=================================
+# README
 
-This file will be packaged with your application, when using `activator dist`.
+Playground Play app (Scala)
