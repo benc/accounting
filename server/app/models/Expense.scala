@@ -4,16 +4,16 @@ import java.time.LocalDateTime
 
 import play.api.libs.json.Json
 
-case class Expense( id: Long,
-                    name: String,
-                    category: String,
-                    currency: String,
-                    remark: String,
-                    amount: BigDecimal,
-                    vat: Int,
-                    invoiceDate: LocalDateTime,
-                    paymentDate: LocalDateTime,
-                    indexNumber: Int) {
+case class Expense(id: Long,
+                   name: String,
+                   category: String,
+                   currency: String,
+                   remark: String,
+                   amount: BigDecimal,
+                   vat: Int,
+                   invoiceDate: LocalDateTime,
+                   paymentDate: LocalDateTime,
+                   indexNumber: Int) {
 
   implicit val expenseWrites = Json.writes[Expense]
 }
@@ -24,7 +24,7 @@ case class Expense( id: Long,
 object Expense {
 
   // hardcoded bliss
-  val expenses = Set(
+  var expenses = Set(
     Expense(
       id = 1,
       name = "Amazon",
@@ -54,6 +54,12 @@ object Expense {
   implicit val expenseWrites = Json.writes[Expense]
 
   def findAll = expenses.toList.sortBy(_.name)
+
+  def remove(expense: Expense) = {
+    val oldExpenses = expenses
+    expenses = expenses - expense
+    oldExpenses.contains(expense)
+  }
 
   def findById(id: Long) = expenses.find(_.id == id);
 }

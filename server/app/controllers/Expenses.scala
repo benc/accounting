@@ -7,7 +7,7 @@ import play.api.libs.json.Json
 class Expenses extends Controller {
 
   def list = Action { request =>
-    Ok(Json.toJson(Expense.findAll));
+    Ok(Json.toJson(Expense.findAll))
   }
 
   def show(id: Long) = Action { request =>
@@ -16,4 +16,12 @@ class Expenses extends Controller {
     }.getOrElse(NotFound)
   }
 
+//  def save(expense: Expense)
+
+  def delete(id: Long) = Action { request =>
+    Expense.findById(id).map{ expense =>
+      Expense.remove(expense)
+      NoContent // todo if remove is false, give a notfound
+    }.getOrElse(NotFound)
+  }
 }
