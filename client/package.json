@@ -19,7 +19,7 @@
     "raw-loader": "0.5.1",
     "reflect-metadata": "0.1.0",
     "rtts_assert": "2.0.0-alpha.34",
-    "rx": "3.0.0",
+    "rx": "3.0.1",
     "zone.js": "0.5.2"
   },
   "devDependencies": {
