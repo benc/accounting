@@ -1,10 +1,11 @@
 package models
 
 import java.time.LocalDateTime
+import java.util.UUID
 
 import play.api.libs.json.Json
 
-case class Expense(id: Long,
+case class Expense(id: UUID,
                    name: String,
                    category: String,
                    currency: String,
@@ -22,11 +23,10 @@ case class Expense(id: Long,
  * Invoice data access
  */
 object Expense {
-
   // hardcoded bliss
   var expenses = Set(
     Expense(
-      id = 1,
+      id = UUID.randomUUID(),
       name = "Amazon",
       category = "Boeken",
       currency = "EUR",
@@ -38,7 +38,7 @@ object Expense {
       indexNumber = -1
     ),
     Expense(
-      id = 2,
+      id = UUID.randomUUID(),
       name = "Coolblue",
       category = "IT materiaal",
       currency = "EUR",
@@ -52,8 +52,23 @@ object Expense {
   )
 
   implicit val expenseWrites = Json.writes[Expense]
+  implicit val expenseReads = Json.reads[Expense]
 
-  def findAll = expenses.toList.sortBy(_.name)
+  def add(expense: Expense) = {
+    expenses = expenses + expense
+    expenses.contains(expense)
+  }
+
+  def save(expense: Expense) = {
+    val oldExpense = findById(expense.id)
+
+    if (oldExpense.isDefined) {
+      expenses = expenses - oldExpense.get
+      add(expense)
+    }
+
+    expenses.contains(expense)
+  }
 
   def remove(expense: Expense) = {
     val oldExpenses = expenses
@@ -61,5 +76,7 @@ object Expense {
     oldExpenses.contains(expense)
   }
 
-  def findById(id: Long) = expenses.find(_.id == id);
+  def findAll = expenses.toList.sortBy(_.name)
+
+  def findById(id: UUID) = expenses.find(_.id == id)
 }
