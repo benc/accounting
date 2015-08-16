@@ -14,7 +14,6 @@ import { ExpenseService, IExpense } from '../../../services/expense_service';
   template: require('./expenses_list.html'),
   directives: [NgFor, NgIf, RouterLink]
 })
-
 export class ExpensesList {
   expenses: IExpense[];
 

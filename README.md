@@ -4,10 +4,9 @@ Playground app using Angular 2.0 and Typescript.
 
 ## Server
 
-Simple app using [rails-api][1] and [grape](2).
+Simple app using [play][1].
 
-[1]: https://github.com/rails-api/rails-api
-[2]: https://github.com/intridea/grape
+[1]: https://www.playframework.com
 
 ### Get it up and running
 
@@ -15,22 +14,9 @@ Simple app using [rails-api][1] and [grape](2).
 
 		cd server
 
-* Install ruby 2.1.5 & bundler
-
-		env CC=/usr/bin/gcc rbenv install 2.1.5
-		gem install bundler
-
-* Database creation
-
-		rake db:reset db:create db:migrate
-
-* Database initialization
-
-		rake db:seed
-
 * Run it
 
-		rails server
+		activator run -Dhttp.port=9020
 
 ## Client
 
