@@ -1,6 +1,9 @@
 # Accounting sample app
 
-Playground app using Angular 2.0 and Typescript.
+Playground app, to learn new stuff.
+
+Client app is written using Angular 2.0 and Typescript.
+Server is written using Play and Scala.
 
 ## Server
 
