@@ -23,7 +23,7 @@ export class ExpenseService {
   }
 
   get(id: number) {
-    return this.http.get('http://localhost:9020/api/expense/${id}').toRx();
+    return this.http.get(`http://localhost:9020/api/expense/${id}`).toRx();
   }
 
   create(expense: IExpense) {
@@ -31,11 +31,11 @@ export class ExpenseService {
   }
 
   update(expense: IExpense) {
-    return this.http.put('http://localhost:9020/api/expense/${expense.id}', JSON.stringify(expense)).toRx();
+    return this.http.put(`http://localhost:9020/api/expense/${expense.id}`, JSON.stringify(expense)).toRx();
   }
 
   delete(expense: IExpense) {
-    return this.http.delete('http://localhost:9020/api/expense/${expense.id}').toRx();
+    return this.http.delete(`http://localhost:9020/api/expense/${expense.id}`).toRx();
   }
 }
 
