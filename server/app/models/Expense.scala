@@ -3,8 +3,6 @@ package models
 import java.time.LocalDateTime
 import java.util.UUID
 
-import play.api.libs.json.Json
-
 case class Expense(id: UUID,
                    name: String,
                    category: String,
@@ -15,12 +13,10 @@ case class Expense(id: UUID,
                    invoiceDate: LocalDateTime,
                    paymentDate: LocalDateTime,
                    indexNumber: Int) {
-
-  implicit val expenseWrites = Json.writes[Expense]
 }
 
 /**
- * Invoice data access
+ * Expense data access
  */
 object Expense {
   // hardcoded bliss
@@ -32,7 +28,7 @@ object Expense {
       currency = "EUR",
       remark = "Lorem ipsum",
       amount = 54.34,
-      vat = 0,
+      vat = 21,
       invoiceDate = LocalDateTime.now(),
       paymentDate = LocalDateTime.now(),
       indexNumber = -1
@@ -50,9 +46,6 @@ object Expense {
       indexNumber = -1
     )
   )
-
-  implicit val expenseWrites = Json.writes[Expense]
-  implicit val expenseReads = Json.reads[Expense]
 
   def add(expense: Expense) = {
     expenses = expenses + expense

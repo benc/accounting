@@ -6,6 +6,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Amount</th>
         <th>Currency</th>
@@ -20,6 +21,7 @@
     </thead>
     <tbody>
       <tr class="expense" *ng-for="#expense of expenses">
+        <td>{{ expense.id }}</td>
         <td>{{ expense.name }}</td>
         <td>{{ expense.amount }}</td>
         <td>{{ expense.currency }}</td>

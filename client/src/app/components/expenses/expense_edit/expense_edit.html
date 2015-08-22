@@ -81,6 +81,15 @@
            #paymentDate="form"
            [ng-form-control]="expenseForm.controls['paymentDate']"
            required>  
+                 
+    <label for="indexNumberInput">Index number</label>
+    <input type="text"
+           class="form-control"
+           id="indexNumberInput"
+           placeholder="Index number"
+           #indexNumber="form"
+           [ng-form-control]="expenseForm.controls['indexNumber']"
+           required>       
   </div>
   <p *ng-if="!expenseForm.valid"
      class="text-warning">Expense is invalid</p>

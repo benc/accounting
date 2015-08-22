@@ -7,3 +7,4 @@
 /// <reference path="rx/rx.d.ts" />
 /// <reference path="selenium-webdriver/selenium-webdriver.d.ts" />
 /// <reference path="../node_modules/typescript-simple-loader/typescript-simple-loader.d.ts" />
+/// <reference path="../src/typings/custom.d.ts" />
