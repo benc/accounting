@@ -1,7 +1,6 @@
 import { Component, View, Inject, FormBuilder, Validators, ControlGroup } from 'angular2/angular2';
 
-import { coreDirectives } from 'angular2/angular2';
-import { formDirectives } from 'angular2/angular2';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/angular2';
 
 import { Router, RouteParams } from 'angular2/router';
 import { ExpenseService, IExpense } from '../../../services/expense_service';
@@ -12,7 +11,7 @@ import { ExpenseService, IExpense } from '../../../services/expense_service';
 })
 @View({
   template: require('./expense_edit.html'),
-  directives: [coreDirectives, formDirectives ]
+  directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES ]
 })
 export class ExpenseEdit {
   expense: IExpense;

@@ -1,4 +1,5 @@
-import { bind, Inject, Http } from 'angular2/angular2';
+import { bind, Inject } from 'angular2/angular2';
+import { Http } from 'angular2/bundles/http';
 
 export interface IExpense {
 	id: number,

@@ -1,4 +1,7 @@
-import {bootstrap, httpInjectables, formInjectables} from 'angular2/angular2';
+/// <reference path="../../typings/custom/custom.d.ts" />
+
+import {bootstrap, FORM_BINDINGS} from 'angular2/angular2';
+import {HTTP_BINDINGS} from 'angular2/bundles/http';
 
 import {routerInjectables} from 'angular2/router';
 import {appServicesInjectables} from './services/services';
@@ -9,8 +12,8 @@ bootstrap(
   App,
   [
     appServicesInjectables,
-    formInjectables,
-    httpInjectables,
+    FORM_BINDINGS,
+    HTTP_BINDINGS,
     routerInjectables
   ]
 );

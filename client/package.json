@@ -15,11 +15,11 @@
   "license": "ISC",
   "homepage": "https://github.com/benc/accounting",
   "dependencies": {
-    "angular2": "2.0.0-alpha.34",
+    "angular2": "2.0.0-alpha.35",
     "raw-loader": "0.5.1",
     "reflect-metadata": "0.1.0",
-    "rtts_assert": "2.0.0-alpha.34",
-    "rx": "3.0.1",
+    "rtts_assert": "2.0.0-alpha.35",
+    "rx": "3.1.1",
     "zone.js": "0.5.2"
   },
   "devDependencies": {
