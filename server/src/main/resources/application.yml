@@ -1,0 +1,9 @@
+server:
+  port: 3000
+#  key-store: classpath:sample.jks
+#  key-store-password: secret
+#  key-password: password
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/accounting
