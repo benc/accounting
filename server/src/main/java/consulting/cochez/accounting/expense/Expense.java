@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,7 +23,7 @@ public class Expense {
     private String remark;
     private BigDecimal amount;
     private Integer vat;
-    private LocalDateTime invoiceDate;
-    private LocalDateTime paymentDate;
+    private LocalDate invoiceDate;
+    private LocalDate paymentDate;
     private Integer indexNumber;
 }
