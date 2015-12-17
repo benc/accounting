@@ -7,9 +7,9 @@ Server is written using Play and Scala.
 
 ## Server
 
-Simple app using [play][1].
+Simple app using [spring boot][1].
 
-[1]: https://www.playframework.com
+[1]: http://projects.spring.io/spring-boot/
 
 ### Get it up and running
 
@@ -19,7 +19,7 @@ Simple app using [play][1].
 
 * Run it
 
-		activator run -Dhttp.port=9020
+		gradle bootRun
 
 ## Client
 
