@@ -1,20 +1,13 @@
 {
-  "version": "1.5.3",
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
     "module": "commonjs",
-    "declaration": false,
-    "noImplicitAny": false,
     "removeComments": true,
-    "noLib": false,
-    "outDir": "dist"
+    "sourceMap": false
   },
-  "files": [
-    "node_modules/typescript/bin/lib.dom.d.ts",
-    "typings/tsd.d.ts",
-    "src/app/components/app.ts",
-    "src/app/bootstrap.ts"
+  "exclude": [
+      "node_modules"
   ]
 }
