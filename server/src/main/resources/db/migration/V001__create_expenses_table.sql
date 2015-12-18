@@ -6,7 +6,7 @@ CREATE TABLE expense (
   remark TEXT,
   amount DECIMAL NOT NULL,
   vat INTEGER,
-  invoicedate TIME NOT NULL,
-  paymentdate TIME,
+  invoicedate DATE NOT NULL,
+  paymentdate DATE,
   indexnumber INTEGER
 );

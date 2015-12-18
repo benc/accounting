@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,13 +17,17 @@ import javax.persistence.Id;
 public class Expense {
     @Id
     private UUID id;
+//    @Version
+//    private Long version;
+//    @LastModifiedDate
+//    private LocalDate lastModifiedDate;
     private String name;
     private String category;
     private String currency;
     private String remark;
     private BigDecimal amount;
     private Integer vat;
-    private LocalDateTime invoiceDate;
-    private LocalDateTime paymentDate;
+    private LocalDate invoiceDate;
+    private LocalDate paymentDate;
     private Integer indexNumber;
 }

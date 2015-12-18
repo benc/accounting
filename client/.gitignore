@@ -1,6 +1,3 @@
 node_modules
+npm-debug.log
 dist
-typings
-!typings/tsd.d.ts
-!typings/custom
-reports

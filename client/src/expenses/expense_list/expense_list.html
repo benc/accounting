@@ -1,12 +1,12 @@
 <h2 class="sub-header">
   Expenses
-  <button class="btn btn-primary">Add new</button>
 </h2>
+<p><button class="btn btn-primary">Add new</button></p>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
+        <th>Self</th>
         <th>Name</th>
         <th>Amount</th>
         <th>Currency</th>
@@ -20,8 +20,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="expense" *ng-for="#expense of expenses">
-        <td>{{ expense.id }}</td>
+      <tr class="expense" *ngFor="#expense of expenses | async">
+        <td>{{ expense._links.self.href }}</td>
         <td>{{ expense.name }}</td>
         <td>{{ expense.amount }}</td>
         <td>{{ expense.currency }}</td>
@@ -32,14 +32,9 @@
         <td>{{ expense.remark }}</td>
         <td>{{ expense.indexNumber }}</td>
         <td class="actions">
-          <button class="btn btn-default" [router-link]="['/editexpense', {id: expense.id}]">Edit</button>
-          <button class="btn btn-danger" (click)="delete(expense)">Delete</button>
+          <a class="btn btn-default" [routerLink]="['ExpenseForm', {rel: expense._links.self.href}]">Edit</a>
         </td>
-        <!--<td><pre>{{expense | json }}</pre></td>-->
       </tr>
-      <!--<tr class="no-expenses" [hidden]="expenses.length">
-        <td colspan="10">No expenses found</td>
-      </tr>-->
     </tbody>
   </table>
 </div>

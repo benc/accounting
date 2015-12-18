@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,7 +50,7 @@ public class ExpenseRepositoryIntegrationTest extends AbstractIntegrationTest {
         expense.setRemark(faker.lorem().paragraph());
         expense.setAmount(new BigDecimal(42));
         expense.setVat(21);
-        expense.setInvoiceDate(LocalDateTime.now());
+        expense.setInvoiceDate(LocalDate.now());
 
         return expense;
     }
