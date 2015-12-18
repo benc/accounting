@@ -1,5 +1,5 @@
 {
-  "name": "ng-webpack-play",
+  "name": "accounting",
   "dependencies": {
     "angular2": "2.0.0-beta.0",
     "es6-promise": "^3.0.2",
@@ -9,6 +9,7 @@
     "zone.js": "0.5.10"
   },
   "devDependencies": {
+    "raw-loader": "0.5.1",
     "ts-loader": "^0.7.2",
     "typescript": "^1.7.3",
     "webpack": "^1.12.2",

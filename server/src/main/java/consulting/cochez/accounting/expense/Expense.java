@@ -17,6 +17,10 @@ import javax.persistence.Id;
 public class Expense {
     @Id
     private UUID id;
+//    @Version
+//    private Long version;
+//    @LastModifiedDate
+//    private LocalDate lastModifiedDate;
     private String name;
     private String category;
     private String currency;
