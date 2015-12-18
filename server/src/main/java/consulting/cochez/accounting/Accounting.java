@@ -14,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SpringBootApplication
 public class Accounting {
+    public static final String API_PATH_MAPPING  = "/api/**";
+
     @Bean
     public Jdk8Module javaOptionalModule() {
         return new Jdk8Module();
@@ -24,7 +26,7 @@ public class Accounting {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
+                registry.addMapping(API_PATH_MAPPING);
             }
         };
     }
@@ -47,7 +49,7 @@ public class Accounting {
         config.addAllowedMethod("POST");
         config.addAllowedMethod("DELETE");
         config.addAllowedMethod("PATCH");
-        source.registerCorsConfiguration("/**", config);
+        source.registerCorsConfiguration(API_PATH_MAPPING, config);
         // return new CorsFilter(source);
         final FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
         bean.setOrder(0);

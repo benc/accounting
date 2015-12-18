@@ -13,10 +13,9 @@ public class ExpenseResourceIntegrationTest extends AbstractWebIntegrationTest {
 
     @Test
     public void exposesOrdersResourceViaRootResource() throws Exception {
-        mvc.perform(get("/"))
+        mvc.perform(get("/api/expenses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaTypes.HAL_JSON));
-//                andExpect(jsonPath("$._links.expenses.href", notNullValue()));
     }
 }
