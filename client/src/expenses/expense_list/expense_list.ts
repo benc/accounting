@@ -1,10 +1,10 @@
 import { Component, View, } from 'angular2/core';
 import { CORE_DIRECTIVES, COMMON_PIPES } from 'angular2/common';
-
 import { ROUTER_DIRECTIVES } from 'angular2/router';
-import { ExpenseService, IExpense } from '../expense_service';
 
 import { Observable } from 'rxjs/rx';
+
+import { ExpenseService, IExpense } from '../expense_service';
 
 @Component({
   selector: 'expense-list',
