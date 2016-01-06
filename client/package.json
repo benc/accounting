@@ -17,6 +17,6 @@
   },
   "scripts": {
     "build": "webpack",
-    "play": "webpack-dev-server"
+    "server": "webpack-dev-server"
   }
 }
