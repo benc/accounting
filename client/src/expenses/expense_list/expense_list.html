@@ -6,7 +6,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Self</th>
         <th>Name</th>
         <th>Amount</th>
         <th>Currency</th>
@@ -21,7 +20,6 @@
     </thead>
     <tbody>
       <tr class="expense" *ngFor="#expense of expenses | async">
-        <td>{{ expense._links.self.href }}</td>
         <td>{{ expense.name }}</td>
         <td>{{ expense.amount }}</td>
         <td>{{ expense.currency }}</td>
@@ -32,7 +30,7 @@
         <td>{{ expense.remark }}</td>
         <td>{{ expense.indexNumber }}</td>
         <td class="actions">
-          <a class="btn btn-default" [routerLink]="['ExpenseForm', {rel: expense._links.self.href}]">Edit</a>
+          <a class="btn btn-default" [routerLink]="['ExpenseForm', {id: expense.businessId}]">Edit</a>
         </td>
       </tr>
     </tbody>

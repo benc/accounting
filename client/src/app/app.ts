@@ -18,6 +18,6 @@ import 'rxjs/add/operator/toArray';
 })
 @RouteConfig([
   { path: '/expenses', component: ExpenseList, name: 'ExpenseList', useAsDefault: true },
-  { path: '/expenses/:rel', component: ExpenseForm, name: 'ExpenseForm' } // TODO improve when https://github.com/angular/angular/issues/2959 gets implemented
+  { path: '/expenses/:id', component: ExpenseForm, name: 'ExpenseForm' } // TODO improve when https://github.com/angular/angular/issues/2959 gets implemented
 ])
 export class App {}

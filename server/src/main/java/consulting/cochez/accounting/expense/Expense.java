@@ -30,4 +30,13 @@ public class Expense {
     private LocalDate invoiceDate;
     private LocalDate paymentDate;
     private Integer indexNumber;
+
+    /**
+     * Helper (hack) to facilitate URL building at the client side.
+     *
+     * @return id. HAL only returns a self rel url.
+     */
+    public UUID getBusinessId(){
+        return getId();
+    }
 }
