@@ -62,7 +62,10 @@ export class ExpenseForm {
     if(this._expenseLink){
       console.info("Updating stuff");
       this._expenseService.update(this._expenseLink, JSON.stringify(value))
-        .subscribe((value) => console.log(value));
+        .subscribe((value) => {
+          console.log(value);
+          this._router.navigate(['ExpenseList'])
+        });
     } else {
       console.warn("Saving not implemented yet");
     }

@@ -48,7 +48,7 @@ export class ExpenseService {
     requestOptions.headers.append('Content-Type', 'application/hal+json');
         
     return this._http
-      .put(relSelf, JSON.stringify(expense), requestOptions)
+      .put(relSelf, expense, requestOptions)
       .map((res:Response) => <any> res.json());;
   }
 
