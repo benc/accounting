@@ -1,8 +1,9 @@
 server:
   port: 3000
-#  key-store: classpath:sample.jks
-#  key-store-password: secret
-#  key-password: password
+#  ssl:
+#    key-store: classpath:sample.jks
+#    key-store-password: secret
+#    key-password: password
 spring:
   data:
     rest:
@@ -10,5 +11,4 @@ spring:
       returnBodyOnCreate: true
       returnBodyOnUpdate: true
   datasource:
-    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/accounting
