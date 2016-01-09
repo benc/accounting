@@ -12,6 +12,8 @@ spring:
       returnBodyOnUpdate: true
   datasource:
     url: jdbc:postgresql://localhost:5432/accounting
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 management:
   context-path: /mgmt
