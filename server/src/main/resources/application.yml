@@ -12,3 +12,6 @@ spring:
       returnBodyOnUpdate: true
   datasource:
     url: jdbc:postgresql://localhost:5432/accounting
+
+management:
+  context-path: /mgmt
