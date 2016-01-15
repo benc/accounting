@@ -107,6 +107,10 @@
     <div *ngIf="remark.hasError('required')" class="ui error message">Remark is required</div>
   </div>
   
-  <button [disabled]="!expenseForm.valid" type="submit" class="ui button">Update</button>
+  <div class="ui buttons">
+    <button class="ui button">Cancel</button>
+    <div class="or"></div>
+    <button [disabled]="!expenseForm.valid" type="submit" class="ui positive button">Update</button>
+  </div>
   
 </form>

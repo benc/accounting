@@ -30,7 +30,10 @@
       <td>{{ expense.remark }}</td>
       <td>{{ expense.indexNumber }}</td>
       <td class="actions">
-        <a class="btn btn-default" [routerLink]="['ExpenseForm', {id: expense.businessId}]">Edit</a>
+        <div class="ui buttons">
+          <a class="ui small compact button" [routerLink]="['ExpenseForm', {id: expense.businessId}]">Edit</a>
+          <!--<a class="ui small compact negative button">Delete</a>-->
+        </div>
       </td>
     </tr>
   </tbody>
