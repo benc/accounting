@@ -28,11 +28,9 @@
     
     <div class="field" [class.error]="!currency.valid && currency.touched">
       <label for="currencyInput">Currency:</label>
-      <input type="text" 
-              id="currencyInput" 
-              placeholder="Currency"
-              [ngFormControl]="currency"
-              required>
+      <select class="ui dropdown" id="currencyInput" [ngFormControl]="currency" placeholder="Currency" required>
+        <option *ngFor="#currency of currencies" [value]="currency">{{ currency }}</option>
+      </select>
       <div *ngIf="!currency.valid" class="ui error message">Invalid currency</div>
       <div *ngIf="currency.hasError('required')" class="ui error message">Currency is required</div>
     </div>
@@ -78,7 +76,7 @@
   
   <div class="two fields">
   
-    <div class="field" [class.error]="!category.valid && category.touched">
+    <div class="twelve wide field" [class.error]="!category.valid && category.touched">
       <label for="categoryInput">Category:</label>
       <input type="text" 
               id="categoryInput" 
@@ -89,7 +87,7 @@
       <div *ngIf="category.hasError('required')" class="ui error message">Category is required</div>
     </div>
     
-    <div class="field" [class.error]="!indexNumber.valid && indexNumber.touched">
+    <div class="four wide field" [class.error]="!indexNumber.valid && indexNumber.touched">
       <label for="indexNumberInput">Index number:</label>
       <input type="text" 
               id="indexNumberInput" 
