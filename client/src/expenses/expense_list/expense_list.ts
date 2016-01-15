@@ -1,6 +1,7 @@
 import { Component, View, } from 'angular2/core';
 import { CORE_DIRECTIVES, COMMON_PIPES } from 'angular2/common';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
+import { Router } from 'angular2/router';
 
 import { Observable } from 'rxjs/rx';
 
@@ -16,9 +17,19 @@ import { ExpenseService } from '../expense_service';
 export class ExpenseList {
   expenses: Observable<any>;
 
-  constructor(public expenseService: ExpenseService) {}
+  constructor(private _router: Router, private _expenseService: ExpenseService) {}
 
   ngOnInit() {
-    this.expenses = this.expenseService.all().toArray();
+    this.getExpenses();
+  }
+  
+  getExpenses() {
+    this.expenses = this._expenseService.all().toArray();
+  }
+  
+  delete(expense) {
+    this._expenseService.delete(expense._links.self.href).subscribe((value) => {
+      this.getExpenses();
+    });
   }
 }

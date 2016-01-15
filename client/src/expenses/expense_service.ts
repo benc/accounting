@@ -51,13 +51,11 @@ export class ExpenseService {
       .map((res:Response) => <any> res.json());
   }
 
-  delete(relSelf, expense) {
+  delete(relSelf) {
     let requestOptions = new RequestOptions();
     requestOptions.headers = new Headers();
     requestOptions.headers.append('Content-Type', 'application/hal+json');
         
-    return this._http
-      .delete(relSelf, requestOptions)
-      .map((res:Response) => <any> res.json());
+    return this._http.delete(relSelf, requestOptions);
   }
 }
