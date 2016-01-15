@@ -1,38 +1,37 @@
-<h2 class="sub-header">
+<h2 class="ui header">
   Expenses
 </h2>
-<p><button class="btn btn-primary">Add new</button></p>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Currency</th>
-        <th>VAT</th>
-        <th>Invoice date</th>
-        <th>Payment date</th>
-        <th>Category</th>
-        <th>Remark</th>
-        <th>Index number</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="expense" *ngFor="#expense of expenses | async">
-        <td>{{ expense.name }}</td>
-        <td>{{ expense.amount }}</td>
-        <td>{{ expense.currency }}</td>
-        <td>{{ expense.vat }}</td>
-        <td>{{ expense.invoiceDate }}</td>
-        <td>{{ expense.paymentDate }}</td>
-        <td>{{ expense.category }}</td>
-        <td>{{ expense.remark }}</td>
-        <td>{{ expense.indexNumber }}</td>
-        <td class="actions">
-          <a class="btn btn-default" [routerLink]="['ExpenseForm', {id: expense.businessId}]">Edit</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<p><button class="ui button">Add new</button></p>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>VAT</th>
+      <th>Invoice date</th>
+      <th>Payment date</th>
+      <th>Category</th>
+      <th>Remark</th>
+      <th>Index number</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="expense" *ngFor="#expense of expenses | async">
+      <td>{{ expense.name }}</td>
+      <td>{{ expense.amount }}</td>
+      <td>{{ expense.currency }}</td>
+      <td>{{ expense.vat }}</td>
+      <td>{{ expense.invoiceDate }}</td>
+      <td>{{ expense.paymentDate }}</td>
+      <td>{{ expense.category }}</td>
+      <td>{{ expense.remark }}</td>
+      <td>{{ expense.indexNumber }}</td>
+      <td class="actions">
+        <a class="btn btn-default" [routerLink]="['ExpenseForm', {id: expense.businessId}]">Edit</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

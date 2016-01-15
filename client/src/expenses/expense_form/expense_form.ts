@@ -14,7 +14,18 @@ import { ExpenseService } from '../expense_service';
 })
 export class ExpenseForm {
   _expenseLink: string;
+  
   expenseForm: ControlGroup;
+  name: Control;
+  amount: Control;
+  currency: Control;
+  vat: Control;
+  invoiceDate: Control;
+  paymentDate: Control;
+  category: Control;
+  remark: Control;
+  indexNumber: Control;
+  
   currencies = ['EUR', 'USD', 'GPB'];
 
   constructor(private _router: Router, private _routeParams: RouteParams, private _formBuilder: FormBuilder, private _expenseService: ExpenseService) {
@@ -25,26 +36,36 @@ export class ExpenseForm {
       'name': ['', Validators.required ],
       'amount': ['', Validators.required ],
       'currency': ['EUR', Validators.required ],
-      'vat': [''],
+      'vat': ['', Validators.required],
       'invoiceDate': ['', Validators.required ],
       'paymentDate': [''],
-      'category': [''],
+      'category': ['', Validators.required],
       'remark': [''],
       'indexNumber': ['']
     });
     
+    this.name = (<Control> this.expenseForm.controls['name']);
+    this.amount = (<Control> this.expenseForm.controls['amount']);
+    this.currency = (<Control> this.expenseForm.controls['currency']);
+    this.vat = (<Control> this.expenseForm.controls['vat']);
+    this.invoiceDate = (<Control> this.expenseForm.controls['invoiceDate']);
+    this.paymentDate = (<Control> this.expenseForm.controls['paymentDate']);
+    this.category = (<Control> this.expenseForm.controls['category']);
+    this.remark = (<Control> this.expenseForm.controls['remark']);
+    this.indexNumber = (<Control> this.expenseForm.controls['indexNumber']);
+    
     this._expenseService.get(this._routeParams.params['id'])
       .subscribe(expense => {
         this._expenseLink = expense._links.self.href;
-        (<Control> this.expenseForm.controls['name']).updateValue(expense.name);
-        (<Control> this.expenseForm.controls['amount']).updateValue(expense.amount);
-        (<Control> this.expenseForm.controls['currency']).updateValue(expense.currency);
-        (<Control> this.expenseForm.controls['vat']).updateValue(expense.vat);
-        (<Control> this.expenseForm.controls['invoiceDate']).updateValue(expense.invoiceDate);
-        (<Control> this.expenseForm.controls['paymentDate']).updateValue(expense.paymentDate);
-        (<Control> this.expenseForm.controls['category']).updateValue(expense.category);
-        (<Control> this.expenseForm.controls['remark']).updateValue(expense.remark);
-        (<Control> this.expenseForm.controls['indexNumber']).updateValue(expense.indexNumber);
+        this.name.updateValue(expense.name);
+        this.amount.updateValue(expense.amount);
+        this.currency.updateValue(expense.currency);
+        this.vat.updateValue(expense.vat);
+        this.invoiceDate.updateValue(expense.invoiceDate);
+        this.paymentDate.updateValue(expense.paymentDate);
+        this.category.updateValue(expense.category);
+        this.remark.updateValue(expense.remark);
+        this.indexNumber.updateValue(expense.indexNumber);
       });
       
     this.expenseForm.valueChanges
