@@ -53,7 +53,7 @@
     
     <div class="field" [class.error]="!invoiceDate.valid && invoiceDate.touched">
       <label for="invoiceDateInput">Invoice date:</label>
-      <input type="text" 
+      <input type="date" 
               id="invoiceDateInput" 
               placeholder="Invoice date"
               [ngFormControl]="invoiceDate"
@@ -64,7 +64,7 @@
     
     <div class="field" [class.error]="!paymentDate.valid && paymentDate.touched">
       <label for="paymentDateInput">Payment date:</label>
-      <input type="text" 
+      <input type="date" 
               id="paymentDateInput" 
               placeholder="Payment date"
               [ngFormControl]="paymentDate"
