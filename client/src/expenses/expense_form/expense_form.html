@@ -94,7 +94,7 @@
       <input type="text" 
               id="indexNumberInput" 
               placeholder="Index number"
-              [ngFormControl]="indexNumber"
+              [ngFormControl]="indexNumber"   
               required>
       <div *ngIf="!indexNumber.valid" class="ui error message">Invalid index number</div>
       <div *ngIf="indexNumber.hasError('required')" class="ui error message">Index number is required</div>
