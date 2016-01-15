@@ -2,8 +2,8 @@
 
 Playground app, to learn new stuff.
 
-Client app is written using Angular 2.0 and Typescript.
-Server is written using Play and Scala.
+Client app is built with Angular 2.0 and Typescript.
+Server is built with Spring Boot and Java.
 
 ## Server
 
