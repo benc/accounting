@@ -99,7 +99,15 @@ export class ExpenseForm {
       });
   }
   
-  saveOrUpdate(expense){
+  goToList() {
+    this._router.navigate(['ExpenseList']);
+  }
+  
+  cancel() {
+    this.goToList();
+  }
+  
+  saveOrUpdate(expense) {
     if(this.isNew()){
       console.info("Saving new expense");
       
@@ -107,15 +115,13 @@ export class ExpenseForm {
     
       this._expenseService.create(JSON.stringify(expense))
         .subscribe((value) => {
-          console.log(value);
-          this._router.navigate(['ExpenseList'])
+          this.goToList();
         });
     } else { 
       console.info("Updating expense");
       this._expenseService.update(this._expenseLink, JSON.stringify(expense))
         .subscribe((value) => {
-          console.log(value);
-          this._router.navigate(['ExpenseList'])
+          this.goToList();
         });
     }
   }

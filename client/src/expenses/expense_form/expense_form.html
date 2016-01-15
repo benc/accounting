@@ -1,4 +1,5 @@
-<h2 class="sub-header">Edit expense</h2>
+<h2 *ngIf="isNew()" class="sub-header">Create a new expense</h2>
+<h2 *ngIf="!isNew()" class="sub-header">Edit expense</h2>
 
 <form [ngFormModel]="expenseForm" (ngSubmit)="onSubmit(expenseForm.value)" class="ui form">
   
@@ -108,9 +109,12 @@
   </div>
   
   <div class="ui buttons">
-    <button class="ui button">Cancel</button>
+    <button (click)="cancel()" class="ui button">Cancel</button>
     <div class="or"></div>
-    <button [disabled]="!expenseForm.valid" type="submit" class="ui positive button">Update</button>
+    <button [disabled]="!expenseForm.valid" type="submit" class="ui positive button">
+      <span *ngIf="isNew()">Create</span>
+      <span *ngIf="!isNew()">Update</span>
+    </button>
   </div>
   
 </form>
