@@ -104,17 +104,11 @@
   
   <div class="field" [class.error]="!remark.valid && remark.touched">
     <label for="remarkInput">Remark:</label>
-    <!--<input type="text" 
-            id="remarkInput" 
-            placeholder="Remark"
-            [ngFormControl]="remark"
-            required>-->
     <textarea id="remarkInput" placeholder="Remark" [ngFormControl]="remark" required></textarea>
     <div *ngIf="!remark.valid" class="ui error message">Invalid remark</div>
     <div *ngIf="remark.hasError('required')" class="ui error message">Remark is required</div>
   </div>
   
   <button [disabled]="!expenseForm.valid" type="submit" class="ui button">Update</button>
-  <!--<button type="submit" class="ui button">Update</button>-->
   
 </form>
