@@ -1,7 +1,12 @@
 <h2 class="ui header">
   Expenses
 </h2>
-<p><button class="ui button">Add new</button></p>
+<p>
+  <button class="ui button">
+    <i class="plus icon"></i>
+    Add new
+  </button>
+</p>
 
 <table class="ui celled table">
   <thead>
@@ -31,8 +36,14 @@
       <td>{{ expense.indexNumber }}</td>
       <td class="actions">
         <div class="ui buttons">
-          <a class="ui small compact button" [routerLink]="['ExpenseForm', {id: expense.businessId}]">Edit</a>
-          <!--<a class="ui small compact negative button">Delete</a>-->
+          <button class="ui small compact button" [routerLink]="['ExpenseForm', {id: expense.businessId}]">
+            <i class="write icon"></i>
+            Edit
+          </button>
+          <!--<button class="ui small compact negative button">
+            <i class="trash icon"></i>
+            Delete
+          </button>-->
         </div>
       </td>
     </tr>
