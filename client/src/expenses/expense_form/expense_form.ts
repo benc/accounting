@@ -29,6 +29,7 @@ export class ExpenseForm {
   indexNumber: Control;
   
   currencies = ['EUR', 'USD', 'GPB'];
+  vatRates = ['0', '6', '21'];
 
   constructor(private _router: Router, private _routeParams: RouteParams, private _formBuilder: FormBuilder, private _expenseService: ExpenseService) {}
 

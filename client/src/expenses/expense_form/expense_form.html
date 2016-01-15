@@ -38,11 +38,9 @@
     
     <div class="field" [class.error]="!vat.valid && vat.touched">
       <label for="vatInput">VAT:</label>
-      <input type="text" 
-              id="vatInput" 
-              placeholder="VAT"
-              [ngFormControl]="vat"
-              required>
+      <select class="ui dropdown" id="vatInput" [ngFormControl]="vat" placeholder="VAT" required>
+        <option *ngFor="#vatRate of vatRates" [value]="vatRate">{{ vatRate }}</option>
+      </select>
       <div *ngIf="!vat.valid" class="ui error message">Invalid VAT</div>
       <div *ngIf="vat.hasError('required')" class="ui error message">VAT is required</div>
     </div>
