@@ -3,17 +3,17 @@ import { Http, Response, Headers, RequestOptions } from 'angular2/http';
 
 import { Observable } from 'rxjs/Observable';
 
-export interface IExpense {
-	name: string,
-	amount: number,
-	currency: string,
-	vat: number,
-	invoiceDate: Date,
-	paymentDate: Date,
-	category: string,
-	remark: string,
-	indexNumber: number
-}
+// export interface IExpense {
+// 	name: string,
+// 	amount: number,
+// 	currency: string,
+// 	vat: number,
+// 	invoiceDate: Date,
+// 	paymentDate: Date,
+// 	category: string,
+// 	remark: string,
+// 	indexNumber: number
+// }
 
 @Injectable()
 export class ExpenseService {
@@ -24,12 +24,6 @@ export class ExpenseService {
       .request("http://localhost:3000/api/expenses")
       .flatMap((res:Response) => <any> res.json()._embedded.expenses);
   }
-
-  // get(rel: string): Observable<any> {
-  //   return this._http
-  //     .request(rel)
-  //     .map((res:Response) => <any> res.json());
-  // }
   
   get(id: string): Observable<any> {
     return this._http
@@ -37,10 +31,15 @@ export class ExpenseService {
       .map((res:Response) => <any> res.json());
   }
 
-  // create(expense: IExpense) {
-  //   // TODO as application/json
-  //   return this.http.post("http://localhost:3000/api/expenses", JSON.stringify(expense));
-  // }
+  create(expense) {
+    let requestOptions = new RequestOptions();
+    requestOptions.headers = new Headers();
+    requestOptions.headers.append('Content-Type', 'application/hal+json');
+        
+    return this._http
+      .post('http://localhost:3000/api/expenses/', expense, requestOptions)
+      .map((res:Response) => <any> res.json());
+  }
 
   update(relSelf, expense) {
     let requestOptions = new RequestOptions();
@@ -49,10 +48,16 @@ export class ExpenseService {
         
     return this._http
       .put(relSelf, expense, requestOptions)
-      .map((res:Response) => <any> res.json());;
+      .map((res:Response) => <any> res.json());
   }
 
-  // delete(expense: IExpense) {
-  //   return this.http.delete(`http://localhost:3000/api/expenses/${expense.id}`);
-  // }
+  delete(relSelf, expense) {
+    let requestOptions = new RequestOptions();
+    requestOptions.headers = new Headers();
+    requestOptions.headers.append('Content-Type', 'application/hal+json');
+        
+    return this._http
+      .delete(relSelf, requestOptions)
+      .map((res:Response) => <any> res.json());
+  }
 }

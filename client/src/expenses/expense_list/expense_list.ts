@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES } from 'angular2/router';
 
 import { Observable } from 'rxjs/rx';
 
-import { ExpenseService, IExpense } from '../expense_service';
+import { ExpenseService } from '../expense_service';
 
 @Component({
   selector: 'expense-list',
