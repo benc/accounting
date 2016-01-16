@@ -1,6 +1,7 @@
 import { Component } from 'angular2/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, Control, FormBuilder, Validators } from 'angular2/common';
 import { Router, RouteParams } from 'angular2/router';
+import { isBlank } from 'angular2/src/facade/lang';
 
 import { Observable } from 'rxjs/rx';
 
@@ -46,7 +47,7 @@ export class ExpenseForm {
   }
   
   isNew(): boolean {
-    return this.expenseId() === null;
+    return isBlank(this.expenseId());
   }
   
   expenseId(): string {
