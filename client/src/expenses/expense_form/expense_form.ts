@@ -1,5 +1,6 @@
 import { Component } from 'angular2/core';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, Control, FormBuilder, Validators } from 'angular2/common';
+
+import { ControlGroup, Control, FormBuilder, Validators } from 'angular2/common';
 import { Router, RouteParams } from 'angular2/router';
 import { isBlank } from 'angular2/src/facade/lang';
 
@@ -9,13 +10,7 @@ import { ExpenseService } from '../expense_service';
 
 import { Guid } from '../../utilities/guid';
 
-@Component({
-  selector: 'expense-form',
-  directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES ],
-  providers: [ ExpenseService ],
-  template: require('./expense_form.html')
-})
-export class ExpenseForm {
+export abstract class ExpenseForm {
   _expenseLink: string;
   
   expenseForm: ControlGroup;
@@ -32,7 +27,7 @@ export class ExpenseForm {
   currencies = ['EUR', 'USD', 'GPB'];
   vatRates = ['0', '6', '21'];
 
-  constructor(private _router: Router, private _routeParams: RouteParams, private _formBuilder: FormBuilder, private _expenseService: ExpenseService) {}
+  constructor(public router: Router, public routeParams: RouteParams, public formBuilder: FormBuilder, public expenseService: ExpenseService) {}
 
   ngOnInit() {
     this.constructForm();
@@ -51,11 +46,11 @@ export class ExpenseForm {
   }
   
   expenseId(): string {
-    return this._routeParams.params['id'];
+    return this.routeParams.params['id'];
   }
   
   constructForm() {
-    this.expenseForm = this._formBuilder.group({
+    this.expenseForm = this.formBuilder.group({
       'name': ['', Validators.required ],
       'amount': ['', Validators.required ],
       'currency': ['EUR', Validators.required ],
@@ -86,7 +81,7 @@ export class ExpenseForm {
   }
   
   loadExpense(id: string) {
-    this._expenseService.get(id)
+    this.expenseService.get(id)
       .subscribe(expense => {
         this._expenseLink = expense._links.self.href;
         this.name.updateValue(expense.name);
@@ -102,7 +97,7 @@ export class ExpenseForm {
   }
   
   goToList() {
-    this._router.navigate(['ExpenseList']);
+    this.router.navigate(['ExpenseList']);
   }
   
   cancel() {
@@ -115,13 +110,13 @@ export class ExpenseForm {
       
       expense.id = Guid.newGuid(); 
     
-      this._expenseService.create(JSON.stringify(expense))
+      this.expenseService.create(JSON.stringify(expense))
         .subscribe((value) => {
           this.goToList();
         });
     } else { 
       console.info("Updating expense");
-      this._expenseService.update(this._expenseLink, JSON.stringify(expense))
+      this.expenseService.update(this._expenseLink, JSON.stringify(expense))
         .subscribe((value) => {
           this.goToList();
         });

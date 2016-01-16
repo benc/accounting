@@ -2,7 +2,7 @@
   Expenses
 </h2>
 <p>
-  <button class="ui button" [routerLink]="['ExpenseForm', {id: undefined }]">
+  <button class="ui button" [routerLink]="['ExpenseEdit', {id: undefined }]">
     <i class="plus icon"></i>
     Add new
   </button>
@@ -36,7 +36,7 @@
       <td>{{ expense.indexNumber }}</td>
       <td class="actions">
         <div class="ui buttons">
-          <button class="ui small compact button" [routerLink]="['ExpenseForm', {id: expense.businessId}]">
+          <button class="ui small compact button" [routerLink]="['ExpenseEdit', {id: expense.businessId}]">
             <i class="write icon"></i>
             Edit
           </button>
