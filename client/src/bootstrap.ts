@@ -9,7 +9,7 @@ import { App } from './app/app';
 export function main() {
   return bootstrap(App, [
     HTTP_PROVIDERS,
-    ROUTER_PROVIDERS, // TODO set PathLocationStrategy
+    ROUTER_PROVIDERS,
     FORM_PROVIDERS,
     ELEMENT_PROBE_PROVIDERS
   ])
