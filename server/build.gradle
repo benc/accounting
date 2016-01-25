@@ -4,7 +4,7 @@ buildscript {
         maven { url "https://repo.spring.io/libs-release" }
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${versionSpringBoot}"
     }
 }
 
@@ -20,25 +20,25 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-logging:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-starter-remote-shell:${springBootVersion}"
-    compile "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
-    compile "io.springfox:springfox-swagger2:${springfoxVersion}"
+    compile "org.springframework.boot:spring-boot-starter"
+    compile "org.springframework.boot:spring-boot-starter-undertow"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "org.springframework.boot:spring-boot-starter-data-rest"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-logging"
+    compile "org.springframework.boot:spring-boot-starter-remote-shell"
+    compile "org.springframework.boot:spring-boot-devtools"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+    compile "org.postgresql:postgresql"
+    compile "org.flywaydb:flyway-core"
     runtime "org.springframework.data:spring-data-rest-hal-browser"
-    compile "org.hibernate:hibernate-core:${hibernateVersion}"
-    compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
-    compile "org.hibernate:hibernate-java8:${hibernateVersion}"
-    compile "org.postgresql:postgresql:9.4-1206-jdbc42"
-    compile "org.flywaydb:flyway-core:3.2.1"
-    compile "org.projectlombok:lombok:1.16.6"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.6.4"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.4"
-    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-    testCompile "org.assertj:assertj-core:3.2.0"
-    testCompile "com.github.javafaker:javafaker:0.7"
+    compile "io.springfox:springfox-swagger2:${versionSpringfox}"
+    compile "org.hibernate:hibernate-core:${versionHibernate}"
+    compile "org.hibernate:hibernate-entitymanager:${versionHibernate}"
+    compile "org.hibernate:hibernate-java8:${versionHibernate}"
+    compile "org.projectlombok:lombok:${versionLombok}"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile "org.assertj:assertj-core:${versionAssertj}"
+    testCompile "com.github.javafaker:javafaker:${versionJavafaker}"
 }
