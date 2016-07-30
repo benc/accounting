@@ -16,6 +16,6 @@ public class ExpenseResourceIntegrationTest extends AbstractWebIntegrationTest {
         mvc.perform(get("/api/expenses"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaTypes.HAL_JSON));
+                .andExpect(content().contentType(MediaTypes.HAL_JSON + ";charset=UTF-8"));
     }
 }

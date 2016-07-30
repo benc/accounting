@@ -43,7 +43,6 @@ public class ExpenseRepositoryIntegrationTest extends AbstractIntegrationTest {
         Faker faker = new Faker();
 
         Expense expense = new Expense();
-        expense.setId(UUID.randomUUID());
         expense.setName(faker.company().name());
         expense.setCategory(faker.lorem().fixedString(10));
         expense.setCurrency("FOO");

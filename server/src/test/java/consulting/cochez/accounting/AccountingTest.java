@@ -1,7 +1,9 @@
 package consulting.cochez.accounting;
 
-/**
- * Created by benc on 16/12/15.
- */
-public class AccountingTest {
+import org.junit.Test;
+
+public class AccountingTest extends AbstractIntegrationTest{
+    @Test
+    public void contextLoads() {
+    }
 }
