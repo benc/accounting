@@ -1,5 +1,6 @@
 server:
   port: 3000
+  context-path: /accounting
 #  ssl:
 #    key-store: classpath:sample.jks
 #    key-store-password: secret

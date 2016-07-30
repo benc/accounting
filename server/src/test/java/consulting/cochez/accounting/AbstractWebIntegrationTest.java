@@ -1,8 +1,14 @@
 package consulting.cochez.accounting;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import consulting.cochez.accounting.config.AccountingObjectMapper;
+import io.restassured.RestAssured;
+import io.restassured.config.ObjectMapperConfig;
+import io.restassured.config.RestAssuredConfig;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +25,8 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.nio.charset.StandardCharsets;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
@@ -29,57 +37,22 @@ import static org.junit.Assert.assertThat;
 @ActiveProfiles("test")
 public abstract class AbstractWebIntegrationTest {
 
-    protected @Autowired WebApplicationContext context;
-    protected @Autowired LinkDiscoverers links;
-    protected MockMvc mvc;
+    @Value("${local.server.port}")
+    private int serverPort;
+
+    @Value("${server.context-path}")
+    private String contextPath;
+
+    @Autowired
+    private AccountingObjectMapper mapper;
 
     @Before
-    public void setUp() {
-        mvc = MockMvcBuilders.webAppContextSetup(context).build();
+    public void setup() throws Exception {
+        RestAssured.port = serverPort;
+        RestAssured.basePath = contextPath;
+        RestAssured.config = RestAssuredConfig.config()
+                .objectMapperConfig(new ObjectMapperConfig().jackson2ObjectMapperFactory((aClass, s) -> mapper))
+                .encoderConfig(RestAssuredConfig.config().getEncoderConfig().defaultContentCharset(StandardCharsets.UTF_8));
     }
 
-    /**
-     * Creates a {@link ResultMatcher} that checks for the presence of a link with the given rel.
-     *
-     * @param rel
-     * @return
-     */
-    protected ResultMatcher linkWithRelIsPresent(final String rel) {
-        return new LinkWithRelMatcher(rel, true);
-    }
-
-    /**
-     * Creates a {@link ResultMatcher} that checks for the non-presence of a link with the given rel.
-     *
-     * @param rel
-     * @return
-     */
-    protected ResultMatcher linkWithRelIsNotPresent(String rel) {
-        return new LinkWithRelMatcher(rel, false);
-    }
-
-    protected LinkDiscoverer getDiscovererFor(MockHttpServletResponse response) {
-        return links.getLinkDiscovererFor(response.getContentType());
-    }
-
-    private class LinkWithRelMatcher implements ResultMatcher {
-
-        private final String rel;
-        private final boolean present;
-
-        public LinkWithRelMatcher(String rel, boolean present) {
-            this.rel = rel;
-            this.present = present;
-        }
-
-        @Override
-        public void match(MvcResult result) throws Exception {
-
-            MockHttpServletResponse response = result.getResponse();
-            String content = response.getContentAsString();
-            LinkDiscoverer discoverer = links.getLinkDiscovererFor(response.getContentType());
-
-            assertThat(discoverer.findLinkWithRel(rel, content), is(present ? notNullValue() : nullValue()));
-        }
-    }
 }
