@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@SpringBootTest(classes = Accounting.class)
+@SpringBootTest(classes = AccountingApplication.class)
 @Transactional
 @ActiveProfiles("test")
 public abstract class AbstractIntegrationTest  extends AbstractTransactionalJUnit4SpringContextTests {

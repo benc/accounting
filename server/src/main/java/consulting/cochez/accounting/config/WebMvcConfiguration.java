@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-public class WebMvc {
+public class WebMvcConfiguration {
     public static final String API_PATH_MAPPING  = "/api/**";
 
     @Bean
