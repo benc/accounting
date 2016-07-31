@@ -19,7 +19,7 @@ Simple app using [spring boot][1].
 
 * Run it
 
-		gradle bootRun
+		./gradlew bootRun
 
 ## Client
 
