@@ -21,13 +21,13 @@ export class ExpenseService {
 
   all(): Observable<any> {
     return this._http
-      .request("http://localhost:3000/api/expenses")
+      .request("http://localhost:3000/accounting/api/expenses")
       .flatMap((res:Response) => <any> res.json()._embedded.expenses);
   }
-  
+
   get(id: string): Observable<any> {
     return this._http
-      .request(`http://localhost:3000/api/expenses/${id}`)
+      .request(`http://localhost:3000/accounting/api/expenses/${id}`)
       .map((res:Response) => <any> res.json());
   }
 
@@ -35,9 +35,9 @@ export class ExpenseService {
     let requestOptions = new RequestOptions();
     requestOptions.headers = new Headers();
     requestOptions.headers.append('Content-Type', 'application/hal+json');
-        
+
     return this._http
-      .post('http://localhost:3000/api/expenses/', expense, requestOptions)
+      .post('http://localhost:3000/accounting/api/expenses/', expense, requestOptions)
       .map((res:Response) => <any> res.json());
   }
 
@@ -45,7 +45,7 @@ export class ExpenseService {
     let requestOptions = new RequestOptions();
     requestOptions.headers = new Headers();
     requestOptions.headers.append('Content-Type', 'application/hal+json');
-        
+
     return this._http
       .put(relSelf, expense, requestOptions)
       .map((res:Response) => <any> res.json());
@@ -55,7 +55,7 @@ export class ExpenseService {
     let requestOptions = new RequestOptions();
     requestOptions.headers = new Headers();
     requestOptions.headers.append('Content-Type', 'application/hal+json');
-        
+
     return this._http.delete(relSelf, requestOptions);
   }
 }
