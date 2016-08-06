@@ -1,22 +1,48 @@
 {
   "name": "accounting",
-  "dependencies": {
-    "angular2": "2.0.0-beta.1",
-    "es6-promise": "^3.0.2",
-    "es6-shim": "^0.33.3",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.1",
-    "zone.js": "0.5.10"
-  },
-  "devDependencies": {
-    "raw-loader": "0.5.1",
-    "ts-loader": "^0.7.2",
-    "typescript": "1.7.3",
-    "webpack": "1.12.11",
-    "webpack-dev-server": "1.14.1"
-  },
+  "version": "42.0.0",
+  "description": "Accounting client, an Angular 2 playground since the Angular 2 alpha days",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server"
+    "typings-install": "typings install",
+    "postinstall": "npm run typings-install",
+    "build": "webpack --inline --colors --progress --display-error-details --display-cached",
+    "watch": "npm run build -- --watch",
+    "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 9000 --content-base src",
+    "start": "npm run server"
+  },
+  "license": "MIT",
+  "readme": "../README.md",
+  "devDependencies": {
+    "angular2-template-loader": "^0.4.0",
+    "awesome-typescript-loader": "^1.1.1",
+    "css-loader": "^0.23.1",
+    "raw-loader": "^0.5.1",
+    "to-string-loader": "^1.1.4",
+    "typescript": "~1.8.9",
+    "typings": "~1.0.3",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0",
+    "webpack-merge": "^0.8.4"
+  },
+  "dependencies": {
+    "@angular/common": "2.0.0-rc.5",
+    "@angular/compiler": "2.0.0-rc.5",
+    "@angular/core": "2.0.0-rc.5",
+    "@angular/http": "2.0.0-rc.5",
+    "@angular/compiler-cli": "0.5.0",
+    "@angular/platform-server": "2.0.0-rc.5",
+    "@angular/forms": "0.3.0",
+    "@angular/platform-browser": "2.0.0-rc.5",
+    "typescript": "^1.9.0-dev",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.5",
+    "@angular/router": "3.0.0-rc.1",
+    "core-js": "^2.2.0",
+    "ie-shim": "^0.1.0",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "~0.6.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benc/accounting"
   }
 }

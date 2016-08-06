@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="expense" *ngFor="#expense of expenses | async">
+    <tr class="expense" *ngFor="let expense of expenses | async">
       <td>{{ expense.name }}</td>
       <td>{{ expense.amount }}</td>
       <td>{{ expense.currency }}</td>
