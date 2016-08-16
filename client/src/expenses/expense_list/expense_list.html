@@ -36,7 +36,7 @@
       <td>{{ expense.indexNumber }}</td>
       <td class="actions">
         <div class="ui buttons">
-          <button class="ui small compact button" [routerLink]="['ExpenseEdit', {id: expense.businessId}]">
+          <button class="ui small compact button" [routerLink]="['ExpenseEdit', {href: expense._links.expense.href}]">
             <i class="write icon"></i>
             Edit
           </button>

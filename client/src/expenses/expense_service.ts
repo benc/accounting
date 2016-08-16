@@ -25,9 +25,9 @@ export class ExpenseService {
       .flatMap((res:Response) => <any> res.json()._embedded.expenses);
   }
 
-  get(id: string): Observable<any> {
+  get(href: string): Observable<any> {
     return this._http
-      .request(`http://localhost:3000/accounting/api/expenses/${id}`)
+      .request(href)
       .map((res:Response) => <any> res.json());
   }
 

@@ -10,7 +10,6 @@ export abstract class ExpenseForm {
   _expenseLink: string;
 
   expenseForm = new FormGroup({
-    businessId: new FormControl,
     'new': new FormControl(),
     _links: new FormControl(),
     name: new FormControl(),
@@ -40,7 +39,7 @@ export abstract class ExpenseForm {
   }
 
   expenseId(): string {
-    return this.route.snapshot.params["id"];
+    return this.route.snapshot.params["href"];
   }
 
   goToList() {
@@ -51,15 +50,14 @@ export abstract class ExpenseForm {
     this.goToList();
   }
 
-  loadExpense(id: string) {
-    this.expenseService.get(id)
+  loadExpense(href: string) {
+    this.expenseService.get(href)
       .subscribe(expense => {
         this.expenseForm.setValue(expense);
       });
   }
 
   saveOrUpdate(expense) {
-    debugger
     if(this.isNew()){
       console.info("Saving new expense");
 
