@@ -10,6 +10,9 @@ export abstract class ExpenseForm {
   _expenseLink: string;
 
   expenseForm = new FormGroup({
+    businessId: new FormControl,
+    'new': new FormControl(),
+    _links: new FormControl(),
     name: new FormControl(),
     amount: new FormControl(),
     currency: new FormControl(),
@@ -27,6 +30,9 @@ export abstract class ExpenseForm {
   constructor(public router: Router, public route: ActivatedRoute, public expenseService: ExpenseService) {}
 
   ngOnInit() {
+    if(!this.isNew()) {
+      this.loadExpense(this.expenseId());
+    }
   }
 
   isNew(): boolean {
@@ -34,7 +40,7 @@ export abstract class ExpenseForm {
   }
 
   expenseId(): string {
-    return this.route.params['id'];
+    return this.route.snapshot.params["id"];
   }
 
   goToList() {
@@ -45,7 +51,15 @@ export abstract class ExpenseForm {
     this.goToList();
   }
 
+  loadExpense(id: string) {
+    this.expenseService.get(id)
+      .subscribe(expense => {
+        this.expenseForm.setValue(expense);
+      });
+  }
+
   saveOrUpdate(expense) {
+    debugger
     if(this.isNew()){
       console.info("Saving new expense");
 
@@ -57,7 +71,7 @@ export abstract class ExpenseForm {
         });
     } else {
       console.info("Updating expense");
-      this.expenseService.update(this._expenseLink, JSON.stringify(expense))
+      this.expenseService.update(expense._links.expense.href, JSON.stringify(expense))
         .subscribe((value) => {
           this.goToList();
         });
