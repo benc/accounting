@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/rx';
 
@@ -12,13 +12,13 @@ export abstract class ExpenseForm {
   expenseForm = new FormGroup({
     'new': new FormControl(),
     _links: new FormControl(),
-    name: new FormControl(),
-    amount: new FormControl(),
-    currency: new FormControl(),
-    vat: new FormControl(),
-    invoiceDate: new FormControl(),
+    name: new FormControl('', Validators.required),
+    amount: new FormControl('', Validators.required),
+    currency: new FormControl('', Validators.required),
+    vat: new FormControl('', Validators.required),
+    invoiceDate: new FormControl('', Validators.required),
     paymentDate: new FormControl(),
-    category: new FormControl(),
+    category: new FormControl('', Validators.required),
     remark: new FormControl(),
     indexNumber : new FormControl()
   });
