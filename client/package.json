@@ -7,7 +7,7 @@
     "postinstall": "npm run typings-install",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
-    "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 9000 --content-base src",
+    "server": "webpack-dashboard -- webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 9000 --content-base src",
     "start": "npm run server"
   },
   "license": "MIT",
@@ -21,6 +21,7 @@
     "typescript": "~1.8.9",
     "typings": "~1.0.3",
     "webpack": "^1.12.9",
+    "webpack-dashboard": "^0.1.1",
     "webpack-dev-server": "^1.14.0",
     "webpack-merge": "^0.8.4"
   },

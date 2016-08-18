@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-
+var DashboardPlugin = require('webpack-dashboard/plugin');
 
 // Webpack Config
 var webpackConfig = {
@@ -17,6 +17,7 @@ var webpackConfig = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
+    new DashboardPlugin(),
   ],
 
   module: {
