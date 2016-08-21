@@ -6,8 +6,8 @@ var DashboardPlugin = require('webpack-dashboard/plugin');
 var webpackConfig = {
   entry: {
     'polyfills': './src/polyfills.browser.ts',
-    'vendor':    './src/vendor.browser.ts',
-    'main':       './src/main.browser.ts',
+    'vendor': './src/vendor.browser.ts',
+    'main': './src/main.browser.ts',
   },
 
   output: {
