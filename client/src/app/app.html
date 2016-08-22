@@ -1,14 +1,18 @@
-<nav class="ui fixed menu inverted navbar">
-  <span class="brand item">Accounting</span>
-  <a class="item" [routerLink]="['/']">Expenses</a>
-</nav>
+<!--
+<nav>
+  <span>Accounting</span>
 
-<main class="ui page grid">
-  <div class="row">
+</nav>
+-->
+<paper-header-panel class="app-header-panel flex">
+  <paper-toolbar class="app-toolbar">
+    <div class="title">Accounting</div>
+    <a [routerLink]="['/']">Expenses</a>
+  </paper-toolbar>
+  <div class="app-content">
     <router-outlet></router-outlet>
   </div>
-</main>
-
+</paper-header-panel>
 
 <footer>
   © Cochez Heavy Industries 2016

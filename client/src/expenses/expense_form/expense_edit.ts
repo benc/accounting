@@ -6,6 +6,7 @@ import { ExpenseForm } from './expense_form';
 
 @Component({
   selector: 'expense-edit',
+  styles: [require('./expense_edit.css')],
   template: require('./expense_edit.html')
 })
 export class ExpenseEdit extends ExpenseForm {

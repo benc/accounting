@@ -7,9 +7,7 @@ import { ExpenseService } from '../expense_service';
 import { Guid } from '../../utilities/guid';
 
 export abstract class ExpenseForm {
-  _expenseLink: string;
-
-  expenseForm = new FormGroup({
+  form = new FormGroup({
     'new': new FormControl(),
     _links: new FormControl(),
     name: new FormControl('', Validators.required),
@@ -50,10 +48,18 @@ export abstract class ExpenseForm {
     this.goToList();
   }
 
+  isInvalid(name: string) {
+    if(this.form.controls[name].pristine) {
+      false
+    } else {
+      this.form.controls[name].valid === false
+    }
+  }
+
   loadExpense(href: string) {
     this.expenseService.get(href)
       .subscribe(expense => {
-        this.expenseForm.setValue(expense);
+        this.form.setValue(expense);
       });
   }
 

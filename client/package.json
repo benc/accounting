@@ -4,7 +4,8 @@
   "description": "Accounting client, an Angular 2 playground since the Angular 2 alpha days",
   "scripts": {
     "typings-install": "typings install",
-    "postinstall": "npm run typings-install",
+    "bower-install": "bower install; bower prune",
+    "postinstall": "npm run typings-install; npm run bower-install",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
     "server": "webpack-dashboard -- webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 9000 --content-base src",

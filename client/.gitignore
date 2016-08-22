@@ -1,4 +1,5 @@
 /node_modules/
+/src/bower_components/
 /dist/
 /npm-debug.log
 /typings/

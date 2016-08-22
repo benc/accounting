@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 import { HttpModule  } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,6 +33,7 @@ import 'rxjs/add/operator/toArray';
   providers: [
     ExpenseService
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -5,6 +5,7 @@ import { ExpenseService } from '../expense_service';
 
 @Component({
   selector: 'expense-list',
+  styles: [require('./expense_list.css')],
   template: require('./expense_list.html')
 })
 export class ExpenseList {
