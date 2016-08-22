@@ -19,25 +19,21 @@
                 ngDefaultControl>
     </paper-input>
 
-    <div class="flex horizontal layout">
-      <paper-dropdown-menu label="Currency"
-                          [invalid]="!form.controls.currency.valid"
-                          error-message="Currency is required">
-        <paper-listbox class="dropdown-content" formControlName="currency" ngDefaultControl>
-          <paper-item *ngFor="let currency of currencies" [value]="currency">{{ currency }}</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
-    </div>
+    <vaadin-combo-box label="Currency"
+                      [items]="currencies"
+                      [invalid]="!form.controls.currency.valid"
+                      error-message="Currency is required"
+                      formControlName="currency"
+                      ngDefaultControl>
+    </vaadin-combo-box>
 
-    <div class="flex horizontal layout">
-      <paper-dropdown-menu label="VAT"
-                          [invalid]="!form.controls.vat.valid"
-                          error-message="VAT is required">
-        <paper-listbox class="dropdown-content" formControlName="vat" ngDefaultControl>
-          <paper-item *ngFor="let vatRate of vatRates" [value]="vatRate">{{ vatRate }}</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
-    </div>
+    <vaadin-combo-box label="VAT"
+                      [items]="vatRates"
+                      [invalid]="!form.controls.vat.valid"
+                      error-message="VAT is required"
+                      formControlName="vat"
+                      ngDefaultControl>
+    </vaadin-combo-box>
 
     <vaadin-date-picker label="Invoice date"
                         formControlName="invoiceDate"
