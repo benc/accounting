@@ -1,8 +1,8 @@
 <h2 *ngIf="isNew()" class="sub-header">Create a new expense</h2>
 <h2 *ngIf="!isNew()" class="sub-header">Edit expense</h2>
 
-<div class="content horizontal layout">
-  <form [formGroup]="form" (ngSubmit)="saveOrUpdate(form.value)" is="iron-form">
+<div class="vertical layout">
+  <form [formGroup]="form" is="iron-form">
     <paper-input label="Name"
                 type="text"
                 formControlName="name"
@@ -16,14 +16,6 @@
                 formControlName="amount"
                 [invalid]="!form.controls.amount.valid"
                 error-message="Amount is required"
-                ngDefaultControl>
-    </paper-input>
-
-    <paper-input label="Currency"
-                type="currency"
-                formControlName="currency"
-                [invalid]="!form.controls.currency.valid"
-                error-message="Currency is required"
                 ngDefaultControl>
     </paper-input>
 
@@ -85,7 +77,7 @@
     </paper-textarea>
 
     <paper-button (click)="cancel()">Cancel</paper-button>
-    <paper-button [disabled]="!form.valid">
+    <paper-button [disabled]="!form.valid" (click)="saveOrUpdate(form.value)">
       <span *ngIf="isNew()">Create</span>
       <span *ngIf="!isNew()">Update</span>
     </paper-button>
