@@ -1,88 +1,94 @@
 <h2 *ngIf="isNew()" class="sub-header">Create a new expense</h2>
 <h2 *ngIf="!isNew()" class="sub-header">Edit expense</h2>
 
-<form [formGroup]="form" (ngSubmit)="saveOrUpdate(form.value)" is="iron-form">
-  <paper-input label="Name"
-               type="text"
-               formControlName="name"
-               [invalid]="!form.controls.name.valid"
-               error-message="Name is required"
-               ngDefaultControl>
-  </paper-input>
+<div class="content horizontal layout">
+  <form [formGroup]="form" (ngSubmit)="saveOrUpdate(form.value)" is="iron-form">
+    <paper-input label="Name"
+                type="text"
+                formControlName="name"
+                [invalid]="!form.controls.name.valid"
+                error-message="Name is required"
+                ngDefaultControl>
+    </paper-input>
 
-  <paper-input label="Amount"
-               type="number"
-               formControlName="amount"
-               [invalid]="!form.controls.amount.valid"
-               error-message="Amount is required"
-               ngDefaultControl>
-  </paper-input>
+    <paper-input label="Amount"
+                type="number"
+                formControlName="amount"
+                [invalid]="!form.controls.amount.valid"
+                error-message="Amount is required"
+                ngDefaultControl>
+    </paper-input>
 
-  <paper-input label="Currency"
-               type="currency"
-               formControlName="currency"
-               [invalid]="!form.controls.currency.valid"
-               error-message="Currency is required"
-               ngDefaultControl>
-  </paper-input>
+    <paper-input label="Currency"
+                type="currency"
+                formControlName="currency"
+                [invalid]="!form.controls.currency.valid"
+                error-message="Currency is required"
+                ngDefaultControl>
+    </paper-input>
 
-  <paper-dropdown-menu label="Currency"
-                       [invalid]="!form.controls.currency.valid"
-                       error-message="Currency is required">
-    <paper-listbox class="dropdown-content" formControlName="currency" ngDefaultControl>
-      <paper-item *ngFor="let currency of currencies" [value]="currency">{{ currency }}</paper-item>
-    </paper-listbox>
-  </paper-dropdown-menu>
+    <div class="flex horizontal layout">
+      <paper-dropdown-menu label="Currency"
+                          [invalid]="!form.controls.currency.valid"
+                          error-message="Currency is required">
+        <paper-listbox class="dropdown-content" formControlName="currency" ngDefaultControl>
+          <paper-item *ngFor="let currency of currencies" [value]="currency">{{ currency }}</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </div>
 
-  <paper-dropdown-menu label="VAT"
-                       [invalid]="!form.controls.vat.valid"
-                       error-message="VAT is required">
-    <paper-listbox class="dropdown-content" formControlName="vat" ngDefaultControl>
-      <paper-item *ngFor="let vatRate of vatRates" [value]="vatRate">{{ vatRate }}</paper-item>
-    </paper-listbox>
-  </paper-dropdown-menu>
+    <div class="flex horizontal layout">
+      <paper-dropdown-menu label="VAT"
+                          [invalid]="!form.controls.vat.valid"
+                          error-message="VAT is required">
+        <paper-listbox class="dropdown-content" formControlName="vat" ngDefaultControl>
+          <paper-item *ngFor="let vatRate of vatRates" [value]="vatRate">{{ vatRate }}</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </div>
 
-  <vaadin-date-picker label="Invoice date"
-                      formControlName="invoiceDate"
-                      [invalid]="!form.controls.invoiceDate.valid"
-                      error-message="Invoice date is required"
-                      ngDefaultControl>
-  </vaadin-date-picker>
+    <vaadin-date-picker label="Invoice date"
+                        formControlName="invoiceDate"
+                        [invalid]="!form.controls.invoiceDate.valid"
+                        error-message="Invoice date is required"
+                        ngDefaultControl>
+    </vaadin-date-picker>
 
-  <vaadin-date-picker label="Payment date"
-                      formControlName="paymentDate"
-                      [invalid]="!form.controls.paymentDate.valid"
-                      error-message="Payment date is required"
-                      ngDefaultControl>
-  </vaadin-date-picker>
+    <vaadin-date-picker label="Payment date"
+                        formControlName="paymentDate"
+                        [invalid]="!form.controls.paymentDate.valid"
+                        error-message="Payment date is required"
+                        ngDefaultControl>
+    </vaadin-date-picker>
 
-  <paper-input label="Category"
-              type="text"
-              formControlName="category"
-              [invalid]="!form.controls.category.valid"
-              error-message="Category is required"
-              ngDefaultControl>
-  </paper-input>
+    <paper-input label="Category"
+                type="text"
+                formControlName="category"
+                [invalid]="!form.controls.category.valid"
+                error-message="Category is required"
+                ngDefaultControl>
+    </paper-input>
 
-  <paper-input label="Index number"
-              type="number"
-              formControlName="indexNumber"
-              [invalid]="!form.controls.indexNumber.valid"
-              error-message="Index number is required"
-              ngDefaultControl>
-  </paper-input>
+    <paper-input label="Index number"
+                type="number"
+                formControlName="indexNumber"
+                [invalid]="!form.controls.indexNumber.valid"
+                error-message="Index number is required"
+                ngDefaultControl>
+    </paper-input>
 
-  <paper-textarea label="Remark"
-              formControlName="remark"
-              [invalid]="!form.controls.remark.valid"
-              error-message="Remark is required"
-              ngDefaultControl>
-  </paper-textarea>
+    <paper-textarea label="Remark"
+                formControlName="remark"
+                [invalid]="!form.controls.remark.valid"
+                error-message="Remark is required"
+                ngDefaultControl>
+    </paper-textarea>
 
-  <paper-button (click)="cancel()">Cancel</paper-button>
-  <paper-button [disabled]="!form.valid">
-    <span *ngIf="isNew()">Create</span>
-    <span *ngIf="!isNew()">Update</span>
-  </paper-button>
+    <paper-button (click)="cancel()">Cancel</paper-button>
+    <paper-button [disabled]="!form.valid">
+      <span *ngIf="isNew()">Create</span>
+      <span *ngIf="!isNew()">Update</span>
+    </paper-button>
 
-</form>
+  </form>
+</div>

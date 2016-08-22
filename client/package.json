@@ -37,11 +37,12 @@
     "@angular/platform-browser-dynamic": "2.0.0-rc.5",
     "@angular/platform-server": "2.0.0-rc.5",
     "@angular/router": "3.0.0-rc.1",
+    "@vaadin/angular2-polymer": "1.0.0-beta2",
     "core-js": "2.2.0",
     "ie-shim": "0.1.0",
     "rxjs": "5.0.0-beta.6",
     "typescript": "^1.9.0-dev",
-    "webcomponents.js": "^0.7.22",
+    "webcomponents.js": "0.7.22",
     "zone.js": "0.6.12"
   },
   "repository": {
