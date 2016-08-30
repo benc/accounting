@@ -8,6 +8,12 @@
   <title>Accounting</title>
   <base href="/">
 
+  <script>
+    /* enable shadow dom to work together with angular2 */
+    window.Polymer = {
+      dom: 'shadow'
+    };
+  </script>
   <link rel="import " href="polymer-imports.html">
 
   <style is="custom-style" include="iron-flex iron-flex-alignment">
