@@ -64,19 +64,27 @@
       <option *ngFor="let vatRate of vatRates" [value]="vatRate">{{ vatRate }}</option>
     </select>
 
-    <vaadin-date-picker label="Invoice date"
+    <!--<vaadin-date-picker label="Invoice date"
                         formControlName="invoiceDate"
                         [invalid]="!form.controls.invoiceDate.valid"
                         error-message="Invoice date is required"
                         ngDefaultControl>
-    </vaadin-date-picker>
+    </vaadin-date-picker>-->
 
-    <vaadin-date-picker label="Payment date"
+    <input type="date"
+           placeholder="Invoice date"
+           formControlName="invoiceDate">
+
+    <!--<vaadin-date-picker label="Payment date"
                         formControlName="paymentDate"
                         [invalid]="!form.controls.paymentDate.valid"
                         error-message="Payment date is required"
                         ngDefaultControl>
-    </vaadin-date-picker>
+    </vaadin-date-picker>-->
+
+    <input type="date"
+           placeholder="Payment date"
+           formControlName="paymentDate">
 
     <paper-input label="Category"
                 type="text"
