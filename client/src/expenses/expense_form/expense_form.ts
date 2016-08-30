@@ -74,7 +74,7 @@ export abstract class ExpenseForm {
           this.goToList();
         });
     } else {
-      console.info("Updating expense");
+      console.info("Updating expense", expense);
       this.expenseService.update(expense._links.expense.href, JSON.stringify(expense))
         .subscribe((value) => {
           this.goToList();
