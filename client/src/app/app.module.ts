@@ -18,60 +18,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap'; // = flatMap
 import 'rxjs/add/operator/toArray';
 
-import { PolymerElement } from '@vaadin/angular2-polymer';
-const PolymerComponents = [
-  PolymerElement('iron-icon'),
-  PolymerElement('iron-image'),
-  // PolymerElement('paper-badge'),
-  PolymerElement('paper-button'),
-  PolymerElement('paper-card'),
-  // PolymerElement('paper-checkbox'),
-  PolymerElement('paper-dialog'),
-  // PolymerElement('paper-dialog-scrollable'),
-  // PolymerElement('paper-drawer-panel'),
-  PolymerElement('paper-dropdown-menu'),
-  PolymerElement('paper-fab'),
-  PolymerElement('paper-header-panel'),
-  PolymerElement('paper-icon-button'),
-  PolymerElement('paper-input'),
-  PolymerElement('paper-item'),
-  PolymerElement('paper-listbox'),
-  PolymerElement('paper-material'),
-  PolymerElement('paper-menu'),
-  PolymerElement('paper-menu-button'),
-  // PolymerElement('paper-progress'),
-  // PolymerElement('paper-radio-button'),
-  // PolymerElement('paper-radio-group'),
-  // PolymerElement('paper-ripple'),
-  // PolymerElement('paper-scroll-header-panel'),
-  // PolymerElement('paper-slider'),
-  // PolymerElement('paper-spinner'),
-  PolymerElement('paper-tabs'),
-  // PolymerElement('paper-toast'),
-  // PolymerElement('paper-toggle-button'),
-  PolymerElement('paper-toolbar'),
-  // PolymerElement('paper-tooltip'),
-  PolymerElement('app-drawer-layout'),
-  PolymerElement('app-drawer'),
-  PolymerElement('app-header-layout'),
-  PolymerElement('app-header'),
-  PolymerElement('app-toolbar'),
-];
-
-@NgModule({
-  declarations: [PolymerComponents],
-  exports: [PolymerComponents],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-})
-class PolymerModule {
-}
-
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
-    PolymerModule,
     routing
   ],
   declarations: [

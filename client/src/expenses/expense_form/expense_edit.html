@@ -19,15 +19,6 @@
                 ngDefaultControl>
     </paper-input>
 
-    <!--<vaadin-combo-box label="Currency"
-                      [items]="currencies"
-                      [invalid]="!form.controls.currency.valid"
-                      error-message="Currency is required"
-                      [(value)]="form.controls.currency"
-                      formControlName="currency"
-                      ngDefaultControl>
-    </vaadin-combo-box>-->
-
     <!--<div class="flex horizontal layout">
       <paper-dropdown-menu label="Currency"
                           [invalid]="!form.controls.currency.valid"
@@ -41,14 +32,6 @@
     <select formControlName="currency">
       <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
     </select>
-
-    <!--<vaadin-combo-box label="VAT"
-                      [items]="vatRates"
-                      [invalid]="!form.controls.vat.valid"
-                      error-message="VAT is required"
-                      formControlName="vat"
-                      ngDefaultControl>
-    </vaadin-combo-box>-->
 
     <!--<div class="flex horizontal layout">
       <paper-dropdown-menu label="VAT"
@@ -64,23 +47,9 @@
       <option *ngFor="let vatRate of vatRates" [value]="vatRate">{{ vatRate }}</option>
     </select>
 
-    <!--<vaadin-date-picker label="Invoice date"
-                        formControlName="invoiceDate"
-                        [invalid]="!form.controls.invoiceDate.valid"
-                        error-message="Invoice date is required"
-                        ngDefaultControl>
-    </vaadin-date-picker>-->
-
     <input type="date"
            placeholder="Invoice date"
            formControlName="invoiceDate">
-
-    <!--<vaadin-date-picker label="Payment date"
-                        formControlName="paymentDate"
-                        [invalid]="!form.controls.paymentDate.valid"
-                        error-message="Payment date is required"
-                        ngDefaultControl>
-    </vaadin-date-picker>-->
 
     <input type="date"
            placeholder="Payment date"
