@@ -22,4 +22,13 @@ public class ExpenseCsvControllerWebIntegrationTest extends AbstractWebIntegrati
                 .statusCode(is(SC_OK));
     }
 
+    @Test
+    public void canExportCsv() throws Exception {
+        given()
+                .when()
+                .get("/api/expenses/csv")
+                .then()
+                .assertThat()
+                .statusCode(is(SC_OK));
+    }
 }

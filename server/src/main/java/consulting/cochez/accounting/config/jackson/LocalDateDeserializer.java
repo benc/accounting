@@ -1,20 +1,38 @@
-package consulting.cochez.accounting.util;
+package consulting.cochez.accounting.config.jackson;
 
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import static java.lang.String.format;
 
-public class DateUtils {
+public class LocalDateDeserializer extends FromStringDeserializer<LocalDate> {
+
+    public static final DateTimeFormatter simpleDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private static final DateTimeFormatter[] FORMATS = {
-            DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            simpleDate
     };
 
-    public static LocalDate parseLocalDate(String string) {
+    public LocalDateDeserializer() {
+        super(LocalDate.class);
+    }
+
+    @Override
+    protected LocalDate _deserialize(String value, DeserializationContext ctxt) throws IOException {
+        if (StringUtils.isBlank(value)) {
+            return null;
+        }
+
+        return parseLocalDate(value);
+    }
+
+    private static LocalDate parseLocalDate(String string) {
         if (StringUtils.isBlank(string)) {
             throw new IllegalArgumentException("Empty string provided, you should provide a date, preferably parseable.");
         }
@@ -23,7 +41,7 @@ public class DateUtils {
 
         for (DateTimeFormatter formatter : FORMATS) {
             try {
-                return LocalDate.from(formatter.parse(string));
+                return LocalDate.parse(string, formatter);
             } catch (IllegalArgumentException | DateTimeParseException e) {
                 // ignore, try next format
                 date = null; // dummy
@@ -34,5 +52,4 @@ public class DateUtils {
 
         return date;
     }
-
 }

@@ -30,6 +30,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-devtools'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv'
     compile 'org.postgresql:postgresql'
     compile 'org.flywaydb:flyway-core'
     runtime 'org.springframework.data:spring-data-rest-hal-browser'

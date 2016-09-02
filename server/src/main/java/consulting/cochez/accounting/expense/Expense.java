@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -16,12 +17,22 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Expense extends AbstractPersistable<UUID> {
 
+    @NotNull
     private String name;
+
+    @NotNull
     private String category;
-    private String currency;
+
+    @NotNull
+    private String currency; // TODO to 1 MonetaryAmount object
+
     private String remark;
-    private BigDecimal amount;
+
+    @NotNull
+    private BigDecimal amount; // TODO to 1 MonetaryAmount object
     private Integer vat;
+
+    @NotNull
     private LocalDate invoiceDate;
     private LocalDate paymentDate;
     private Integer indexNumber;
