@@ -20,7 +20,7 @@ public class IntegerDeserializer extends FromStringDeserializer<Integer> {
 
     @Override
     protected Integer _deserialize(String value, DeserializationContext ctxt) throws IOException {
-        String cleanedInt = trim(value).replace("%", "").replace("-", "").replace("0,00", "0");
+        String cleanedInt = trim(value).replace("%", "").replace("-", "").replace(",00", "");
 
         if (isBlank(cleanedInt)) {
             return null;
