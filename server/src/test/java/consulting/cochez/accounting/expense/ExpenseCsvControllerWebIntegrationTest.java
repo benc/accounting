@@ -2,19 +2,21 @@ package consulting.cochez.accounting.expense;
 
 import consulting.cochez.accounting.AbstractWebIntegrationTest;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 
 import static io.restassured.RestAssured.given;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
 import static org.hamcrest.Matchers.is;
 
-public class ExpenseResourceWebIntegrationTest extends AbstractWebIntegrationTest {
+public class ExpenseCsvControllerWebIntegrationTest extends AbstractWebIntegrationTest {
 
     @Test
-    public void exposesOrdersResourceViaRootResource() throws Exception {
-        given().contentType(MediaType.APPLICATION_JSON_VALUE)
+    public void canImportCsv() throws Exception {
+        given().contentType(MediaType.MULTIPART_FORM_DATA_VALUE)
+                .multiPart("csv", new ClassPathResource("expenses.csv").getFile())
                 .when()
-                .get("/api/expenses")
+                .post("/api/expenses/import")
                 .then()
                 .assertThat()
                 .statusCode(is(SC_OK));

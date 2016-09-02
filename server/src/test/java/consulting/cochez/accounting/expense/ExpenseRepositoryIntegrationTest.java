@@ -26,7 +26,7 @@ public class ExpenseRepositoryIntegrationTest extends AbstractIntegrationTest {
 
         Iterable<Expense> expenses = repository.findAll();
 
-        assertThat(expenses).isNotEmpty().hasSize(5);
+        assertThat(expenses).isNotEmpty();
     }
 
     @Test

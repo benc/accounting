@@ -27,15 +27,15 @@ public class ExpenseCsvHelper {
     private static final int COL_CATEGORY = 7;
     private static final int COL_REMARK = 8;
 
-    public List<Expense> parse(InputStream csv) throws IOException {
-        CSVReader reader = new CSVReader(new InputStreamReader(csv), ';');
+    public List<Expense> parse(InputStream csvInputStream) throws IOException {
+        CSVReader reader = new CSVReader(new InputStreamReader(csvInputStream), ';');
         return reader.readAll().stream()
                 .skip(1) // first row => header
                 .map(this::parseExpense)
                 .collect(Collectors.toList());
     }
 
-    private Expense parseExpense(String[] expenseCsv) {
+    public Expense parseExpense(String[] expenseCsv) {
 
         Expense expense = new Expense();
 

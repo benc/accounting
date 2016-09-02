@@ -1,17 +1,22 @@
 package consulting.cochez.accounting.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.Locale;
 
 public class NumberUtils {
 
     public static BigDecimal parseBigDecimal(String string) {
-        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(new Locale("nl", "BE"));
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.GERMAN);
         decimalFormat.setParseBigDecimal(true);
-        return (BigDecimal) decimalFormat.parse(string, new ParsePosition(0));
+
+        return (BigDecimal) decimalFormat.parseObject(StringUtils.trim(string), new ParsePosition(0));
     }
 
     public static Integer parseInteger(String string) {
