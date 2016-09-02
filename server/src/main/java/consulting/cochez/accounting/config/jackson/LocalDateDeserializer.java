@@ -13,10 +13,10 @@ import static java.lang.String.format;
 
 public class LocalDateDeserializer extends FromStringDeserializer<LocalDate> {
 
-    public static final DateTimeFormatter simpleDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
     private static final DateTimeFormatter[] FORMATS = {
-            simpleDate
+            DateTimeFormatter.ofPattern("d/MM/yy"),
+            DateTimeFormatter.ofPattern("d/MM/yyyy"),
+            DateTimeFormatter.ofPattern("dd/MM/yyyy")
     };
 
     public LocalDateDeserializer() {
