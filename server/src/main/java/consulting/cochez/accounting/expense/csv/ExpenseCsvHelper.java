@@ -6,6 +6,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import consulting.cochez.accounting.expense.Expense;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
+@Slf4j
 @Component
 public class ExpenseCsvHelper {
 
@@ -45,7 +47,22 @@ public class ExpenseCsvHelper {
         // set currency for every expense to EUR
         expenses.forEach(expense -> expense.setCurrency("EUR"));
 
-        return expenses;
+        return expenses.stream()
+                .filter(expense -> {
+                    if (expense.getAmount() == null) {
+                        log.warn("No amount set for expense, skipping...\r\n{}", expense);
+                        return false;
+                    }
+                    return true;
+                })
+                .filter(expense -> {
+                    if (expense.getInvoiceDate() == null) {
+                        log.warn("No invoice date set for expense, skipping...\r\n{}", expense);
+                        return false;
+                    }
+                    return true;
+                })
+                .collect(Collectors.toList());
     }
 
     public String export(List<Expense> expenses) throws JsonProcessingException {
