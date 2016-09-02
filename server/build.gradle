@@ -20,26 +20,26 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter"
-    compile "org.springframework.boot:spring-boot-starter-undertow"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
-    compile "org.springframework.boot:spring-boot-starter-data-rest"
-    compile "org.springframework.boot:spring-boot-starter-actuator"
-    compile "org.springframework.boot:spring-boot-starter-logging"
-    compile "org.springframework.boot:spring-boot-starter-remote-shell"
-    compile "org.springframework.boot:spring-boot-devtools"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
-    compile "org.postgresql:postgresql"
-    compile "org.flywaydb:flyway-core"
-    runtime "org.springframework.data:spring-data-rest-hal-browser"
-    compile "org.hibernate:hibernate-core"
-    compile "org.hibernate:hibernate-entitymanager"
-    compile "org.hibernate:hibernate-java8"
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.boot:spring-boot-starter-undertow'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-logging'
+    compile 'org.springframework.boot:spring-boot-starter-remote-shell'
+    compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    compile 'org.postgresql:postgresql'
+    compile 'org.flywaydb:flyway-core'
+    runtime 'org.springframework.data:spring-data-rest-hal-browser'
+    compile 'org.hibernate:hibernate-core'
+    compile 'org.hibernate:hibernate-entitymanager'
+    compile 'org.hibernate:hibernate-java8'
     compile "org.projectlombok:lombok:${versionLombok}"
     compile "com.opencsv:opencsv:${versionOpenCsv}"
-    testCompile "org.springframework.boot:spring-boot-starter-test"
-    testCompile "org.assertj:assertj-core"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.assertj:assertj-core'
     testCompile "com.github.javafaker:javafaker:${versionJavafaker}"
     testCompile "io.rest-assured:rest-assured:${versionRestAssured}"
 }
