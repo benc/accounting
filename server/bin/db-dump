@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# example usage: ./bin/db-dump accounting data/accounting-$(date +"%Y%m%d_%H%M%S").gz
+#
+set -e
+
+export PGHOST=localhost
+export PGUSER=$(whoami)
+export PGPASSWORD=
+export PGPORT=5432
+export ON_ERROR_STOP=1
+
+PGDATABASE=$1
+DUMPFILE=$2
+
+if [ -z $PGDATABASE ]; then
+  echo "Which DB do you want to dump?"
+  exit 1
+fi
+
+if [ -z $DUMPFILE ]; then
+  echo "Provide a path to dumpfile"
+  exit 1
+fi
+
+pg_dump --no-owner ${PGDATABASE} | gzip > ${DUMPFILE}
