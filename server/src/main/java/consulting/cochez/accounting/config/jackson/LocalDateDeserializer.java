@@ -37,19 +37,14 @@ public class LocalDateDeserializer extends FromStringDeserializer<LocalDate> {
             throw new IllegalArgumentException("Empty string provided, you should provide a date, preferably parseable.");
         }
 
-        LocalDate date = null;
-
         for (DateTimeFormatter formatter : FORMATS) {
             try {
                 return LocalDate.parse(string, formatter);
             } catch (IllegalArgumentException | DateTimeParseException e) {
                 // ignore, try next format
-                date = null; // dummy
             }
-
-            throw new IllegalArgumentException(format("Could not parse date %s", string));
         }
 
-        return date;
+        throw new IllegalArgumentException(format("Could not parse date %s", string));
     }
 }
