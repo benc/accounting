@@ -32,7 +32,7 @@ public class ExpenseCsvHelperTest {
 
         Expense expense = result.get(0);
 
-        assertThat(expense.getInvoiceDate()).isEqualByComparingTo(LocalDate.of(2015, 6, 10));
+        assertThat(expense.getInvoiceDate()).isEqualTo(LocalDate.of(2015, 6, 10));
         assertThat(expense.getName()).isEqualTo("iTunes Store");
         assertThat(expense.getAmount()).isEqualByComparingTo(new BigDecimal("1.99"));
         assertThat(expense.getVat()).isEqualTo(21);

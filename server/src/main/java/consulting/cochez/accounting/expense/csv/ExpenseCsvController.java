@@ -44,7 +44,7 @@ public class ExpenseCsvController {
     public String importCsv(@RequestPart("csv") MultipartFile csv) {
         try (InputStream csvInputStream = csv.getInputStream()) {
             List<Expense> expenses = expenseCsvHelper.parse(csvInputStream);
-            expenseRepository.save(expenses);
+            expenseRepository.saveAll(expenses);
 
             return new ObjectNode(JsonNodeFactory.instance)
                     .put("message", format("CSV import succesfull, %s expenses imported", expenses.size()))
