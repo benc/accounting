@@ -1,4 +1,13 @@
-/node_modules/
-/dist/
-/npm-debug.log
-/typings/
+node_modules
+.idea
+dist
+reports
+
+# negeer IDEA/webstorm gegenereerde js/css en dergelijke
+src/**/*.js
+e2e/**/*.js
+src/**/*.css.map
+
+*.css
+
+.vscode
