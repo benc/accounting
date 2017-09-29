@@ -27,7 +27,7 @@ public abstract class AbstractWebIntegrationTest {
     @Value("${local.server.port}")
     private int serverPort;
 
-    @Value("${server.context-path}")
+    @Value("${server.servlet.context-path}")
     private String contextPath;
 
     @Autowired

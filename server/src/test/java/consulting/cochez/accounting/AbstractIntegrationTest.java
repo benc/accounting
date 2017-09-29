@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 @SpringBootTest(classes = AccountingApplication.class)
 @Transactional
 @ActiveProfiles("test")
-public abstract class AbstractIntegrationTest  extends AbstractTransactionalJUnit4SpringContextTests {
+public abstract class AbstractIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
     @PersistenceContext
     private EntityManager entityManager;
 
