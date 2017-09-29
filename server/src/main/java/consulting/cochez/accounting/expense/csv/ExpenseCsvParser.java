@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @Component
-public class ExpenseCsvHelper {
+public class ExpenseCsvParser {
 
     @Autowired
     private JavaTimeModule javaTimeModule;

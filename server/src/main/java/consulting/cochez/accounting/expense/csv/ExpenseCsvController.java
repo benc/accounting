@@ -24,7 +24,7 @@ import static java.lang.String.format;
 public class ExpenseCsvController {
 
     @Autowired
-    private ExpenseCsvHelper expenseCsvHelper;
+    private ExpenseCsvParser expenseCsvParser;
 
     @Autowired
     private ExpenseRepository expenseRepository;
@@ -43,7 +43,7 @@ public class ExpenseCsvController {
     )
     public String importCsv(@RequestPart("csv") MultipartFile csv) {
         try (InputStream csvInputStream = csv.getInputStream()) {
-            List<Expense> expenses = expenseCsvHelper.parse(csvInputStream);
+            List<Expense> expenses = expenseCsvParser.parse(csvInputStream);
             expenseRepository.saveAll(expenses);
 
             return new ObjectNode(JsonNodeFactory.instance)
@@ -62,7 +62,7 @@ public class ExpenseCsvController {
     @ResponseBody
     public String exportCsv() {
         try {
-            return expenseCsvHelper.export(expenseRepository.findAll());
+            return expenseCsvParser.export(expenseRepository.findAll());
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("Error writing CSV file", e);
         }
