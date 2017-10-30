@@ -3,11 +3,10 @@ package consulting.cochez.accounting.expense.csv;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import consulting.cochez.accounting.expense.Expense;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -20,9 +19,6 @@ import javax.annotation.PostConstruct;
 @Component
 public class ExpenseCsvParser {
 
-    @Autowired
-    private JavaTimeModule javaTimeModule;
-
     @PostConstruct
     public void setup() {
     }
@@ -32,6 +28,7 @@ public class ExpenseCsvParser {
     public List<Expense> parse(InputStream csvInputStream) throws IOException {
         CsvMapper csvMapper = new CsvMapper();
         csvMapper.addMixIn(Expense.class, ExpenseCsvFormat.class);
+        csvMapper.configure(CsvParser.Feature.FAIL_ON_MISSING_COLUMNS, true);
 
         CsvSchema bootstrapSchema = CsvSchema.emptySchema() // empty, based on column header names
                 .withHeader()

@@ -1,0 +1,14 @@
+Boekingsdatum vanaf;
+Boekingsdatum tot en met;
+Bedrag vanaf;
+Bedrag tot en met;
+Afschriftnummer vanaf;
+Afschriftnummer tot en met;
+Mededeling;
+Naam tegenpartij bevat;
+Rekening tegenpartij;
+Laatste saldo;42 EUR
+Datum/uur van het laatste saldo;20/09/2017 22:52:32
+;
+Rekening;Boekingsdatum;Afschriftnummer;Transactienummer;Rekening tegenpartij;Naam tegenpartij bevat;Straat en nummer;Postcode en plaats;Transactie;Valutadatum;Bedrag;Devies;BIC;Landcode;Mededelingen
+BE06 0612 3456 7899;21/09/2017;;;BE06 0612 3456 7899;Le Foo;FOOBAAN             42;1234  BARCITY;Description;21/09/2017;42,0;EUR;BIC;BE;Description
