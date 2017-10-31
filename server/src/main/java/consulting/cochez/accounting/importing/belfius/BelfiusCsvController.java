@@ -37,7 +37,7 @@ public class BelfiusCsvController {
      * @return result message
      */
     @RequestMapping(
-            value = "/api/transfer/belfius/import",
+            value = "/api/transactions/belfius/import",
             method = RequestMethod.POST,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
