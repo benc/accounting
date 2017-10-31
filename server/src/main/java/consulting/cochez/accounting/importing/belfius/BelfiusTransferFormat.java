@@ -43,6 +43,9 @@ public abstract class BelfiusTransferFormat {
     @JsonProperty("Devies")
     private String currency;
 
+    @JsonProperty("Mededelingen")
+    private String remark;
+
     @JsonDeserialize(using = IntegerDeserializer.class)
     @JsonProperty("Transactienummer")
     private Integer indexNumber;
