@@ -27,6 +27,12 @@ public abstract class BelfiusTransferFormat {
     @JsonIgnore
     private String id;
 
+    @JsonProperty("Rekening")
+    private String fromAccount;
+
+    @JsonProperty("Rekening tegenpartij")
+    private String toAccount;
+
     @JsonProperty("Naam tegenpartij bevat")
     private String name;
 
