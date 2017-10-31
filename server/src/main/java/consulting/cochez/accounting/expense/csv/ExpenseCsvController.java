@@ -23,11 +23,14 @@ import static java.lang.String.format;
 @RestController
 public class ExpenseCsvController {
 
-    @Autowired
-    private ExpenseCsvParser expenseCsvParser;
+    private final ExpenseCsvParser expenseCsvParser;
+    private final ExpenseRepository expenseRepository;
 
     @Autowired
-    private ExpenseRepository expenseRepository;
+    public ExpenseCsvController(ExpenseCsvParser expenseCsvParser, ExpenseRepository expenseRepository) {
+        this.expenseCsvParser = expenseCsvParser;
+        this.expenseRepository = expenseRepository;
+    }
 
     /**
      * Import CSV data. Header names are used to map the fields to Expense.
