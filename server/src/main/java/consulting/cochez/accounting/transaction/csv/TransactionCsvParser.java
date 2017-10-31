@@ -1,11 +1,11 @@
-package consulting.cochez.accounting.expense.csv;
+package consulting.cochez.accounting.transaction.csv;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import consulting.cochez.accounting.expense.Expense;
+import consulting.cochez.accounting.transaction.Transaction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @Component
-public class ExpenseCsvParser {
+public class TransactionCsvParser {
 
     @PostConstruct
     public void setup() {
@@ -25,26 +25,26 @@ public class ExpenseCsvParser {
 
     public static final char SEPARATOR = ';';
 
-    public List<Expense> parse(InputStream csvInputStream) throws IOException {
+    public List<Transaction> parse(InputStream csvInputStream) throws IOException {
         CsvMapper csvMapper = new CsvMapper();
-        csvMapper.addMixIn(Expense.class, ExpenseCsvFormat.class);
+        csvMapper.addMixIn(Transaction.class, TransactionCsvFormat.class);
         csvMapper.configure(CsvParser.Feature.FAIL_ON_MISSING_COLUMNS, true);
 
         CsvSchema bootstrapSchema = CsvSchema.emptySchema() // empty, based on column header names
                 .withHeader()
                 .withColumnSeparator(SEPARATOR);
 
-        MappingIterator<Expense> mappingIterator = csvMapper
-                .readerFor(Expense.class)
+        MappingIterator<Transaction> mappingIterator = csvMapper
+                .readerFor(Transaction.class)
                 .with(bootstrapSchema)
                 .readValues(csvInputStream);
 
-        List<Expense> expenses = mappingIterator.readAll();
+        List<Transaction> transactions = mappingIterator.readAll();
 
         // set currency for every expense to EUR
-        expenses.forEach(expense -> expense.setCurrency("EUR"));
+        transactions.forEach(expense -> expense.setCurrency("EUR"));
 
-        return expenses.stream()
+        return transactions.stream()
                 .filter(expense -> {
                     if (expense.getAmount() == null) {
                         log.warn("No amount set for expense, skipping...\r\n{}", expense);
@@ -62,15 +62,15 @@ public class ExpenseCsvParser {
                 .collect(Collectors.toList());
     }
 
-    public String export(List<Expense> expenses) throws JsonProcessingException {
+    public String export(List<Transaction> transactions) throws JsonProcessingException {
         CsvMapper csvMapper = new CsvMapper();
-        csvMapper.addMixIn(Expense.class, ExpenseCsvFormat.class);
+        csvMapper.addMixIn(Transaction.class, TransactionCsvFormat.class);
 
         CsvSchema schema = csvMapper
-                .schemaFor(Expense.class)
+                .schemaFor(Transaction.class)
                 .withHeader()
                 .withColumnSeparator(SEPARATOR);
 
-        return csvMapper.writer(schema).writeValueAsString(expenses);
+        return csvMapper.writer(schema).writeValueAsString(transactions);
     }
 }

@@ -1,4 +1,4 @@
-package consulting.cochez.accounting.expense.csv;
+package consulting.cochez.accounting.transaction.csv;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Data
 @JsonPropertyOrder({"invoiceDate", "name", "amount", "vat", "indexNumber", "category", "remark"})
 @JsonIgnoreProperties(ignoreUnknown=true)
-public abstract class ExpenseCsvFormat {
+public abstract class TransactionCsvFormat {
 
     @JsonIgnore
     private String id;
@@ -37,11 +37,11 @@ public abstract class ExpenseCsvFormat {
     @JsonDeserialize(using = IntegerDeserializer.class)
     private Integer indexNumber;
 
-    @JsonSerialize(using = ExpenseLocalDateSerializer.class)
+    @JsonSerialize(using = TransferLocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate invoiceDate;
 
-    @JsonSerialize(using = ExpenseLocalDateSerializer.class)
+    @JsonSerialize(using = TransferLocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate paymentDate;
 

@@ -1,4 +1,4 @@
-package consulting.cochez.accounting.expense;
+package consulting.cochez.accounting.transaction;
 
 import consulting.cochez.accounting.AbstractWebIntegrationTest;
 import org.junit.Test;
@@ -8,13 +8,13 @@ import static io.restassured.RestAssured.given;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
 import static org.hamcrest.Matchers.is;
 
-public class ExpenseResourceWebIntegrationTest extends AbstractWebIntegrationTest {
+public class TransactionResourceWebIntegrationTest extends AbstractWebIntegrationTest {
 
     @Test
-    public void exposesOrdersResourceViaRootResource() throws Exception {
+    public void exposesTransactionResource() throws Exception {
         given().contentType(MediaType.APPLICATION_JSON_VALUE)
                 .when()
-                .get("/api/expenses")
+                .get("/api/transactions")
                 .then()
                 .assertThat()
                 .statusCode(is(SC_OK));

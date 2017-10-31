@@ -1,4 +1,4 @@
-package consulting.cochez.accounting.expense;
+package consulting.cochez.accounting.transaction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Expense extends AbstractPersistable<UUID> {
+public class Transaction extends AbstractPersistable<UUID> {
 
     @NotNull
     private String name;

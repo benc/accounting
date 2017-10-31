@@ -1,10 +1,10 @@
-package consulting.cochez.accounting.expense.csv;
+package consulting.cochez.accounting.transaction.csv;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import consulting.cochez.accounting.expense.Expense;
-import consulting.cochez.accounting.expense.ExpenseRepository;
+import consulting.cochez.accounting.transaction.Transaction;
+import consulting.cochez.accounting.transaction.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,36 +21,36 @@ import java.util.List;
 import static java.lang.String.format;
 
 @RestController
-public class ExpenseCsvController {
+public class TransactionCsvController {
 
-    private final ExpenseCsvParser expenseCsvParser;
-    private final ExpenseRepository expenseRepository;
+    private final TransactionCsvParser transactionCsvParser;
+    private final TransactionRepository transactionRepository;
 
     @Autowired
-    public ExpenseCsvController(ExpenseCsvParser expenseCsvParser, ExpenseRepository expenseRepository) {
-        this.expenseCsvParser = expenseCsvParser;
-        this.expenseRepository = expenseRepository;
+    public TransactionCsvController(TransactionCsvParser transactionCsvParser, TransactionRepository transactionRepository) {
+        this.transactionCsvParser = transactionCsvParser;
+        this.transactionRepository = transactionRepository;
     }
 
     /**
-     * Import CSV data. Header names are used to map the fields to Expense.
+     * Import CSV data. Header names are used to map the fields to Transaction.
      *
      * @param csv csv file.
      * @return result message
      */
     @RequestMapping(
-            value = "/api/expenses/import",
+            value = "/api/transactions/import",
             method = RequestMethod.POST,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public String importCsv(@RequestPart("csv") MultipartFile csv) {
         try (InputStream csvInputStream = csv.getInputStream()) {
-            List<Expense> expenses = expenseCsvParser.parse(csvInputStream);
-            expenseRepository.saveAll(expenses);
+            List<Transaction> transactions = transactionCsvParser.parse(csvInputStream);
+            transactionRepository.saveAll(transactions);
 
             return new ObjectNode(JsonNodeFactory.instance)
-                    .put("message", format("CSV import succesfull, %s expenses imported", expenses.size()))
+                    .put("message", format("CSV import succesfull, %s transactions imported", transactions.size()))
                     .toString();
         } catch (IOException e) {
             throw new IllegalArgumentException("Error reading CSV file", e);
@@ -58,14 +58,14 @@ public class ExpenseCsvController {
     }
 
     @RequestMapping(
-            value = "/api/expenses/csv",
+            value = "/api/transactions/csv",
             method = RequestMethod.GET,
             produces = MediaType.TEXT_PLAIN_VALUE
     )
     @ResponseBody
     public String exportCsv() {
         try {
-            return expenseCsvParser.export(expenseRepository.findAll());
+            return transactionCsvParser.export(transactionRepository.findAll());
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("Error writing CSV file", e);
         }

@@ -1,7 +1,7 @@
 package consulting.cochez.accounting.importing.belfius;
 
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import consulting.cochez.accounting.expense.Expense;
+import consulting.cochez.accounting.transaction.Transaction;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Spy;
@@ -23,20 +23,20 @@ public class BelfiusCsvParserTest {
 
     @Test
     public void parse() throws Exception {
-        List<Expense> result = parser.parse(new ClassPathResource("belfius-mock.csv").getInputStream());
+        List<Transaction> result = parser.parse(new ClassPathResource("belfius-mock.csv").getInputStream());
 
         assertThat(result).isNotEmpty().hasSize(1);
 
-        Expense expense = result.get(0);
+        Transaction transaction = result.get(0);
 
-        assertThat(expense.getName()).isEqualTo("Le Foo");
-        assertThat(expense.getAmount()).isEqualByComparingTo(new BigDecimal("42.0"));
-        assertThat(expense.getVat()).isNull();
-        assertThat(expense.getIndexNumber()).isNull();
-        assertThat(expense.getCurrency()).isEqualTo("EUR");
-        assertThat(expense.getPaymentDate()).isEqualTo(LocalDate.of(2017, 9, 21));
-//        assertThat(expense.getCategory()).isEqualTo("software");
-        assertThat(expense.getRemark()).isNullOrEmpty();
+        assertThat(transaction.getName()).isEqualTo("Le Foo");
+        assertThat(transaction.getAmount()).isEqualByComparingTo(new BigDecimal("42.0"));
+        assertThat(transaction.getVat()).isNull();
+        assertThat(transaction.getIndexNumber()).isNull();
+        assertThat(transaction.getCurrency()).isEqualTo("EUR");
+        assertThat(transaction.getPaymentDate()).isEqualTo(LocalDate.of(2017, 9, 21));
+//        assertThat(transaction.getCategory()).isEqualTo("software");
+        assertThat(transaction.getRemark()).isNullOrEmpty();
     }
 
 }

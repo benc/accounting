@@ -3,7 +3,7 @@
  * Copyright (c) AWV Agentschap Wegen en Verkeer, Vlaamse Gemeenschap
  */
 
-package consulting.cochez.accounting.expense.csv;
+package consulting.cochez.accounting.transaction.csv;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Jackson serializer for LocalDate.
  */
-public class ExpenseLocalDateSerializer extends JsonSerializer<LocalDate> {
+public class TransferLocalDateSerializer extends JsonSerializer<LocalDate> {
 
     @Override
     public void serialize(LocalDate value, JsonGenerator gen, SerializerProvider arg2) throws IOException {

@@ -3,7 +3,7 @@ package consulting.cochez.accounting.importing.belfius;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import consulting.cochez.accounting.expense.Expense;
+import consulting.cochez.accounting.transaction.Transaction;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -24,10 +24,10 @@ public class BelfiusCsvParser {
 
     public static final char SEPARATOR = ';';
 
-    public List<Expense> parse(InputStream inputStream) throws IOException {
+    public List<Transaction> parse(InputStream inputStream) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         CsvMapper csvMapper = new CsvMapper();
-        csvMapper.addMixIn(Expense.class, BelfiusTransferFormat.class);
+        csvMapper.addMixIn(Transaction.class, BelfiusTransferFormat.class);
 
         CsvSchema bootstrapSchema = CsvSchema.emptySchema()
                 .withHeader()
@@ -39,8 +39,8 @@ public class BelfiusCsvParser {
             reader.readLine();
         }
 
-        MappingIterator<Expense> mappingIterator = csvMapper
-                .readerFor(Expense.class)
+        MappingIterator<Transaction> mappingIterator = csvMapper
+                .readerFor(Transaction.class)
                 .with(bootstrapSchema)
                 .readValues(reader);
 
