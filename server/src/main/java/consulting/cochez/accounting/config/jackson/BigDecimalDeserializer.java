@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -17,7 +16,7 @@ public class BigDecimalDeserializer extends FromStringDeserializer<BigDecimal> {
     }
 
     @Override
-    protected BigDecimal _deserialize(String value, DeserializationContext ctxt) throws IOException {
+    protected BigDecimal _deserialize(String value, DeserializationContext ctxt) {
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(new Locale("nl", "BE"));
         decimalFormat.setParseBigDecimal(true);
 

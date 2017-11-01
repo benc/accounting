@@ -43,7 +43,7 @@ public class TransactionRepositoryIntegrationTest extends AbstractIntegrationTes
 
         Transaction transaction = new Transaction();
         transaction.setName(faker.company().name());
-        transaction.setCategory(faker.lorem().fixedString(10));
+        transaction.setCategory(new Category().setName(faker.lorem().fixedString(10)));
         transaction.setCurrency("FOO");
         transaction.setRemark(faker.lorem().paragraph());
         transaction.setAmount(new BigDecimal(42));

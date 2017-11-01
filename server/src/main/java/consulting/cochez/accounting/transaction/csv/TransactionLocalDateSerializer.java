@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Jackson serializer for LocalDate.
  */
-public class TransferLocalDateSerializer extends JsonSerializer<LocalDate> {
+public class TransactionLocalDateSerializer extends JsonSerializer<LocalDate> {
 
     @Override
     public void serialize(LocalDate value, JsonGenerator gen, SerializerProvider arg2) throws IOException {

@@ -36,7 +36,7 @@ public class BelfiusCsvParserTest {
         assertThat(transaction.getCurrency()).isEqualTo("EUR");
         assertThat(transaction.getPaymentDate()).isEqualTo(LocalDate.of(2017, 9, 21));
 //        assertThat(transaction.getCategory()).isEqualTo("software");
-        assertThat(transaction.getRemark()).isNullOrEmpty();
+        assertThat(transaction.getRemark()).isEqualTo("Description");
     }
 
 }

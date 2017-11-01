@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import consulting.cochez.accounting.config.jackson.BigDecimalDeserializer;
 import consulting.cochez.accounting.config.jackson.LocalDateDeserializer;
+import consulting.cochez.accounting.transaction.Category;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -37,12 +38,16 @@ public abstract class TransactionCsvFormat {
     @JsonDeserialize(using = IntegerDeserializer.class)
     private Integer indexNumber;
 
-    @JsonSerialize(using = TransferLocalDateSerializer.class)
+    @JsonSerialize(using = TransactionLocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate invoiceDate;
 
-    @JsonSerialize(using = TransferLocalDateSerializer.class)
+    @JsonSerialize(using = TransactionLocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate paymentDate;
+
+    @JsonSerialize(using = TransactionCategorySerializer.class)
+    @JsonDeserialize(using = TransactionCategoryDeserializer.class)
+    private Category category;
 
 }

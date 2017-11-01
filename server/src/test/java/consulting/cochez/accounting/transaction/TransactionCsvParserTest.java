@@ -37,7 +37,8 @@ public class TransactionCsvParserTest {
         assertThat(transaction.getAmount()).isEqualByComparingTo(new BigDecimal("1.99"));
         assertThat(transaction.getVat()).isEqualTo(21);
         assertThat(transaction.getIndexNumber()).isNull();
-        assertThat(transaction.getCategory()).isEqualTo("software");
+        assertThat(transaction.getCategory()).isNotNull();
+        assertThat(transaction.getCategory().getName()).isEqualTo("software");
         assertThat(transaction.getRemark()).isEmpty();
     }
 
