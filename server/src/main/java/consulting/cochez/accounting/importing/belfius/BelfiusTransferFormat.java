@@ -8,8 +8,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import consulting.cochez.accounting.config.jackson.BigDecimalDeserializer;
 import consulting.cochez.accounting.config.jackson.LocalDateDeserializer;
-import consulting.cochez.accounting.transaction.csv.TransactionLocalDateSerializer;
-import consulting.cochez.accounting.transaction.csv.IntegerDeserializer;
+import consulting.cochez.accounting.importing.expenses.ExpensesLocalDateSerializer;
+import consulting.cochez.accounting.config.jackson.IntegerDeserializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -50,7 +50,7 @@ public abstract class BelfiusTransferFormat {
     @JsonProperty("Transactienummer")
     private Integer indexNumber;
 
-    @JsonSerialize(using = TransactionLocalDateSerializer.class)
+    @JsonSerialize(using = ExpensesLocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonProperty("Valutadatum")
     private LocalDate paymentDate;

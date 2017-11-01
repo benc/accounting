@@ -1,7 +1,8 @@
-package consulting.cochez.accounting.transaction;
+package consulting.cochez.accounting.importing.expenses;
 
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import consulting.cochez.accounting.transaction.csv.TransactionCsvParser;
+import consulting.cochez.accounting.importing.expenses.ExpensesCsvParser;
+import consulting.cochez.accounting.transaction.Transaction;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,13 +17,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TransactionCsvParserTest {
+public class ExpensesCsvParserTest {
 
     @Spy
     private CsvMapper csvMapper;
 
     @InjectMocks
-    private TransactionCsvParser csvHelper = new TransactionCsvParser();
+    private ExpensesCsvParser csvHelper = new ExpensesCsvParser();
 
     @Test
     public void parse() throws Exception {

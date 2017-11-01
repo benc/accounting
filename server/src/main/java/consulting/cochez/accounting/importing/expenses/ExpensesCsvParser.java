@@ -1,4 +1,4 @@
-package consulting.cochez.accounting.transaction.csv;
+package consulting.cochez.accounting.importing.expenses;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MappingIterator;
@@ -17,7 +17,7 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @Component
-public class TransactionCsvParser {
+public class ExpensesCsvParser {
 
     @PostConstruct
     public void setup() {
@@ -27,7 +27,7 @@ public class TransactionCsvParser {
 
     public List<Transaction> parse(InputStream csvInputStream) throws IOException {
         CsvMapper csvMapper = new CsvMapper();
-        csvMapper.addMixIn(Transaction.class, TransactionCsvFormat.class);
+        csvMapper.addMixIn(Transaction.class, ExpensesCsvFormat.class);
         csvMapper.configure(CsvParser.Feature.FAIL_ON_MISSING_COLUMNS, true);
 
         CsvSchema bootstrapSchema = CsvSchema.emptySchema() // empty, based on column header names
@@ -64,7 +64,7 @@ public class TransactionCsvParser {
 
     public String export(List<Transaction> transactions) throws JsonProcessingException {
         CsvMapper csvMapper = new CsvMapper();
-        csvMapper.addMixIn(Transaction.class, TransactionCsvFormat.class);
+        csvMapper.addMixIn(Transaction.class, ExpensesCsvFormat.class);
 
         CsvSchema schema = csvMapper
                 .schemaFor(Transaction.class)

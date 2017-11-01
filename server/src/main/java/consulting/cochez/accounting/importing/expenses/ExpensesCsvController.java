@@ -1,4 +1,4 @@
-package consulting.cochez.accounting.transaction.csv;
+package consulting.cochez.accounting.importing.expenses;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
@@ -21,14 +21,14 @@ import java.util.List;
 import static java.lang.String.format;
 
 @RestController
-public class TransactionCsvController {
+public class ExpensesCsvController {
 
-    private final TransactionCsvParser transactionCsvParser;
+    private final ExpensesCsvParser expensesCsvParser;
     private final TransactionRepository transactionRepository;
 
     @Autowired
-    public TransactionCsvController(TransactionCsvParser transactionCsvParser, TransactionRepository transactionRepository) {
-        this.transactionCsvParser = transactionCsvParser;
+    public ExpensesCsvController(ExpensesCsvParser expensesCsvParser, TransactionRepository transactionRepository) {
+        this.expensesCsvParser = expensesCsvParser;
         this.transactionRepository = transactionRepository;
     }
 
@@ -46,7 +46,7 @@ public class TransactionCsvController {
     )
     public String importCsv(@RequestPart("csv") MultipartFile csv) {
         try (InputStream csvInputStream = csv.getInputStream()) {
-            List<Transaction> transactions = transactionCsvParser.parse(csvInputStream);
+            List<Transaction> transactions = expensesCsvParser.parse(csvInputStream);
             transactionRepository.saveAll(transactions);
 
             return new ObjectNode(JsonNodeFactory.instance)
@@ -65,7 +65,7 @@ public class TransactionCsvController {
     @ResponseBody
     public String exportCsv() {
         try {
-            return transactionCsvParser.export(transactionRepository.findAll());
+            return expensesCsvParser.export(transactionRepository.findAll());
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("Error writing CSV file", e);
         }

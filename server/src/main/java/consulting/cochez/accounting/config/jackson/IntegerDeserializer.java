@@ -1,4 +1,4 @@
-package consulting.cochez.accounting.transaction.csv;
+package consulting.cochez.accounting.config.jackson;
 
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;

@@ -1,4 +1,4 @@
-package consulting.cochez.accounting.transaction;
+package consulting.cochez.accounting.importing.expenses;
 
 import consulting.cochez.accounting.AbstractWebIntegrationTest;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
 import static org.hamcrest.Matchers.is;
 
-public class TransactionCsvControllerWebIntegrationTest extends AbstractWebIntegrationTest {
+public class ExpensesCsvControllerWebIntegrationTest extends AbstractWebIntegrationTest {
 
     @Test
     public void canImportCsv() throws Exception {
