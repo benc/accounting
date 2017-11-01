@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 public class TransactionResourceWebIntegrationTest extends AbstractWebIntegrationTest {
 
     @Test
-    public void exposesTransactionResource() throws Exception {
+    public void exposesTransactionResource() {
         given().contentType(MediaType.APPLICATION_JSON_VALUE)
                 .when()
                 .get("/api/transactions")

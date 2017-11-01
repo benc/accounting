@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -24,7 +23,7 @@ public class LocalDateDeserializer extends FromStringDeserializer<LocalDate> {
     }
 
     @Override
-    protected LocalDate _deserialize(String value, DeserializationContext ctxt) throws IOException {
+    protected LocalDate _deserialize(String value, DeserializationContext ctxt) {
         if (StringUtils.isBlank(value)) {
             return null;
         }

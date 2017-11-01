@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import consulting.cochez.accounting.transaction.Transaction;
 import consulting.cochez.accounting.transaction.TransactionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,16 +22,10 @@ import java.util.List;
 import static java.lang.String.format;
 
 @RestController
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ExpensesCsvController {
-
     private final ExpensesCsvParser expensesCsvParser;
     private final TransactionRepository transactionRepository;
-
-    @Autowired
-    public ExpensesCsvController(ExpensesCsvParser expensesCsvParser, TransactionRepository transactionRepository) {
-        this.expensesCsvParser = expensesCsvParser;
-        this.transactionRepository = transactionRepository;
-    }
 
     /**
      * Import CSV data. Header names are used to map the fields to Transaction.

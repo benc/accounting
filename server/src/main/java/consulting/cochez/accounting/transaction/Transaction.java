@@ -23,7 +23,6 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Transaction extends AbstractPersistable<UUID> {
-
     private String fromAccount;
     private String toAccount;
     private String name;
@@ -39,5 +38,4 @@ public class Transaction extends AbstractPersistable<UUID> {
     private LocalDate invoiceDate;
     private LocalDate paymentDate;
     private Integer indexNumber;
-
 }

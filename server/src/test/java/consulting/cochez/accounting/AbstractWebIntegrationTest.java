@@ -34,7 +34,7 @@ public abstract class AbstractWebIntegrationTest {
     private ObjectMapper mapper;
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         RestAssured.port = serverPort;
         RestAssured.basePath = contextPath;
         RestAssured.config = RestAssuredConfig.config()

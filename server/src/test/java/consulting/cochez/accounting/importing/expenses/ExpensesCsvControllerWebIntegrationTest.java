@@ -23,7 +23,7 @@ public class ExpensesCsvControllerWebIntegrationTest extends AbstractWebIntegrat
     }
 
     @Test
-    public void canExportCsv() throws Exception {
+    public void canExportCsv() {
         given()
                 .when()
                 .get("/api/transactions/csv")

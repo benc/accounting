@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TransactionRepositoryIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
-    TransactionRepository repository;
+    private TransactionRepository repository;
 
     @Test
     public void findsAllExpenses() {

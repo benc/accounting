@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CategoryRepositoryIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
-    CategoryRepository repository;
+    private CategoryRepository repository;
 
     @Test
     public void findsAllExpenses() {
@@ -30,8 +30,6 @@ public class CategoryRepositoryIntegrationTest extends AbstractIntegrationTest {
 
         Category category = new Category();
         category.setName(faker.gameOfThrones().dragon());
-        category.getMatchingExpressions().add(new CategoryExpression().setExpression("FOO"));
-        category.getMatchingExpressions().add(new CategoryExpression().setExpression("BAR"));
 
         return category;
     }
