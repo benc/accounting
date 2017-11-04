@@ -1,0 +1,94 @@
+<h2 *ngIf="isNew()" class="sub-header">Create a new transaction</h2>
+<h2 *ngIf="!isNew()" class="sub-header">Edit transaction</h2>
+
+<form [formGroup]="transactionForm" (ngSubmit)="saveOrUpdate(transactionForm.value)" class="ui form">
+
+  <div class="field" [class.error]="!transactionForm.controls.name.valid && transactionForm.controls.name.touched" np>
+    <label for="nameInput">Name:</label>
+    <input type="text" id="nameInput" placeholder="Name" formControlName="name">
+    <div *ngIf="!transactionForm.controls.name.valid" class="ui error message">Name is invalid</div>
+    <div *ngIf="transactionForm.controls.name.hasError('required')" class="ui error message">Name is required</div>
+  </div>
+
+  <div class="three fields">
+
+    <div class="field"  [class.error]="!transactionForm.controls.amount.valid && transactionForm.controls.amount.touched">
+      <label for="amountInput">Amount:</label>
+      <input type="text" id="amountInput" placeholder="Amount" formControlName="amount">
+      <div *ngIf="!transactionForm.controls.amount.valid" class="ui error message">Invalid amount</div>
+      <div *ngIf="transactionForm.controls.amount.hasError('required')" class="ui error message">Amount is required</div>
+    </div>
+
+    <div class="field" [class.error]="!transactionForm.controls.currency.valid && transactionForm.controls.currency.touched">
+      <label for="currencyInput">Currency:</label>
+      <select class="ui dropdown" id="currencyInput" formControlName="currency" placeholder="Currency">
+        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+      </select>
+      <div *ngIf="!transactionForm.controls.currency.valid" class="ui error message">Invalid currency</div>
+      <div *ngIf="transactionForm.controls.currency.hasError('required')" class="ui error message">Currency is required</div>
+    </div>
+
+    <div class="field" [class.error]="!transactionForm.controls.vat.valid && transactionForm.controls.vat.touched">
+      <label for="vatInput">VAT:</label>
+      <select class="ui dropdown" id="vatInput" formControlName="vat" placeholder="VAT">
+        <option *ngFor="let vatRate of vatRates" [value]="vatRate">{{ vatRate }}</option>
+      </select>
+      <div *ngIf="!transactionForm.controls.vat.valid" class="ui error message">Invalid VAT</div>
+      <div *ngIf="transactionForm.controls.vat.hasError('required')" class="ui error message">VAT is required</div>
+    </div>
+
+  </div>
+
+  <div class="two fields">
+
+    <div class="field" [class.error]="!transactionForm.controls.invoiceDate.valid && transactionForm.controls.invoiceDate.touched">
+      <label for="invoiceDateInput">Invoice date:</label>
+      <input type="date" id="invoiceDateInput" placeholder="Invoice date" formControlName="invoiceDate">
+      <div *ngIf="!transactionForm.controls.invoiceDate.valid" class="ui error message">Invalid invoice date</div>
+      <div *ngIf="transactionForm.controls.invoiceDate.hasError('required')" class="ui error message">Invoice date is required</div>
+    </div>
+
+    <div class="field" [class.error]="!transactionForm.controls.paymentDate.valid && transactionForm.controls.paymentDate.touched">
+      <label for="paymentDateInput">Payment date:</label>
+      <input type="date" id="paymentDateInput" placeholder="Payment date" formControlName="paymentDate">
+      <div *ngIf="!transactionForm.controls.paymentDate.valid" class="ui error message">Invalid payment date</div>
+      <div *ngIf="transactionForm.controls.paymentDate.hasError('required')" class="ui error message">Payment date is required</div>
+    </div>
+
+  </div>
+
+  <div class="two fields">
+
+    <div class="twelve wide field" [class.error]="!transactionForm.controls.category.valid && transactionForm.controls.category.touched">
+      <label for="categoryInput">Category:</label>
+      <input type="text" id="categoryInput" placeholder="Category" formControlName="category">
+      <div *ngIf="!transactionForm.controls.category.valid" class="ui error message">Invalid category</div>
+      <div *ngIf="transactionForm.controls.category.hasError('required')" class="ui error message">Category is required</div>
+    </div>
+
+    <div class="four wide field" [class.error]="!transactionForm.controls.indexNumber.valid && transactionForm.controls.indexNumber.touched">
+      <label for="indexNumberInput">Index number:</label>
+      <input type="text" id="indexNumberInput" placeholder="Index number" formControlName="indexNumber">
+      <div *ngIf="!transactionForm.controls.indexNumber.valid" class="ui error message">Invalid index number</div>
+      <div *ngIf="transactionForm.controls.indexNumber.hasError('required')" class="ui error message">Index number is required</div>
+    </div>
+
+  </div>
+
+  <div class="field" [class.error]="!transactionForm.controls.remark.valid && transactionForm.controls.remark.touched">
+    <label for="remarkInput">Remark:</label>
+    <textarea id="remarkInput" placeholder="Remark" formControlName="remark"></textarea>
+    <div *ngIf="!transactionForm.controls.remark.valid" class="ui error message">Invalid remark</div>
+    <div *ngIf="transactionForm.controls.remark.hasError('required')" class="ui error message">Remark is required</div>
+  </div>
+
+  <div class="ui buttons">
+    <button (click)="cancel()" class="ui button">Cancel</button>
+    <div class="or"></div>
+    <button [disabled]="!transactionForm.valid" type="submit" class="ui positive button">
+      <span *ngIf="isNew()">Create</span>
+      <span *ngIf="!isNew()">Update</span>
+    </button>
+  </div>
+
+</form>

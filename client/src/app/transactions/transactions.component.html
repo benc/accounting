@@ -1,0 +1,55 @@
+<h2 class="ui header">
+  Transactions
+</h2>
+<p>
+  <button class="ui button" [routerLink]="['new']">
+    <i class="plus icon"></i>
+    Add new
+  </button>
+</p>
+
+<table class="ui celled table">
+  <thead>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Currency</th>
+    <th>VAT</th>
+    <th>Invoice date</th>
+    <th>Payment date</th>
+    <!--<th>Category</th>-->
+    <th>Remark</th>
+    <th>Index number</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="transaction" *ngFor="let transaction of transactions">
+    <td>{{ transaction.fromAccount }}</td>
+    <td>{{ transaction.toAccount }}</td>
+    <td>{{ transaction.name }}</td>
+    <td>{{ transaction.amount }}</td>
+    <td>{{ transaction.currency }}</td>
+    <td>{{ transaction.vat }}</td>
+    <td>{{ transaction.invoiceDate }}</td>
+    <td>{{ transaction.paymentDate }}</td>
+    <!--<td>{{ transaction.category }}</td>-->
+    <td>{{ transaction.remark }}</td>
+    <td>{{ transaction.indexNumber }}</td>
+    <td class="actions">
+      <div class="ui buttons">
+        <button class="ui small compact button" [routerLink]="['TransactionEdit', {href: transaction._links.transaction.href}]">
+          <i class="write icon"></i>
+          Edit
+        </button>
+        <button class="ui small compact negative button" (click)="delete(transaction)">
+          <i class="trash icon"></i>
+          Delete
+        </button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

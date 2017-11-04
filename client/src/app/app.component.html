@@ -1,0 +1,52 @@
+<div class="accounting-content" fxLayout="row">
+  <div class="accounting-sidenav">
+    <div class="brand" fxLayoutAlign="start center">
+      <button class="accounting-sidenav-toggle" md-icon-button aria-label="Menu">
+        <md-icon>menu</md-icon>
+      </button>
+      <a href="/" class="breadcrumb">Accounting</a>
+    </div>
+
+    <div class="accounting-navigation-drawer">
+      <div class="accounting-nav-divider"></div>
+      <ul class="accounting-nav-items">
+        <li class="accounting-nav-subtitle qa-home">
+          Transactions
+        </li>
+        <li class="accounting-nav-item">
+          <a [routerLink]="['/transactions']">
+            <md-icon class="accounting-nav-item-icon" mdTooltip="Transactions overview" mdTooltipPosition="right">
+              search
+            </md-icon>
+            <span class="accounting-nav-item-text">Transactions</span>
+          </a>
+        </li>
+        <li class="accounting-nav-item">
+          <a [routerLink]="['/transactions/new']">
+            <md-icon class="accounting-nav-item-icon" mdTooltip="New transaction" mdTooltipPosition="right">
+              add
+            </md-icon>
+            <span class="accounting-nav-item-text">New transaction</span>
+          </a>
+        </li>
+      </ul>
+      <div>
+        <div class="accounting-nav-divider"></div>
+        <ul class="accounting-nav-items">
+          <li class="accounting-nav-item">
+            <a [routerLink]="['/system']">
+              <md-icon class="accounting-nav-item-icon" mdTooltip="Systeembeheer" mdTooltipPosition="right">
+                settings_applications
+              </md-icon>
+              <span class="accounting-nav-item-text">Management</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accounting-main-content" fxFlex>
+    <router-outlet></router-outlet>
+  </div>
+  <!-- TODO snackbar -->
+</div>
